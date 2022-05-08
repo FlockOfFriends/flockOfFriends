@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
-const AllEvents = ({location}) => {
+const AllEvents = ({location, toggleApi}) => {
 
     const [events, setEvents] = useState([])
 
@@ -24,7 +24,9 @@ const AllEvents = ({location}) => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [])
+  }, [toggleApi])
+
+  
     return (
         <ul className="catalogue">
         { events.map((event) => {

@@ -1,40 +1,38 @@
-import { useEffect, useState } from "react";
-import  {Routes, Route} from 'react-router-dom'
-import {useParams} from 'react-router-dom'
-import axios from "axios";
+import { useState, useEffect } from "react";
+import  {Routes, Route, Link} from 'react-router-dom'
+// import {useParams} from 'react-router-dom'
+// import axios from "axios";
+import { getDatabase, ref, onValue } from "firebase/database";
+
+import firebase from "./components/firebase";
 
 // components
 import AllEvents from './components/AllEvents'
 import EventDetails from './components/EventDetails'
+import PersonalHub from './components/PersonalHub'
 
 function App() {
-  const [location, setLocation] = useState("Toronto")
+  const [location, setLocation] = useState("New York")
   const [toggleApi, setToggleApi] = useState(false)
-
-  // useEffect(()=> {
-  //   const configTicket = {
-  //     method: "get",
-  //     url: `https://app.ticketmaster.com/discovery/v2/events`,
-  //     params: {
-  //       apikey: "NJCKlZmMAiwCVsFMlf33AlMF11d5iusP",
-  //       city: location,
-  //     },
-  //   };
-  //   axios(configTicket)
-  //     .then(function (response) {
-  //       const results = response.data._embedded.events;
-  //       console.log(results)
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, [toggleApi])
+  const [status, setStatus] = useState([])
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setToggleApi(!toggleApi);
   };
 
+  useEffect(() => {
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+    onValue(dbRef, (response) => {
+      const newState = [];
+      const data = response.val();
+      for (let key in data) {
+        newState.push(data[key]);
+      }
+      setStatus(newState);
+    });
+  }, []);
 
   return (
     <div className="App">
@@ -49,20 +47,25 @@ function App() {
                 onChange={(e) => setLocation(e.target.value)}
               />
             </label>
-    
-
-            {/* Submit button */}
             <input className="submit" type="submit" />
           </form>
+          <Link to="/">Home</Link>
+          <Link to="/personalhub">
+            <p>{status.length}</p>
+          </Link>
         </nav>
       </header>
-      {/* <AllEvents 
-      location={location}
-      /> */}
      
      <Routes>
-        <Route path="/" element={<AllEvents location={location} />} />
+        <Route path="/" 
+        element={
+        <AllEvents 
+        location={location} 
+        toggleApi={toggleApi}
+        
+        />} />
         <Route path="/event/:eventID" element={<EventDetails />}/>
+        <Route path="/personalhub" element={ <PersonalHub /> } /> 
       </Routes>
     </div>
   );
