@@ -10,6 +10,7 @@ import firebase from "./components/firebase";
 import AllEvents from './components/AllEvents'
 import EventDetails from './components/EventDetails'
 import PersonalHub from './components/PersonalHub'
+import PersonalEvent from './components/PersonalEvent'
 
 function App() {
   const [location, setLocation] = useState("New York")
@@ -61,11 +62,14 @@ function App() {
         element={
         <AllEvents 
         location={location} 
-        toggleApi={toggleApi}
+        toggleApi={toggleApi} />} />
+
         
-        />} />
         <Route path="/event/:eventID" element={<EventDetails />}/>
-        <Route path="/personalhub" element={ <PersonalHub /> } /> 
+        <Route path="/personal/:personalID" element={<PersonalEvent />}/>
+        
+        <Route path="/personalhub" 
+        element={ <PersonalHub /> } /> 
       </Routes>
     </div>
   );

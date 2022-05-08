@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 import axios from "axios";
 import firebase from "./firebase";
 import { getDatabase, ref, push } from 'firebase/database';
@@ -43,9 +44,15 @@ const handleSubmit = (event) => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
     // push the value of the `userInput` state to the database
-    const test = {userInput, id: eventID, title: detailsArray.name, img: detailsArray.images[1].url}
-    push(dbRef, test);
-    // reset the state to an empty string
+    let removeWhite = userInput.trim().split(/[\s,\t,\n]+/).join(' ');
+    let addHyphen = removeWhite.replace(/ /g, "-")
+    let removeAppost = addHyphen.replaceAll("'", "")
+    let lowered = removeAppost.toLowerCase()
+
+    console.log(lowered)
+    const uniqueInput = {userInput, id: eventID, title: detailsArray.name, img: detailsArray.images[1].url}
+    
+    push(dbRef, uniqueInput);
     setUserInput('');
   }
 
@@ -74,6 +81,7 @@ const handleSubmit = (event) => {
           </form>
         </div>
       ) : null}
+      
     </div>
   );
 };
