@@ -16,6 +16,7 @@ function App() {
   const [location, setLocation] = useState("New York")
   const [toggleApi, setToggleApi] = useState(false)
   const [status, setStatus] = useState([])
+  const [eventType, setEventType] = useState('Sports')
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -62,6 +63,7 @@ function App() {
         element={
         <AllEvents 
         location={location} 
+        eventType={eventType}
         toggleApi={toggleApi} />} />
 
         
