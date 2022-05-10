@@ -1,15 +1,17 @@
 // Variables
 $bgColor: #fbdbbd;
+$ulBgColor: #0077b6;
 
 .App {
   background-color: $bgColor;
 }
 
-header {
-}
+// header {
+// }
 
 // ALLEVENTS.JS
-ul {
+.catalogue {
+  background-color: #0077b6;
   margin: 0 auto;
   li {
     list-style: none;
@@ -33,7 +35,6 @@ ul {
   margin: 0 auto;
   li {
     list-style: none;
-    margin: 0 auto;
     P {
       text-align: center;
     }
