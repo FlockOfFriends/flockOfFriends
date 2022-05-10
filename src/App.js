@@ -11,6 +11,7 @@ import AllEvents from './components/AllEvents'
 import EventDetails from './components/EventDetails'
 import PersonalHub from './components/PersonalHub'
 import PersonalEvent from './components/PersonalEvent'
+import Calendar from "./components/Calendar";
 
 function App() {
   const [location, setLocation] = useState("New York")
@@ -49,6 +50,11 @@ function App() {
                 onChange={(e) => setLocation(e.target.value)}
               />
             </label>
+
+            <label htmlFor="date">
+              <Calendar />
+            </label>
+
             <input className="submit" type="submit" />
           </form>
           <Link to="/">Home</Link>
