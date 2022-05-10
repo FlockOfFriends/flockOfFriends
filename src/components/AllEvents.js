@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import DateFunction from './DateFunction'
 
 const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) => {
 
@@ -28,6 +29,7 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
         apikey: "NJCKlZmMAiwCVsFMlf33AlMF11d5iusP",
         city: location,
         // classificationName: eventType,
+
         startDateTime: ourStart,
         endDateTime: ourEnd
       },

@@ -12,6 +12,7 @@ import EventDetails from './components/EventDetails'
 import PersonalHub from './components/PersonalHub'
 import PersonalEvent from './components/PersonalEvent'
 import DatePicker from "react-date-picker"
+import DateFunction from "./components/DateFunction";
 
 function App() {
 
