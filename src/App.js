@@ -25,7 +25,7 @@ function App() {
   const [dateEndValue, setDateEndValue] = useState(new Date());
   const [toggleApi, setToggleApi] = useState(false)
   const [status, setStatus] = useState([])
-  const [eventType, setEventType] = useState('Sports')
+  const [eventType, setEventType] = useState("")
 
 
   const handleSubmit = (event) => {
@@ -52,15 +52,18 @@ function App() {
         <nav>
           <form className="form" onSubmit={handleSubmit}>
             <label>
+              <p className="searchLabelText">Location</p>
               <input
                 type="text"
                 className="search"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
+                placeholder="city, country, etc"
               />
             </label>
 
             <label>
+              <p className="searchLabelText">Start Date</p>
               <DatePicker
 
               closeCalendar={false}
@@ -68,17 +71,32 @@ function App() {
               id="datePicker"
               value={dateValue}
               onChange={setDateValue}
-
               />
-
+              <p>End Date</p>
               <DatePicker
               closeCalendar={false}
               name="datePicker"
               id="datePicker"
               value={dateEndValue}
               onChange={setDateEndValue}
-
               />
+            </label>
+
+            <label onChange={(e) => setEventType(e.target.value)}>
+              <p>Event Type</p>
+              <div className="radioEventList">
+                <label htmlFor="allEvents">All Events</label>
+                <input type="radio" name="eventChoice" id="allEvents" value=""/>
+
+                <label htmlFor="sports">Sports</label>
+                <input type="radio" name="eventChoice" id="sports" value="Sports"/>
+
+                <label htmlFor="music">Music</label>
+                <input type="radio" name="eventChoice" id="music" value="Music" />
+
+                <label htmlFor="artsTheatre">Arts & Theatre</label>
+                <input type="radio" name="eventChoice" id="artsTheatre" value="Arts & Theatre"/>
+              </div>
             </label>
 
             <input className="submit" type="submit" />

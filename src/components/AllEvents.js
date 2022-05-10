@@ -22,13 +22,14 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
   console.log(ourStart)
   console.log(ourEnd)
 
+
     const configTicket = {
       method: "get",
       url: `https://app.ticketmaster.com/discovery/v2/events`,
       params: {
         apikey: "NJCKlZmMAiwCVsFMlf33AlMF11d5iusP",
         city: location,
-        // classificationName: eventType,
+        classificationName: eventType,
 
         startDateTime: ourStart,
         endDateTime: ourEnd
