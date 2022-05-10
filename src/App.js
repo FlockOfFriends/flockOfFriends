@@ -12,6 +12,7 @@ import EventDetails from './components/EventDetails'
 import PersonalHub from './components/PersonalHub'
 import PersonalEvent from './components/PersonalEvent'
 import DatePicker from "react-date-picker"
+import DateFunction from "./components/DateFunction";
 
 function App() {
   const [location, setLocation] = useState("New York")
@@ -21,17 +22,17 @@ function App() {
   const [eventType, setEventType] = useState('Sports')
 
 
-  const dateFunction = (date) => {
-    const altDate = date.toISOString();
-    const newDate = altDate.replace(/[/]/g, "-");
-    const shortDate = newDate.substring(0,newDate.indexOf("T"));
-    const finalDate = `${shortDate}T23:00:00Z`; 
-    return finalDate;
-  }
+  // const dateFunction = (date) => {
+  //   const altDate = date.toISOString();
+  //   const newDate = altDate.replace(/[/]/g, "-");
+  //   const shortDate = newDate.substring(0,newDate.indexOf("T"));
+  //   const finalDate = `${shortDate}T23:00:00Z`; 
+  //   return finalDate;
+  // }
 
-  const todaysDate = dateFunction(new Date());
-  console.log("TODAYS DATE", todaysDate);
-  console.log("normal date", new Date())
+  // const todaysDate = dateFunction(new Date());
+  // console.log("TODAYS DATE", todaysDate);
+  // console.log("normal date", new Date())
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -1,10 +1,13 @@
 import {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import DateFunction from './DateFunction'
 
 const AllEvents = ({location, toggleApi, eventType, dateValue}) => {
 
     const [events, setEvents] = useState([])
+    const searchDate = DateFunction(dateValue);
+    console.log("SEARCH DATE", searchDate)
 
   useEffect(() => {
     const configTicket = {
@@ -13,8 +16,8 @@ const AllEvents = ({location, toggleApi, eventType, dateValue}) => {
       params: {
         apikey: "NJCKlZmMAiwCVsFMlf33AlMF11d5iusP",
         city: location,
-        classificationName: eventType,
-        // startDateTime: dateValue
+        // classificationName: eventType,
+        startDateTime: searchDate
       },
     };
     axios(configTicket)
