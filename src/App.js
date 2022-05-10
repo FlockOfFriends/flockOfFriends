@@ -1,4 +1,4 @@
-import "./App.scss";
+import "./style/sass/App.scss";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 // import {useParams} from 'react-router-dom'

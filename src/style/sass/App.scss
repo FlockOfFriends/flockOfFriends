@@ -1,6 +1,5 @@
-// Variables
-$bgColor: #fbdbbd;
-$ulBgColor: #0077b6;
+@import "./partials/setup";
+@import "./partials/baseStyles";
 
 .App {
   background-color: $bgColor;
@@ -11,7 +10,7 @@ $ulBgColor: #0077b6;
 
 // ALLEVENTS.JS
 .catalogue {
-  background-color: #0077b6;
+  background-color: $ulBgColor;
   margin: 0 auto;
   li {
     list-style: none;
