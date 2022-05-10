@@ -2,19 +2,34 @@ import {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
-const AllEvents = ({location, toggleApi, eventType, dateValue}) => {
+const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) => {
 
-    const [events, setEvents] = useState([])
+  const [events, setEvents] = useState([])
 
+  const dateFunction = (userDate, defaultTime) => {
+    const todaysDate = userDate
+    const altDate = todaysDate.toISOString();
+    const newDate = altDate.replace(/[/]/g, "-");
+    const shortDate = newDate.substring(0,newDate.indexOf("T"));
+    const finalDate = `${shortDate}${defaultTime}`; 
+    return finalDate.toString();
+  }
   useEffect(() => {
+  
+  const ourStart = dateFunction(dateValue, "T23:00:00Z")
+  const ourEnd = dateFunction(dateEndValue, "T23:59:59Z")
+  console.log(ourStart)
+  console.log(ourEnd)
+
     const configTicket = {
       method: "get",
       url: `https://app.ticketmaster.com/discovery/v2/events`,
       params: {
         apikey: "NJCKlZmMAiwCVsFMlf33AlMF11d5iusP",
         city: location,
-        classificationName: eventType,
-        // startDateTime: dateValue
+        // classificationName: eventType,
+        startDateTime: ourStart,
+        endDateTime: ourEnd
       },
     };
     axios(configTicket)

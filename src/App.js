@@ -14,22 +14,16 @@ import PersonalEvent from './components/PersonalEvent'
 import DatePicker from "react-date-picker"
 
 function App() {
+
+  // Lets mutate the Date data immediately
+  
+
   const [location, setLocation] = useState("New York")
   const [dateValue, setDateValue] = useState(new Date());
+  const [dateEndValue, setDateEndValue] = useState(new Date());
   const [toggleApi, setToggleApi] = useState(false)
   const [status, setStatus] = useState([])
   const [eventType, setEventType] = useState('Sports')
-
-
-  // const dateFunction = (date) => {
-  //   const altDate = date.toISOString();
-  //   const newDate = altDate.replace(/[/]/g, "-");
-  //   const shortDate = newDate.substring(0,newDate.indexOf("T"));
-  //   const finalDate = `${shortDate}T23:00:00Z`; 
-  //   return finalDate;
-  // }
-  // const todaysDate = dateFunction(new Date());
-  // console.log(dateFunction(dateValue));
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -69,8 +63,18 @@ function App() {
               closeCalendar={false}
               name="datePicker"
               id="datePicker"
-              onChange={setDateValue}
               value={dateValue}
+              onChange={setDateValue}
+
+              />
+
+              <DatePicker
+              closeCalendar={false}
+              name="datePicker"
+              id="datePicker"
+              value={dateEndValue}
+              onChange={setDateEndValue}
+
               />
             </label>
 
@@ -90,6 +94,7 @@ function App() {
         location={location} 
         eventType={eventType}
         dateValue={dateValue}
+        dateEndValue={dateEndValue}
         toggleApi={toggleApi} />} />
 
         
