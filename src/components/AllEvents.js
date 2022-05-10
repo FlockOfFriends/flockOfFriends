@@ -52,7 +52,7 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
               <li key={event.id}>
                 <Link to={`/event/${event.id}`}>
                 <img 
-                src={event.images[0].url} 
+                src={event.images[1].url} 
                 alt={`Placeholder`} />
                 </Link>
               </li>
