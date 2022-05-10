@@ -28,8 +28,10 @@ function App() {
     const finalDate = `${shortDate}T23:00:00Z`; 
     return finalDate;
   }
+
   const todaysDate = dateFunction(new Date());
-  console.log(dateFunction(dateValue));
+  console.log("TODAYS DATE", todaysDate);
+  console.log("normal date", new Date())
 
   const handleSubmit = (event) => {
     event.preventDefault();
