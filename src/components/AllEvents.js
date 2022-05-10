@@ -1,10 +1,9 @@
-import {useEffect, useState} from 'react'
-import {Link} from 'react-router-dom'
-import axios from 'axios'
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-const AllEvents = ({location, toggleApi, eventType, dateValue}) => {
-
-    const [events, setEvents] = useState([])
+const AllEvents = ({ location, toggleApi, eventType, dateValue }) => {
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const configTicket = {
@@ -20,32 +19,28 @@ const AllEvents = ({location, toggleApi, eventType, dateValue}) => {
     axios(configTicket)
       .then(function (response) {
         const results = response.data._embedded.events;
-        console.log(results)
-        setEvents(response.data._embedded.events)
+        console.log(results);
+        setEvents(response.data._embedded.events);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, [toggleApi])
+  }, [toggleApi]);
 
-  
-    return (
-        <ul className="catalogue">
-        { events.map((event) => {
-            
-            return (
-              <li key={event.id}>
-                <Link to={`/event/${event.id}`}>
-                <img 
-                src={event.images[0].url} 
-                alt={`Placeholder`} />
-                </Link>
-              </li>
-            )
-        })}
-      </ul>
-
-    )
-
-}
-export default AllEvents
+  return (
+    <ul className="catalogue">
+      {events.map((event) => {
+        return (
+          <li key={event.id}>
+            <Link to={`/event/${event.id}`}>
+              <div className="imgContainer">
+                <img src={event.images[0].url} alt={`Placeholder`} />
+              </div>
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+export default AllEvents;
