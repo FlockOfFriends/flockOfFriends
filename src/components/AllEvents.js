@@ -1,6 +1,7 @@
-import {useEffect, useState} from 'react'
-import {Link} from 'react-router-dom'
-import axios from 'axios'
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
 
 const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) => {
 
@@ -36,12 +37,13 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
     axios(configTicket)
       .then(function (response) {
         const results = response.data._embedded.events;
-        console.log(results)
-        setEvents(response.data._embedded.events)
+        console.log(results);
+        setEvents(response.data._embedded.events);
       })
       .catch(function (error) {
         console.log(error);
       });
+
   }, [toggleApi])
 
   
@@ -63,5 +65,20 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
 
     )
 
-}
-export default AllEvents
+  return (
+    <ul className="catalogue">
+      {events.map((event) => {
+        return (
+          <li key={event.id}>
+            <Link to={`/event/${event.id}`}>
+              <div className="imgContainer">
+                <img src={event.images[0].url} alt={`Placeholder`} />
+              </div>
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+export default AllEvents;

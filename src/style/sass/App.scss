@@ -1,0 +1,51 @@
+@import "./partials/setup";
+@import "./partials/baseStyles";
+@import "./partials/mediaQueries";
+
+.App {
+  background-color: $bgColor;
+}
+
+// header {
+// }
+
+// ALLEVENTS.JS
+.catalogue {
+  background-color: $ulBgColor;
+  margin: 0 auto;
+  li {
+    list-style: none;
+    .imgContainer {
+      width: 300px;
+      height: 300px;
+      overflow: hidden;
+      margin: 0 auto;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// PERSONALHUB.JS
+h3 {
+  text-align: center;
+}
+ul {
+  margin: 0 auto;
+  li {
+    list-style: none;
+    P {
+      text-align: center;
+    }
+    .personalEventImg {
+      width: 300px;
+      height: 300px;
+      overflow: hidden;
+      margin: 0 auto;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

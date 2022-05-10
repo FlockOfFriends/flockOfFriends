@@ -1,5 +1,6 @@
+import "./style/sass/App.scss";
 import { useState, useEffect } from "react";
-import  {Routes, Route, Link} from 'react-router-dom'
+import { Routes, Route, Link } from "react-router-dom";
 // import {useParams} from 'react-router-dom'
 // import axios from "axios";
 import { getDatabase, ref, onValue } from "firebase/database";
@@ -7,11 +8,11 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import firebase from "./components/firebase";
 
 // components
-import AllEvents from './components/AllEvents'
-import EventDetails from './components/EventDetails'
-import PersonalHub from './components/PersonalHub'
-import PersonalEvent from './components/PersonalEvent'
-import DatePicker from "react-date-picker"
+import AllEvents from "./components/AllEvents";
+import EventDetails from "./components/EventDetails";
+import PersonalHub from "./components/PersonalHub";
+import PersonalEvent from "./components/PersonalEvent";
+import DatePicker from "react-date-picker";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
   const [toggleApi, setToggleApi] = useState(false)
   const [status, setStatus] = useState([])
   const [eventType, setEventType] = useState('Sports')
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -59,8 +61,8 @@ function App() {
             </label>
 
             <label>
-
               <DatePicker
+
               closeCalendar={false}
               name="datePicker"
               id="datePicker"
@@ -98,12 +100,10 @@ function App() {
         dateEndValue={dateEndValue}
         toggleApi={toggleApi} />} />
 
-        
-        <Route path="/event/:eventID" element={<EventDetails />}/>
-        <Route path="/personal/:personalID" element={<PersonalEvent />}/>
-        
-        <Route path="/personalhub" 
-        element={ <PersonalHub /> } /> 
+        <Route path="/event/:eventID" element={<EventDetails />} />
+        <Route path="/personal/:personalID" element={<PersonalEvent />} />
+
+        <Route path="/personalhub" element={<PersonalHub />} />
       </Routes>
     </div>
   );
