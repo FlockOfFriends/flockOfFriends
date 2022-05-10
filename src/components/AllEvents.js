@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
-const AllEvents = ({location, toggleApi, eventType}) => {
+const AllEvents = ({location, toggleApi, eventType, dateValue}) => {
 
     const [events, setEvents] = useState([])
 
@@ -13,7 +13,8 @@ const AllEvents = ({location, toggleApi, eventType}) => {
       params: {
         apikey: "NJCKlZmMAiwCVsFMlf33AlMF11d5iusP",
         city: location,
-        classificationName: eventType
+        classificationName: eventType,
+        // startDateTime: dateValue
       },
     };
     axios(configTicket)
