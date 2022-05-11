@@ -12,6 +12,7 @@ import iconCal from "../assets/iconCal.svg";
 
 const PersonalEvent = ({ liked }) => {
   const [firedata, setFiredata] = useState([]);
+  // work with this one:
   const [formInput, setFormInput] = useState([]);
   const { personalID } = useParams();
   // console.log("personalID", personalID);
@@ -25,6 +26,7 @@ const PersonalEvent = ({ liked }) => {
     get(userRef)
       .then((data) => {
         const mydata = data.val();
+        console.log(mydata)
         setFiredata(mydata);
       })
       .catch((error) => {
@@ -171,6 +173,7 @@ const PersonalEvent = ({ liked }) => {
               loading="lazy"
             ></iframe>
           </div>
+          
           <div className="attendees">
             <h2>Attending</h2>
             <div className="guest">
@@ -227,3 +230,12 @@ const PersonalEvent = ({ liked }) => {
 };
 
 export default PersonalEvent;
+
+
+// display attendees:
+  // put attendees in a ul 
+  // a form gettng the info
+  // a function to display to the page
+// change 'like event' input to 'host'
+// give 'attendees array' its own state
+// .push new name through the form back into unique firebase key
