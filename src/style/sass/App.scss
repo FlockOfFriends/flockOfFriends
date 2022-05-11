@@ -4,14 +4,12 @@
 @import "./partials/header";
 @import "./partials/personalEvent";
 @import "./partials/footer";
+@import "./partials/personalHub";
 @import "./partials/mediaQueries";
 
 .App {
   background-color: $bgColor;
 }
-
-// header {
-// }
 
 // ALLEVENTS.JS
 .catalogue {
