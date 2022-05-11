@@ -95,7 +95,7 @@ function App() {
                 <input type="radio" name="eventChoice" id="music" value="Music" />
 
                 <label htmlFor="artsTheatre">Arts & Theatre</label>
-                <input type="radio" name="eventChoice" id="artsTheatre" value="Arts & Theatre"/>
+                <input type="radio" name="eventChoice" id="artsTheatre" value="Art"/>
               </div>
             </label>
 

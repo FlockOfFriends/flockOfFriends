@@ -21,6 +21,9 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
   const ourEnd = dateFunction(dateEndValue, "T23:59:59Z")
   console.log(ourStart)
   console.log(ourEnd)
+  // NOTE TO TEAM, console log eventType from radio button selection below, changed value of "Arts & Theatre" to just "Art" - it seems to return more art related results. 
+  // Also 2 interesting options - can return 40-60 items instead of 20 from the array and map() filter things out to get rid of duplicates - this would require a new map().filter function...., OR we could return 100 things and try and SORT the returned array in a random sequence to make it appear like duplicates are happening less (lazy option);
+  console.log(eventType);
 
 
     const configTicket = {
@@ -32,7 +35,12 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
         classificationName: eventType,
 
         startDateTime: ourStart,
-        endDateTime: ourEnd
+        endDateTime: ourEnd,
+        // ADDED PARAMS
+        size: "100",
+        sort: "random"
+
+
       },
     };
     axios(configTicket)
