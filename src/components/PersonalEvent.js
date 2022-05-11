@@ -4,6 +4,10 @@ import { useParams } from "react-router-dom";
 import firebase from "./firebase";
 
 // importing images
+import iconClock from "../assets/iconClock.svg";
+import iconLocation from "../assets/iconLocation.svg";
+import iconPeople from "../assets/iconPeople.svg";
+import iconTicket from "../assets/iconTicket.svg";
 
 const PersonalEvent = ({ liked }) => {
   const [firedata, setFiredata] = useState([]);
@@ -34,34 +38,26 @@ const PersonalEvent = ({ liked }) => {
             <div className="img">
               <img src={firedata.img} alt="" />
             </div>
-            <h4>{firedata.title}</h4>
-            <h5>FRIDAY, SEPTEMBER 9, 2022 AT 6 PM – 12 AM</h5>
-            <p>Hamilton, Ontario</p>
+            <div className="titleBottom">
+              <div className="titleText">
+                <h2>{firedata.title}</h2>
+                <h5>FRIDAY, SEPTEMBER 9, 2022 AT 6 PM – 12 AM</h5>
+                <p>Hamilton, Ontario</p>
+              </div>
+              <div className="rsvp">
+                <button className="rsvpButton" type="button">RSVP</button>
+                <button className="rsvpButton" type="button">INTEREST</button>
+              </div>
+            </div>
           </div>
-          <div className="rsvp">
-            <input className="rsvpButton" type="button" />
-            <input className="rsvpButton" type="button" />
-          </div>
+
           <div className="details">
             <h2>Details</h2>
             <div className="subDetails">
               <span>
-                <img
-                  src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_timer-1024.png"
-                  alt=""
-                />
+                <img src={iconPeople} alt="" />
               </span>
               <p>Respondants/Attending</p>
-            </div>
-
-            <div className="subDetails">
-              <span>
-                <img
-                  src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_timer-1024.png"
-                  alt=""
-                />
-              </span>
-              <p>{firedata.userInput}</p>
             </div>
 
             <div className="subDetails">
@@ -76,36 +72,38 @@ const PersonalEvent = ({ liked }) => {
 
             <div className="subDetails">
               <span>
-                <img
-                  src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_timer-1024.png"
-                  alt=""
-                />
+                <img src={iconLocation} alt="location icon" />
               </span>
               <p>Location</p>
             </div>
 
             <div className="subDetails">
               <span>
-                <img
-                  src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_timer-1024.png"
-                  alt=""
-                />
+                <img src={iconTicket} alt="tickets icon" />
               </span>
               <p>Tickets</p>
             </div>
 
-            <p>
+            <p className="blurb">
+              {firedata.userInput}
               Blurb that is created by users Lorem ipsum dolor sit amet
               consectetur adipisicing elit. Eaque ducimus distinctio, nisi
               repellat, labore quasi, tenetur ex voluptatibus nemo eos expedita
-              numquam provident ab rerum praesentium error ad facilis deleniti!{" "}
+              numquam provident ab rerum praesentium error ad facilis deleniti!
             </p>
           </div>
           <div className="map">
-            <iframe className="openmap" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-79.38913822174072%2C43.64935160150104%2C-79.37454700469972%2C43.65933417670887&amp;layer=mapnik"></iframe>
+            <iframe
+              className="openmap"
+              frameborder="0"
+              scrolling="no"
+              marginheight="0"
+              marginwidth="0"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-79.38913822174072%2C43.64935160150104%2C-79.37454700469972%2C43.65933417670887&amp;layer=mapnik"
+            ></iframe>
           </div>
           <div className="attendees">
-            <h4>Attending:</h4>
+            <h2>Attending</h2>
             <div className="guest">
               <span className="avatar">
                 <img
@@ -124,7 +122,7 @@ const PersonalEvent = ({ liked }) => {
               </span>
               <p>Willow</p>
             </div>
-            
+
             <div className="guest">
               <span className="avatar">
                 <img
