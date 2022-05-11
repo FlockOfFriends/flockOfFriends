@@ -21,6 +21,8 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
   const ourEnd = dateFunction(dateEndValue, "T23:59:59Z")
   console.log(ourStart)
   console.log(ourEnd)
+  console.log(eventType);
+
 
     const configTicket = {
       method: "get",
@@ -28,10 +30,14 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
       params: {
         apikey: "NJCKlZmMAiwCVsFMlf33AlMF11d5iusP",
         city: location,
-        // classificationName: eventType,
+        classificationName: eventType,
 
         startDateTime: ourStart,
-        endDateTime: ourEnd
+        endDateTime: ourEnd,
+        size: "100",
+        sort: "random"
+
+
       },
     };
     axios(configTicket)
