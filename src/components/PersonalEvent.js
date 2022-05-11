@@ -14,7 +14,7 @@ const PersonalEvent = ({ liked }) => {
   const [firedata, setFiredata] = useState([]);
   const [formInput, setFormInput] = useState([]);
   const { personalID } = useParams();
-  console.log("hello", personalID);
+  // console.log("personalID", personalID);
 
   useEffect(() => {
     const database = getDatabase(firebase);
@@ -34,7 +34,7 @@ const PersonalEvent = ({ liked }) => {
 
   // Function for handling form CHANGES
   const handleInputChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     setFormInput(event.target.value);
   };
 

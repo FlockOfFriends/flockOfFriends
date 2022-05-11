@@ -12,6 +12,7 @@ const EventDetails = () => {
   const [firedata, setFiredata] = useState([])
   const { eventID } = useParams();
   const [detailsArray, setDetailsArray] = useState({ loading: false });
+  const [showButton, setShowButton] = useState(false)
 
 // Ticketmaster API Call for Individual Event 
   useEffect(() => {
@@ -44,12 +45,15 @@ const EventDetails = () => {
         emptyArray.push({ personalID: key, name: data[key] });
       }
       const updatedArray = emptyArray.filter(item => item.name.id === eventID)
-      console.log('updated', updatedArray)
+
+      if(updatedArray.length === 0 ) {
+        setShowButton(false)
+      } else {
+        setShowButton(true)
+      }
       setFiredata(updatedArray)
     }); 
   }, [eventID]);
-
-
 
   const handleInputChange = (event) => {
   setUserInput(event.target.value);
@@ -91,14 +95,19 @@ const handleSubmit = (event) => {
         <div>
           <div>
             <h2>{detailsArray.name}</h2>
-            <h3>{detailsArray.classifications[0].genre.name}</h3>
+            {/* <h3>{detailsArray.classifications[0].genre.name}</h3> */}
             <p>Placeholder</p>
           </div>
           <div>
             <img src={detailsArray.images[1].url} alt={`Placeholder`} />
           </div>
-
-          <form action="submit">
+          {
+              showButton ?
+              <Link to={`/personal/${firedata[0].personalID}`}>
+                Link
+                </Link>
+              : (
+            <form action="submit">
             <label htmlFor="newLiked">Add an event to your list</label>
             <input 
             type="text" 
@@ -107,7 +116,10 @@ const handleSubmit = (event) => {
             value={userInput}
             />
             <button onClick={handleSubmit}>Like Event</button>
-          </form>
+          </form>)
+            }
+
+          
         </div>
       ) : null}
 
