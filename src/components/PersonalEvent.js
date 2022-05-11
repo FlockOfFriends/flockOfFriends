@@ -3,42 +3,149 @@ import { getDatabase, ref, onValue, push, get } from "firebase/database";
 import { useParams } from "react-router-dom";
 import firebase from "./firebase";
 
-const PersonalEvent = ({liked}) => {
+// importing images
+
+const PersonalEvent = ({ liked }) => {
   const [firedata, setFiredata] = useState([]);
   const { personalID } = useParams();
-  console.log('hello', personalID)
+  console.log("hello", personalID);
 
   useEffect(() => {
-
     const database = getDatabase(firebase);
     const dbRef = ref(database);
-    const userID = '-N1_by51dcpV7FYz8hBY';
-  
+    const userID = "-N1_by51dcpV7FYz8hBY";
 
-  const userRef = ref(database, `/${personalID}`)
-  get(userRef).then((data) => {
-  const mydata = data.val()
-  setFiredata(mydata)
-}).catch((error) => {
-  console.log(error)
-})
-
+    const userRef = ref(database, `/${personalID}`);
+    get(userRef)
+      .then((data) => {
+        const mydata = data.val();
+        setFiredata(mydata);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
-    <div>
-      <h3>My Unique Event</h3>
-
+    <div className="personalEvent">
       {firedata ? (
-        <div>
-          <h4>Placeholder for more</h4>
-          <p>{firedata.title}</p>
-          <p>{firedata.userInput}</p>
-          
+        <div className="wrapper">
+          <div className="title">
+            <div className="img">
+              <img src={firedata.img} alt="" />
+            </div>
+            <h4>{firedata.title}</h4>
+            <h5>FRIDAY, SEPTEMBER 9, 2022 AT 6 PM – 12 AM</h5>
+            <p>Hamilton, Ontario</p>
+          </div>
+          <div className="rsvp">
+            <input className="rsvpButton" type="button" />
+            <input className="rsvpButton" type="button" />
+          </div>
+          <div className="details">
+            <h2>Details</h2>
+            <div className="subDetails">
+              <span>
+                <img
+                  src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_timer-1024.png"
+                  alt=""
+                />
+              </span>
+              <p>Respondants/Attending</p>
+            </div>
 
+            <div className="subDetails">
+              <span>
+                <img
+                  src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_timer-1024.png"
+                  alt=""
+                />
+              </span>
+              <p>{firedata.userInput}</p>
+            </div>
+
+            <div className="subDetails">
+              <span>
+                <img
+                  src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_timer-1024.png"
+                  alt=""
+                />
+              </span>
+              <p>Hosts</p>
+            </div>
+
+            <div className="subDetails">
+              <span>
+                <img
+                  src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_timer-1024.png"
+                  alt=""
+                />
+              </span>
+              <p>Location</p>
+            </div>
+
+            <div className="subDetails">
+              <span>
+                <img
+                  src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_timer-1024.png"
+                  alt=""
+                />
+              </span>
+              <p>Tickets</p>
+            </div>
+
+            <p>
+              Blurb that is created by users Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Eaque ducimus distinctio, nisi
+              repellat, labore quasi, tenetur ex voluptatibus nemo eos expedita
+              numquam provident ab rerum praesentium error ad facilis deleniti!{" "}
+            </p>
+          </div>
+          <div className="map">
+            <iframe className="openmap" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-79.38913822174072%2C43.64935160150104%2C-79.37454700469972%2C43.65933417670887&amp;layer=mapnik"></iframe>
+          </div>
+          <div className="attendees">
+            <h4>Attending:</h4>
+            <div className="guest">
+              <span className="avatar">
+                <img
+                  src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
+                  alt=""
+                />
+              </span>
+              <p>Estaban</p>
+            </div>
+            <div className="guest">
+              <span className="avatar">
+                <img
+                  src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-1024.png"
+                  alt=""
+                />
+              </span>
+              <p>Willow</p>
+            </div>
+            
+            <div className="guest">
+              <span className="avatar">
+                <img
+                  src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/scientist_einstein_avatar_professor-1024.png"
+                  alt=""
+                />
+              </span>
+              <p>Albert</p>
+            </div>
+            <div className="guest">
+              <span className="avatar">
+                <img
+                  src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/cactus_cacti_avatar_pirate-1024.png"
+                  alt=""
+                />
+              </span>
+              <p>Martin</p>
+            </div>
+          </div>
         </div>
       ) : null}
-
     </div>
   );
 };
