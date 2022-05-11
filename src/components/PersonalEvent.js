@@ -8,16 +8,18 @@ import iconClock from "../assets/iconClock.svg";
 import iconLocation from "../assets/iconLocation.svg";
 import iconPeople from "../assets/iconPeople.svg";
 import iconTicket from "../assets/iconTicket.svg";
+import iconCal from "../assets/iconCal.svg";
 
 const PersonalEvent = ({ liked }) => {
   const [firedata, setFiredata] = useState([]);
+  const [formInput, setFormInput] = useState([]);
   const { personalID } = useParams();
   console.log("hello", personalID);
 
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
-    const userID = "-N1_by51dcpV7FYz8hBY";
+    // const userID = "-N1_by51dcpV7FYz8hBY";
 
     const userRef = ref(database, `/${personalID}`);
     get(userRef)
@@ -30,26 +32,92 @@ const PersonalEvent = ({ liked }) => {
       });
   }, []);
 
+  // Function for handling form CHANGES
+  const handleInputChange = (event) => {
+    console.log(event.target.value);
+    setFormInput(event.target.value);
+  };
+
+  // Function for handling form SUBMIT
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // create a reference to our database
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+    // push the value of the `userInput` state to the database
+    const uniqueInput = {
+      // place all input for firebase here
+    };
+
+    push(dbRef, uniqueInput);
+    setFormInput("");
+  };
+
   return (
     <div className="personalEvent">
       {firedata ? (
         <div className="wrapper">
           <div className="title">
             <div className="img">
-              <img src={firedata.img} alt="" />
+              <img
+                src={firedata.img}
+                alt={`Event image for ${firedata.title}`}
+              />
             </div>
             <div className="titleBottom">
               <div className="titleText">
                 <h2>{firedata.title}</h2>
-                <h5>{firedata.start} {firedata.time}</h5>
-                <p>{firedata.address}, {firedata.city}</p>
+                <h5>
+                  {firedata.start} {firedata.time}
+                </h5>
+                <p>
+                  {firedata.address}, {firedata.city}
+                </p>
               </div>
               <div className="rsvp">
-                <button className="rsvpButton" type="button">RSVP</button>
-                <button className="rsvpButton" type="button">INTEREST</button>
+                <span className="iconCalendar">
+                  <p>15</p>
+                  <img src={iconCal} alt="Calendar icon" />
+                </span>
+
+                <button className="rsvpButton" type="button">
+                  RSVP
+                </button>
+                <button className="rsvpButton" type="button">
+                  INTEREST
+                </button>
               </div>
             </div>
           </div>
+
+          <form action="submit" className="form">
+            <div>
+              <label htmlFor="eventName">Event Name</label>
+              <input
+                type="text"
+                id="eventName"
+                onChange={handleInputChange}
+                value={formInput}
+              />
+              <label htmlFor="hostName">Host Name</label>
+              <input
+                type="text"
+                id="hostName"
+                onChange={handleInputChange}
+                value={formInput}
+              />
+              <button onClick={handleSubmit}>SUBMIT</button>
+            </div>
+            <div>
+            <label htmlFor="description">Description</label>
+            <textarea
+              type="text"
+              id="description"
+              onChange={handleInputChange}
+              value={formInput}
+            />
+            </div>
+          </form>
 
           <div className="details">
             <h2>Details</h2>
@@ -81,8 +149,9 @@ const PersonalEvent = ({ liked }) => {
               <span>
                 <img src={iconTicket} alt="tickets icon" />
               </span>
-              <p>Tickets <a href={`${firedata.tickets}`}>here</a></p>
-              
+              <p>
+                Tickets <a href={`${firedata.tickets}`}>here</a>
+              </p>
             </div>
 
             <p className="blurb">
@@ -94,12 +163,13 @@ const PersonalEvent = ({ liked }) => {
             </p>
           </div>
           <div className="map">
-  
             {/* <iframe className="googlemap" src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.232150037236!2d${firedata.longitude}!3d${firedata.latitude}`}  loading="lazy" ></iframe> */}
 
-        <iframe className="googlemap" src={`https://maps.google.com/maps?q=${firedata.latitude}, ${firedata.longitude}&output=embed`}  loading="lazy" ></iframe>
-        
-
+            <iframe
+              className="googlemap"
+              src={`https://maps.google.com/maps?q=${firedata.latitude}, ${firedata.longitude}&output=embed`}
+              loading="lazy"
+            ></iframe>
           </div>
           <div className="attendees">
             <h2>Attending</h2>
@@ -140,6 +210,15 @@ const PersonalEvent = ({ liked }) => {
               </span>
               <p>Martin</p>
             </div>
+          </div>
+          <div className="socials">
+            <a
+              href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+              class="twitter-share-button"
+              data-show-count="false"
+            >
+              Tweet
+            </a>
           </div>
         </div>
       ) : null}

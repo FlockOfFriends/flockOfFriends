@@ -65,7 +65,17 @@ p {
           gap: 1rem;
           width: 50%;
           justify-content: flex-end;
-          align-items:flex-end;
+          align-items: flex-end;
+          .iconCalendar {
+            width: 3rem;
+            position: relative;
+            p {
+              font-weight: 600;
+              position: absolute;
+              top: 45%;
+              left: 35%;
+            }
+          }
           .rsvpButton {
             width: 6rem;
             padding: 0.5rem;
@@ -78,12 +88,42 @@ p {
             color: white;
             font-family: inherit;
             font-size: 0.7rem;
-            &:hover, 
+            &:hover,
             &:focus {
-                opacity: 0.8;
+              opacity: 0.8;
             }
           }
         }
+      }
+    }
+
+    .form {
+      display: flex;
+      width: 100%;
+      gap: 1rem;
+      div {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        input {
+            margin-bottom: 1rem;
+          }
+      }
+
+      
+      textarea {
+        height: 100%;
+      }
+
+      button {
+        align-self: flex-start;
+        font-size: 1rem;
+        font-family: inherit;
+        padding: 0.3rem 1rem;
+      }
+      label {
+        font-size: 0.7rem;
+        margin-bottom: 0.3rem;
       }
     }
 

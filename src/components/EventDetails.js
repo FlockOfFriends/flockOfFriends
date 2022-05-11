@@ -1,18 +1,19 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import axios from "axios";
 import firebase from "./firebase";
-import { getDatabase, ref, push } from 'firebase/database';
+import { getDatabase, ref, push, onValue } from 'firebase/database';
 
 
 const EventDetails = () => {
   const [userInput, setUserInput] = useState('');
-
+  // const [newUrl, setNewUrl] = useState('')
+  const [firedata, setFiredata] = useState([])
   const { eventID } = useParams();
   const [detailsArray, setDetailsArray] = useState({ loading: false });
 
-
+// Ticketmaster API Call for Individual Event 
   useEffect(() => {
     const configDetails = {
       method: "get",
@@ -24,7 +25,6 @@ const EventDetails = () => {
     axios(configDetails)
       .then(function (response) {
         const data = { ...response.data, loading: true };
-        console.log(data);
         setDetailsArray(data);
       })
       .catch(function (error) {
@@ -32,24 +32,40 @@ const EventDetails = () => {
       });
   }, [eventID]);
 
+  // Checking to see for updates and getting the PersonalID
+  useEffect(() => {
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+    onValue(dbRef, (response) => {
+      const emptyArray = [];
+      const data = response.val();
+      for (let key in data) {
+        // pushing the values from the object into our emptryArray
+        emptyArray.push({ personalID: key, name: data[key] });
+      }
+      const updatedArray = emptyArray.filter(item => item.name.id === eventID)
+      console.log('updated', updatedArray)
+      setFiredata(updatedArray)
+    }); 
+  }, [eventID]);
+
+
 
   const handleInputChange = (event) => {
-  console.log(event.target.value)
   setUserInput(event.target.value);
 }
 
+// Form submission that will store our new firebase data on submit
 const handleSubmit = (event) => {
     event.preventDefault();
     // create a reference to our database
     const database = getDatabase(firebase);
     const dbRef = ref(database);
     // push the value of the `userInput` state to the database
-    let removeWhite = userInput.trim().split(/[\s,\t,\n]+/).join(' ');
-    let addHyphen = removeWhite.replace(/ /g, "-")
-    let removeAppost = addHyphen.replaceAll("'", "")
-    let lowered = removeAppost.toLowerCase()
-
-    console.log(lowered)
+    // let removeWhite = userInput.trim().split(/[\s,\t,\n]+/).join(' ');
+    // let addHyphen = removeWhite.replace(/ /g, "-")
+    // let removeAppost = addHyphen.replaceAll("'", "")
+    // let lowered = removeAppost.toLowerCase()
     const uniqueInput = {
       userInput, id: eventID, 
       title: detailsArray.name, 
@@ -65,7 +81,6 @@ const handleSubmit = (event) => {
       longitude: detailsArray._embedded.venues[0].location.longitude,
       venue: detailsArray._embedded.venues[0].name
     }
-    
     push(dbRef, uniqueInput);
     setUserInput('');
   }
@@ -95,7 +110,15 @@ const handleSubmit = (event) => {
           </form>
         </div>
       ) : null}
-      
+
+        {/* <div>
+      {firedata === eventID ? (
+        <div>
+        <a href={newUrl}>Link</a>
+        </div>
+        )
+        : null }
+      </div> */}
     </div>
   );
 };
