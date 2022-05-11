@@ -41,8 +41,8 @@ const PersonalEvent = ({ liked }) => {
             <div className="titleBottom">
               <div className="titleText">
                 <h2>{firedata.title}</h2>
-                <h5>FRIDAY, SEPTEMBER 9, 2022 AT 6 PM – 12 AM</h5>
-                <p>Hamilton, Ontario</p>
+                <h5>{firedata.start} {firedata.time}</h5>
+                <p>{firedata.address}, {firedata.city}</p>
               </div>
               <div className="rsvp">
                 <button className="rsvpButton" type="button">RSVP</button>
@@ -74,14 +74,15 @@ const PersonalEvent = ({ liked }) => {
               <span>
                 <img src={iconLocation} alt="location icon" />
               </span>
-              <p>Location</p>
+              <p>{firedata.venue}</p>
             </div>
 
             <div className="subDetails">
               <span>
                 <img src={iconTicket} alt="tickets icon" />
               </span>
-              <p>Tickets</p>
+              <p>Tickets <a href={`${firedata.tickets}`}>here</a></p>
+              
             </div>
 
             <p className="blurb">
@@ -93,14 +94,12 @@ const PersonalEvent = ({ liked }) => {
             </p>
           </div>
           <div className="map">
-            <iframe
-              className="openmap"
-              frameborder="0"
-              scrolling="no"
-              marginheight="0"
-              marginwidth="0"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-79.38913822174072%2C43.64935160150104%2C-79.37454700469972%2C43.65933417670887&amp;layer=mapnik"
-            ></iframe>
+  
+            {/* <iframe className="googlemap" src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.232150037236!2d${firedata.longitude}!3d${firedata.latitude}`}  loading="lazy" ></iframe> */}
+
+        <iframe className="googlemap" src={`https://maps.google.com/maps?q=${firedata.latitude}, ${firedata.longitude}&output=embed`}  loading="lazy" ></iframe>
+        
+
           </div>
           <div className="attendees">
             <h2>Attending</h2>
