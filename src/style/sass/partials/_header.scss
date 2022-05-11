@@ -1,0 +1,18 @@
+nav{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+form {
+  display: flex;
+  padding: 20px;
+  margin: 20px;
+  background: #fff;
+  border: 2px solid $darkBlue;
+  border-radius: 30px;
+
+  .searchLocation {
+    border: 1px solid red;
+  }
+}

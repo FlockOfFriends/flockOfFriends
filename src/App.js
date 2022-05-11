@@ -20,7 +20,7 @@ function App() {
   // Lets mutate the Date data immediately
   
 
-  const [location, setLocation] = useState("New York")
+  const [location, setLocation] = useState("")
   const [dateValue, setDateValue] = useState(new Date());
   const [dateEndValue, setDateEndValue] = useState(new Date());
   const [toggleApi, setToggleApi] = useState(false)
@@ -51,7 +51,7 @@ function App() {
       <header>
         <nav>
           <form className="form" onSubmit={handleSubmit}>
-            <label>
+            <label className="searchLocation">
               <p className="searchLabelText">Location</p>
               <input
                 type="text"
@@ -62,7 +62,7 @@ function App() {
               />
             </label>
 
-            <label>
+            <label className="searchDate">
               <p className="searchLabelText">Start Date</p>
               <DatePicker
 
@@ -82,7 +82,9 @@ function App() {
               />
             </label>
 
-            <label onChange={(e) => setEventType(e.target.value)}>
+            <label
+            className="searchEventType"
+            onChange={(e) => setEventType(e.target.value)}>
               <p>Event Type</p>
               <div className="radioEventList">
                 <label htmlFor="allEvents">All Events</label>
