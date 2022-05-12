@@ -5,6 +5,11 @@ import axios from "axios";
 import firebase from "./firebase";
 import { getDatabase, ref, push, onValue } from "firebase/database";
 
+// image import
+import iconClock from "../assets/iconClock.svg";
+import iconPeople from "../assets/iconPeople.svg";
+
+
 const EventDetails = () => {
   const [userInput, setUserInput] = useState("");
   // const [newUrl, setNewUrl] = useState('')
@@ -68,7 +73,7 @@ const EventDetails = () => {
     const dbRef = ref(database);
     // push the value of the `userInput` state to db
 
-    if (userInput === null) {
+    if (!userInput) {
       alert("Please enter your host name");
     } else {
       const uniqueInput = {
@@ -99,43 +104,88 @@ const EventDetails = () => {
       {detailsArray.loading ? (
         <div className="wrapper">
           <div className="title">
-          <div class="img">
-            <img src={detailsArray.images[0].url} alt={detailsArray.name} />
+            <div className="titleLeft">
+              <h2>{detailsArray.name}</h2>
+              
+              <h5>{detailsArray.dates.start.localDate}</h5>
+              <p>{detailsArray._embedded.venues[0].name}</p>
+              {showButton ? (
+                <div className="form">
+                  <div className="formUser inputOff">
+                    <label htmlFor="newLiked">Enter Host Name</label>
+                    <input
+                      className="hostInput"
+                      type="text"
+                      id="newLiked"
+                      onChange={handleInputChange}
+                      value={userInput}
+                    />
+                  </div>
+                  <div className="formConditional">
+                    <button
+                      className="createEventButton buttonOff"
+                    >
+                      Create Event
+                    </button>
+                    <Link
+                    className="buttonLink"
+                    to={`/personal/${firedata[0].personalID}`}
+                  >
+                    Your Event
+                  </Link>
+                  </div>
+                  
+                </div>
+              ) : (
+                <form className="form" action="submit">
+                  <div className="formUser">
+                    <label htmlFor="newLiked">Enter Host Name</label>
+                    <input
+                      className="hostInput"
+                      type="text"
+                      id="newLiked"
+                      onChange={handleInputChange}
+                      value={userInput}
+                    />
+                  </div>
+                  <div className="formConditional">
+                    <button
+                      className="createEventButton"
+                      onClick={handleSubmit}
+                    >
+                      Create Event
+                    </button>
+                    <button className="createEventButton buttonOff">
+                      Your Event
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+
+            <div className="rightSide">
+              <div class="img">
+                <img src={detailsArray.images[2].url} alt={detailsArray.name} />
+              </div>
+            </div>
           </div>
           <div className="titleBottom">
-            
             <div className="titleText">
-               <h2>{detailsArray.name}</h2>
-                <h5>
-                  {detailsArray.dates.start.localTime} {detailsArray.dates.start.localDate}
-                </h5>
-                <p>
-                  {detailsArray._embedded.venues[0].city.name}
-                </p>
-              </div>
-          </div>
-          {showButton ? (
-            <Link
-              className="buttonLink"
-              to={`/personal/${firedata[0].personalID}`}
-            >
-              Your Event
-            </Link>
-          ) : (
-            <form action="submit">
-              <label htmlFor="newLiked">Enter Host Name</label>
-              <input
-                className="hostInput"
-                type="text"
-                id="newLiked"
-                onChange={handleInputChange}
-                value={userInput}
-              />
-              <button className="createEventButton" onClick={handleSubmit}>
-                Create Event
-              </button>
-            </form>
-          )}
+              <span>
+                <img className="icons" src={iconPeople} alt="people icon" />
+              
+              <p>
+                {detailsArray._embedded.venues[0].address.line1},{" "}
+                {detailsArray._embedded.venues[0].city.name},{" "}
+                {detailsArray._embedded.venues[0].state.name}
+              </p>
+              </span>
+              <span >
+                <img className="icons" src={iconClock} alt="clock icon" />
+              
+              <p>{detailsArray.dates.start.localTime}</p>
+              </span>
+            </div>
           </div>
         </div>
       ) : null}

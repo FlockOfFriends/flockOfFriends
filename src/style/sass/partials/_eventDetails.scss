@@ -3,206 +3,178 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 
 img {
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "DM Sans", sans-serif;
-    font-weight: 400;
-    color: rgb(36, 35, 35);
+  margin: 0;
+  padding: 0;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  color: rgb(36, 35, 35);
 }
 
 p {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 ////////
 
 .eventDetails {
-    width: 100%;
-    padding: 6rem 0;
-    background-color: white;
+  width: 100%;
+  padding: 4rem 0;
+  background-color: white;
 
-    .wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        max-width: 1300px;
-        margin: 0 auto;
-        width: 70%;
-        gap: 3.5rem;
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 75%;
 
-        .title {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-direction: column;
-
-            h2 {
-                margin-bottom: 1rem;
-                font-weight: 500;
-            }
-
-            h5 {
-                margin-bottom: 0.5rem;
-            }
-
-            .img {
-                width: 100%;
-                align-self: center;
-                margin-bottom: 2rem;
-            }
-
-            .titleBottom {
-                width: 100%;
-                display: flex;
-
-                .titleText {
-                    width: 50%;
-                }
-
-                .rsvp {
-                    display: flex;
-                    gap: 1rem;
-                    width: 50%;
-                    justify-content: flex-end;
-                    align-items: flex-end;
-
-                    .iconCalendar {
-                        width: 3rem;
-                        position: relative;
-
-                        p {
-                            font-weight: 600;
-                            position: absolute;
-                            top: 45%;
-                            left: 35%;
-                        }
-                    }
-
-                    .rsvpButton {
-                        width: 6rem;
-                        padding: 0.5rem;
-                        height: 2.5rem;
-                        border: none;
-                        background-color: $lightBlue;
-                        border-radius: 5px;
-                        opacity: 1;
-                        transition: all 0.25s ease-in-out;
-                        color: white;
-                        font-family: inherit;
-                        font-size: 0.7rem;
-
-                        &:hover,
-                        &:focus {
-                            opacity: 0.8;
-                        }
-                    }
-                }
-            }
+    .title {
+      padding: 2rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background: linear-gradient(#c7e7ff, #d3cfe6);
+      min-height: 42vh;
+      .titleLeft {
+        width: 40%;
+        h2 {
+          margin-bottom: 1rem;
+          font-weight: 500;
+          width: 95%;
         }
-
-        .form {
-            display: flex;
-            width: 100%;
-            gap: 1rem;
-
-            div {
-                display: flex;
-                flex-direction: column;
-                width: 50%;
-
-                input {
-                    margin-bottom: 1rem;
-                }
-            }
-
-
-            textarea {
-                height: 100%;
-            }
-
-            button {
-                align-self: flex-start;
-                font-size: 1rem;
-                font-family: inherit;
-                padding: 0.3rem 1rem;
-            }
-
-            label {
-                font-size: 0.7rem;
-                margin-bottom: 0.3rem;
-            }
+        h5 {
+          margin-bottom: 0.5rem;
         }
-
-        .map {
-            width: 100%;
-
-            .googlemap {
-                width: 100%;
-                height: 50vh;
-            }
+        p {
+          margin-bottom: 1.5rem;
         }
+      }
 
-        .details {
-            border: 1px solid rgb(36, 35, 35);
-            padding: 1.5rem 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-direction: column;
+      .rightSide {
+        position: relative;
+        // background-color: red;
+        width: 60%;
+        .img {
+          position: absolute;
+          right: 0;
+          top: 0;
+          min-width: 100%;
+
+          img {
             border-radius: 5px;
-            gap: 0.75rem;
-
-            h2 {
-                margin-bottom: 2rem;
-                border-bottom: 1px solid rgb(36, 35, 35);
-            }
-
-            .subDetails {
-                display: flex;
-                align-items: center;
-
-                span {
-                    width: 2rem;
-                    margin-right: 0.6rem;
-                }
-            }
-
-            .blurb {
-                margin-top: 2rem;
-            }
+          }
         }
-
-        .attendees {
-            align-self: flex-start;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            border: 1px solid rgb(36, 35, 35);
-            padding: 1.5rem 1rem;
-            width: 100%;
-
-            h2 {
-                margin-bottom: 1.5rem;
-                border-bottom: 1px solid rgb(36, 35, 35);
-            }
-
-            .guest {
-                display: flex;
-                align-items: center;
-
-                .avatar {
-                    width: 3rem;
-                    border-radius: 100%;
-                    margin-right: 1rem;
-                }
-            }
-        }
+      }
     }
+
+    .titleBottom {
+      padding: 2rem;
+      width: 100%;
+      display: flex;
+      background-color: lightblue;
+
+      
+      .titleText {
+        width: 50%;
+        gap: 1.2rem;
+        display: flex;
+        flex-direction: column;
+
+        span {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          .icons {
+            width: 2rem;
+          }
+        }
+      }
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      width: 100%;
+      gap: 1rem;
+      min-height: 15vh;
+
+      .formUser {
+        display: flex;
+        flex-direction: column;
+        input {
+          font-size: inherit;
+          font-family: inherit;
+          width: 90%;
+        }
+
+        label {
+          font-size: 0.7rem;
+          margin-bottom: 0.3rem;
+        }
+        &.inputOff {
+          pointer-events: none;
+          color: grey;
+          opacity: 0.3;
+        }
+      }
+      .formConditional {
+        align-self: start-end;
+        .createEventButton {
+          width: 6rem;
+          padding: 0.5rem;
+          height: 2.5rem;
+          border: none;
+          background-color: $lightBlue;
+          border-radius: 5px;
+          opacity: 1;
+          transition: all 0.25s ease-in-out;
+          color: white;
+          font-family: inherit;
+          font-size: 0.7rem;
+          cursor: pointer;
+
+          &:hover,
+          &:focus {
+            opacity: 0.8;
+          }
+
+          &.buttonOff {
+            opacity: 1;
+            pointer-events: none;
+            background-color: grey;
+          }
+        }
+
+        .buttonLink {
+          //   width: 6rem;
+          padding: 0.85rem 1.3rem;
+          //   height: 2.5rem;
+          border: none;
+          background-color: $lightBlue;
+          border-radius: 5px;
+          opacity: 1;
+          transition: all 0.25s ease-in-out;
+          color: white;
+          font-family: inherit;
+          font-size: 0.7rem;
+          text-decoration: none;
+          text-align: center;
+
+          &:hover,
+          &:focus {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
 }

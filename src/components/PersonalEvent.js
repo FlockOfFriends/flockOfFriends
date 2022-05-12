@@ -125,7 +125,7 @@ const PersonalEvent = ({ liked }) => {
             <h2>Details</h2>
             <div className="subDetails">
               <span>
-                <img src={iconPeople} alt="" />
+                <img src={iconPeople} alt="people icon" />
               </span>
               <p>Respondants/Attending</p>
             </div>
