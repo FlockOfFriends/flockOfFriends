@@ -15,7 +15,7 @@ form {
   display: flex;
   min-width: 0;
   min-height: 0;
-  padding: 20px;
+  padding: 10px 15px;
   margin: 20px;
   background: #fff;
   border: 2px solid $darkBlue;
@@ -27,12 +27,12 @@ form {
     justify-content: center;
     width: 25%;
     border-radius: 30px;
+    position: relative;
 
     &:hover .searchLocationInput,
     &:active .searchLocationInput {
       background-color: #ebebeb;
       cursor: pointer;
-      
     }
 
     &:hover, &:focus {
@@ -46,6 +46,7 @@ form {
       flex-direction: column;
       width: 100%;
       justify-content: center;
+      align-items: flex-start;
       overflow: hidden;
 
       &:hover, &:focus {
@@ -64,6 +65,39 @@ form {
         padding: 3px;
         font-family: $searchFont;
         font-weight: 500;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .searchLocationShow {
+      width: 200%;
+      height: 90px;
+      position: absolute;
+      border: 2px solid black;
+      border-radius: 50px;
+      background-color: white;
+      top: 80px;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      p {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        font-size: 2rem;
+        font-family: $searchFont;
+        top: 20px;
+        left: 0;
+        padding: 23px;
+      }
+
+      .searchLocationHide {
+        display: none;
       }
     }
   }
@@ -76,7 +110,6 @@ form {
 
     &:hover, &:focus {
       background-color: #ebebeb;
-      cursor: pointer;
       filter: drop-shadow(0px 4px 4px #6B6666);
     }
 
@@ -96,7 +129,9 @@ form {
       border-radius: 30px;
 
       &:hover .react-date-picker__wrapper {
-        background-color: white;
+        background-color:whitesmoke;
+        filter: drop-shadow(0px 2px 2px #6B6666);
+
       }
     }
 
@@ -163,12 +198,21 @@ form {
 
   .searchSubmit {
     display: flex;
+    width: 65px;
+    height: 65px;
     justify-content: center;
     align-items: center;
-    border: 1px solid purple;
+    border-radius: 30px;
+    padding: 5px;
+
+    &:hover, &:focus {
+      cursor: pointer;
+      background-color: #ebebeb;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+    }
 
     .searchSubmitButton {
-      // width: 100%;
+      width: 45px
     }
   }
 

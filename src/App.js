@@ -14,6 +14,8 @@ import PersonalHub from "./components/PersonalHub";
 import PersonalEvent from "./components/PersonalEvent";
 import DatePicker from "react-date-picker";
 
+// images
+import search from "./images/search.png";
 
 function App() {
 
@@ -26,12 +28,19 @@ function App() {
   const [toggleApi, setToggleApi] = useState(false)
   const [status, setStatus] = useState([])
   const [eventType, setEventType] = useState("")
+  const [locationSearchShow, setLocationSearchShow] = useState(false);
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setToggleApi(!toggleApi);
   };
+
+  const handleShowLocationSearchbar = () => {
+    setLocationSearchShow(!locationSearchShow);
+
+    console.log(locationSearchShow)
+  }
 
   useEffect(() => {
     const database = getDatabase(firebase);
@@ -51,8 +60,11 @@ function App() {
       <header>
         <nav>
           <form className="form" onSubmit={handleSubmit}>
-            <div className="searchLocation">
-              <label>
+            <div
+            className="searchLocation"
+            onClick={handleShowLocationSearchbar}
+            >
+              <label onClick={(e) => {e.preventDefault()}}>
                 <p className="searchLabelText">Location</p>
                 <input
                   type="text"
@@ -62,6 +74,10 @@ function App() {
                   placeholder="city, country, etc"
                 />
               </label>
+
+              <div className={locationSearchShow ? "searchLocationShow" : "searchLocationHide"}>
+                  <p>{location}</p>
+              </div>
             </div>
 
             <div className="searchDate">
@@ -111,7 +127,13 @@ function App() {
             </div>
 
             <div className="searchSubmit">
-              <input className="searchSubmitButton" type="image" alt="submit" value="Search"/>
+              <input
+              className="searchSubmitButton"
+              type="image"
+              alt="submit"
+              value="Search"
+              src={search}
+              />
             </div>
           </form>
           <Link to="/">Home</Link>
