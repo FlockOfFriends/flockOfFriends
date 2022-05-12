@@ -6,3 +6,14 @@ img {
     height: 100%;
     width: 100%;
 }
+
+// **********************
+// ***** TYPOGRAPHY *****
+// **********************
+form {
+    p {
+        font-family: $bodyFont;
+        font-weight: 700;
+        font-size: 0.85rem;
+    }
+}

@@ -51,57 +51,65 @@ function App() {
       <header>
         <nav>
           <form className="form" onSubmit={handleSubmit}>
-            <label className="searchLocation">
-              <p className="searchLabelText">Location</p>
-              <input
-                type="text"
-                className="search"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="city, country, etc"
-              />
-            </label>
+            <div className="searchLocation">
+              <label>
+                <p className="searchLabelText">Location</p>
+                <input
+                  type="text"
+                  className="searchLocationInput"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="city, country, etc"
+                />
+              </label>
+            </div>
 
-            <label className="searchDate">
-              <p className="searchLabelText">Start Date</p>
-              <DatePicker
+            <div className="searchDate">
+              <label className="searchStartDate">
+                <p className="searchLabelText">Start Date</p>
+                <DatePicker
+                closeCalendar={false}
+                name="datePicker"
+                id="datePicker"
+                value={dateValue}
+                onChange={setDateValue}
+                />
+              </label>
 
-              closeCalendar={false}
-              name="datePicker"
-              id="datePicker"
-              value={dateValue}
-              onChange={setDateValue}
-              />
-              <p>End Date</p>
-              <DatePicker
-              closeCalendar={false}
-              name="datePicker"
-              id="datePicker"
-              value={dateEndValue}
-              onChange={setDateEndValue}
-              />
-            </label>
+              <label className="searchEndDate">
+                <p>End Date</p>
+                <DatePicker
+                closeCalendar={false}
+                name="datePicker"
+                id="datePicker"
+                value={dateEndValue}
+                onChange={setDateEndValue}
+                />
+              </label>
+            </div>
 
-            <label
-            className="searchEventType"
-            onChange={(e) => setEventType(e.target.value)}>
-              <p>Event Type</p>
-              <div className="radioEventList">
-                <label htmlFor="allEvents">All Events</label>
-                <input type="radio" name="eventChoice" id="allEvents" value=""/>
+            <div className="searchEventType">
+              <label onChange={(e) => setEventType(e.target.value)}>
+                <p>Event Type</p>
+                <div className="radioEventList">
+                  <label htmlFor="allEvents">All Events</label>
+                  <input type="radio" name="eventChoice" id="allEvents" value=""/>
 
-                <label htmlFor="sports">Sports</label>
-                <input type="radio" name="eventChoice" id="sports" value="Sports"/>
+                  <label htmlFor="sports">Sports</label>
+                  <input type="radio" name="eventChoice" id="sports" value="Sports"/>
 
-                <label htmlFor="music">Music</label>
-                <input type="radio" name="eventChoice" id="music" value="Music" />
+                  <label htmlFor="music">Music</label>
+                  <input type="radio" name="eventChoice" id="music" value="Music" />
 
-                <label htmlFor="artsTheatre">Arts & Theatre</label>
-                <input type="radio" name="eventChoice" id="artsTheatre" value="Art"/>
-              </div>
-            </label>
+                  <label htmlFor="artsTheatre">Arts & Theatre</label>
+                  <input type="radio" name="eventChoice" id="artsTheatre" value="Art"/>
+                </div>
+              </label>
+            </div>
 
-            <input className="submit" type="submit" />
+            <div className="searchSubmit">
+              <input className="searchSubmitButton" type="submit" />
+            </div>
           </form>
           <Link to="/">Home</Link>
           <Link to="/personalhub">
