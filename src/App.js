@@ -65,7 +65,7 @@ function App() {
             </div>
 
             <div className="searchDate">
-              <label className="searchStartDate">
+              <label onClick={(e) => {e.preventDefault()}} className="searchStartDate">
                 <p className="searchLabelText">Start Date</p>
                 <DatePicker
                 closeCalendar={false}
@@ -79,11 +79,13 @@ function App() {
               <label className="searchEndDate">
                 <p>End Date</p>
                 <DatePicker
+                dateFormat= "dd/mm/yyyy"
                 closeCalendar={false}
                 name="datePicker"
                 id="datePicker"
                 value={dateEndValue}
                 onChange={setDateEndValue}
+                
                 />
               </label>
             </div>
@@ -91,6 +93,7 @@ function App() {
             <div className="searchEventType">
               <label onChange={(e) => setEventType(e.target.value)}>
                 <p>Event Type</p>
+                <p className="eventTypeGenre">choose a genre</p>
                 <div className="radioEventList">
                   <label htmlFor="allEvents">All Events</label>
                   <input type="radio" name="eventChoice" id="allEvents" value=""/>

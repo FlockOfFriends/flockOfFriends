@@ -15,19 +15,28 @@ form {
   display: flex;
   min-width: 0;
   min-height: 0;
-  overflow: hidden;
   padding: 20px;
   margin: 20px;
   background: #fff;
   border: 2px solid $darkBlue;
-  border-radius: 30px;
+  border-radius: 50px;
 
   .searchLocation {
-    border: 1px solid red;
     padding: 10px;
     display: flex;
     justify-content: center;
     width: 25%;
+    border-radius: 30px;
+
+    &:hover .searchLocationInput {
+      background-color: #ebebeb;
+      cursor: pointer;  
+    }
+
+    &:hover, &:focus {
+      background-color: #ebebeb;
+      cursor: pointer;    
+    }
 
     label {
       display: flex;
@@ -36,9 +45,21 @@ form {
       justify-content: center;
       overflow: hidden;
 
+      &:hover, &:focus {
+        cursor: pointer;
+      }
+
+      .searchLocationInput::placeholder {
+        color: rgb(119, 115, 115);
+        opacity: 1;
+        letter-spacing: 0;
+      }
+
       .searchLocationInput {
         border: none;
         font-size: 0.9rem;
+        font-family: $searchFont;
+        font-weight: 500;
       }
     }
   }
@@ -47,10 +68,23 @@ form {
     display: flex;
     align-items: center;
     padding: 10px;
-    border: 2px solid greenyellow;
+    border-radius: 30px;
+
+    &:hover, &:focus {
+      background-color: #ebebeb;
+      cursor: pointer;   
+    }
 
     label {
       display: flex;
+
+      &:active {
+
+      }
+
+      &:hover, &focus {
+        cursor: pointer;
+      }
     }
 
     .searchStartDate,
@@ -60,18 +94,60 @@ form {
       padding: 0 5px;
     }
 
+    .react-date-picker__wrapper{
+      border: none;
+    }
+
     .react-date-picker {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
     }
   }
 
   .searchEventType {
     display: flex;
-    border: 1px solid orange;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 30px;
+
+    &:hover, &focus {
+      cursor: pointer;
+      background-color: #ebebeb;
+    }
+
+    .eventTypeGenre {
+      font-size: 0.9rem;
+      font-family: $searchFont;
+      font-weight: 500;
+      color: rgb(119, 115, 115);
+      opacity: 1;
+      letter-spacing: 0;
+    }
 
     label {
       display: flex;
       flex-direction: column;
+    }
+
+    .radioEventList {
+      position: relative;
+      display: none;
+
+      label {
+        font-size: 1rem;
+        padding: 10px;
+        letter-spacing: 0.03rem;
+        font-weight: 700;
+
+        &:hover {
+          outline: 1px solid red;
+        }
+      }
+
+      input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+      }
     }
   }
 
