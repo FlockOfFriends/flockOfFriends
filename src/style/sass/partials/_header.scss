@@ -72,6 +72,10 @@ form {
       }
     }
 
+    .searchLocationHide {
+      display: none;
+    }
+
     .searchLocationShow {
       width: 200%;
       height: 90px;
@@ -143,6 +147,10 @@ form {
 
     .react-date-picker {
       font-size: 0.8rem;
+
+      .react-date-picker__clear-button.react-date-picker__button {
+        display: none;
+      }
     }
   }
 

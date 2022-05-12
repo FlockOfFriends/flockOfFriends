@@ -39,7 +39,7 @@ function App() {
   const handleShowLocationSearchbar = () => {
     setLocationSearchShow(!locationSearchShow);
 
-    console.log(locationSearchShow)
+    console.log("locationSearchShow state!", locationSearchShow)
   }
 
   useEffect(() => {
@@ -60,11 +60,9 @@ function App() {
       <header>
         <nav>
           <form className="form" onSubmit={handleSubmit}>
-            <div
-            className="searchLocation"
-            onClick={handleShowLocationSearchbar}
-            >
-              <label onClick={(e) => {e.preventDefault()}}>
+            <div className={locationSearchShow ? "searchLocation" : "searchLocation longer"}>
+              <label onClick={(e) => {e.preventDefault(); handleShowLocationSearchbar()}}>
+
                 <p className="searchLabelText">Location</p>
                 <input
                   type="text"
@@ -75,13 +73,18 @@ function App() {
                 />
               </label>
 
-              <div className={locationSearchShow ? "searchLocationShow" : "searchLocationHide"}>
-                  <p>{location}</p>
-              </div>
+              {/* BRIAN IF YOU DELETE THIS BELOW, YOU HAD BETTER ALSO DELETE THE STYLING ASSOCIATED WITH THEM */}
+
+              {/* <div 
+              className={locationSearchShow ? "searchLocationShow" : "searchLocationHide"}>
+                  <p className="locationHide">{location}</p>
+                  <p className="exitButton">Go</p>
+              </div> */}
             </div>
 
             <div className="searchDate">
-              <label onClick={(e) => {e.preventDefault()}} className="searchStartDate">
+              <label
+              onClick={(e) => {e.preventDefault()}} className="searchStartDate">
                 <p className="searchLabelText">Start Date</p>
                 <DatePicker
                 closeCalendar={false}
@@ -92,7 +95,9 @@ function App() {
                 />
               </label>
 
-              <label className="searchEndDate">
+              <label 
+              onClick={(e) => {e.preventDefault()}} 
+              className="searchEndDate">
                 <p>End Date</p>
                 <DatePicker
                 dateFormat="dd/MM/yyyy"
