@@ -84,9 +84,8 @@ const handleSubmit = (event) => {
       latitude: detailsArray._embedded.venues[0].location.latitude, 
       longitude: detailsArray._embedded.venues[0].location.longitude,
       venue: detailsArray._embedded.venues[0].name,
-      attendees: [
-        userInput
-      ]
+      host:userInput,
+      attendees: [],
     }
     console.log(uniqueInput)
     push(dbRef, uniqueInput);

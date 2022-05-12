@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getDatabase, ref, onValue, push, get } from "firebase/database";
+import { getDatabase, ref, onValue, push, get, update } from "firebase/database";
 import { useParams } from "react-router-dom";
 import firebase from "./firebase";
 
@@ -11,6 +11,9 @@ import iconTicket from "../assets/iconTicket.svg";
 import iconCal from "../assets/iconCal.svg";
 
 const PersonalEvent = ({ liked }) => {
+  const [guestName, setGuestName] = useState('Sam');
+  const [guestList, setGuestList] = useState([])
+
   const [firedata, setFiredata] = useState([]);
   // work with this one:
   const [formInput, setFormInput] = useState([]);
@@ -19,8 +22,6 @@ const PersonalEvent = ({ liked }) => {
 
   useEffect(() => {
     const database = getDatabase(firebase);
-    const dbRef = ref(database);
-    // const userID = "-N1_by51dcpV7FYz8hBY";
 
     const userRef = ref(database, `/${personalID}`);
     get(userRef)
@@ -34,27 +35,55 @@ const PersonalEvent = ({ liked }) => {
       });
   }, []);
 
+  // have a conditional to check if guest list exists
+    // if yes, add guest to this list
+    // if not, create a list and add to it
+
   // Function for handling form CHANGES
   const handleInputChange = (event) => {
     // console.log(event.target.value);
-    setFormInput(event.target.value);
+    setGuestName(event.target.value);
   };
 
   // Function for handling form SUBMIT
   const handleSubmit = (event) => {
     event.preventDefault();
-    // create a reference to our database
+   
     const database = getDatabase(firebase);
     const dbRef = ref(database);
-    // push the value of the `userInput` state to the database
-    const uniqueInput = {
-      // place all input for firebase here
+    const newUserSettings = {
+      guest: guestName,
     };
+    const userId1 = personalID;
 
-    push(dbRef, uniqueInput);
-    setFormInput("");
+    const changeSetting = (settingChange) => {
+      const childRef = ref(database, `/${userId1}/attendees`)
+      return push(childRef, settingChange)
+    }
+    changeSetting(newUserSettings)
+
+    const userId2 = personalID;
+    const childRef = ref(database, `/${userId2}/attendees`);
+
+
+
+
+    onValue(childRef, (response) => {
+      const emptyArray = [];
+      const data = response.val();
+      for (let key in data) {
+        // pushing the values from the object into our emptryArray
+        emptyArray.push({ personalID: key, name: data[key] });
+      }
+      
+      console.log(emptyArray)
+      setGuestList(emptyArray)
+    });
   };
 
+
+
+  
   return (
     <div className="personalEvent">
       {firedata ? (
@@ -176,44 +205,46 @@ const PersonalEvent = ({ liked }) => {
           
           <div className="attendees">
             <h2>Attending</h2>
-            <div className="guest">
-              <span className="avatar">
-                <img
-                  src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
-                  alt=""
-                />
-              </span>
-              <p>Estaban</p>
-            </div>
-            <div className="guest">
-              <span className="avatar">
-                <img
-                  src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-1024.png"
-                  alt=""
-                />
-              </span>
-              <p>Willow</p>
-            </div>
-
-            <div className="guest">
-              <span className="avatar">
-                <img
-                  src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/scientist_einstein_avatar_professor-1024.png"
-                  alt=""
-                />
-              </span>
-              <p>Albert</p>
-            </div>
-            <div className="guest">
-              <span className="avatar">
-                <img
-                  src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/cactus_cacti_avatar_pirate-1024.png"
-                  alt=""
-                />
-              </span>
-              <p>Martin</p>
-            </div>
+            <ul className="guest">
+              <li className="guestName">
+                <form className="addGuest" action="submit">
+                  <label htmlFor="attendeeName">Put Yourself on the Guest List:</label>
+                  <input 
+                    id="attendeeName"
+                    type="text" 
+                    onChange={handleInputChange}
+                    value={guestName}
+                  />
+                  <button onClick={handleSubmit}>Add Name</button>
+                </form>
+              </li>
+              <li className="guestName">
+                <div className="guest">
+                  <span className="avatar">
+                    <img
+                      src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-1024.png"
+                      alt=""
+                    />
+                  </span>
+                  <p>Estaban</p>
+                </div>
+              </li>
+            </ul>
           </div>
+
+          <div className="addedNames">
+            <ul>
+              { guestList.map((attendee) => {
+                    return (
+                      <li>
+                        <p>{attendee.name.guest}</p>
+                      </li>
+                    )
+                })}
+            </ul>
+          </div>
+          
+
           <div className="socials">
             <a
               href="https://twitter.com/share?ref_src=twsrc%5Etfw"
@@ -233,9 +264,51 @@ export default PersonalEvent;
 
 
 // display attendees:
-  // put attendees in a ul 
-  // a form gettng the info
-  // a function to display to the page
+  // put attendees in a ul✅ 
+  // a form to get the info✅
+  // a function to have info display to the page
 // change 'like event' input to 'host'
 // give 'attendees array' its own state
 // .push new name through the form back into unique firebase key
+
+
+// <div className="attendees">
+//             <h2>Attending</h2>
+//             <div className="guest">
+//               <span className="avatar">
+//                 <img
+//                   src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
+//                   alt=""
+//                 />
+//               </span>
+            //   <p>Estaban</p>
+            // </div>
+            // <div className="guest">
+            //   <span className="avatar">
+            //     <img
+            //       src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-1024.png"
+            //       alt=""
+            //     />
+            //   </span>
+//               <p>Willow</p>
+//             </div>
+
+//             <div className="guest">
+//               <span className="avatar">
+//                 <img
+//                   src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/scientist_einstein_avatar_professor-1024.png"
+//                   alt=""
+//                 />
+//               </span>
+//               <p>Albert</p>
+//             </div>
+//             <div className="guest">
+//               <span className="avatar">
+//                 <img
+//                   src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/cactus_cacti_avatar_pirate-1024.png"
+//                   alt=""
+//                 />
+//               </span>
+//               <p>Martin</p>
+//             </div>
+//           </div>
