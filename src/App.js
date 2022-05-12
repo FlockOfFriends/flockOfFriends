@@ -79,7 +79,7 @@ function App() {
               <label className="searchEndDate">
                 <p>End Date</p>
                 <DatePicker
-                dateFormat= "dd/mm/yyyy"
+                dateFormat="dd/MM/yyyy"
                 closeCalendar={false}
                 name="datePicker"
                 id="datePicker"
@@ -111,7 +111,7 @@ function App() {
             </div>
 
             <div className="searchSubmit">
-              <input className="searchSubmitButton" type="submit" />
+              <input className="searchSubmitButton" type="image" alt="submit" value="Search"/>
             </div>
           </form>
           <Link to="/">Home</Link>

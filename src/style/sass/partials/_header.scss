@@ -28,14 +28,17 @@ form {
     width: 25%;
     border-radius: 30px;
 
-    &:hover .searchLocationInput {
+    &:hover .searchLocationInput,
+    &:active .searchLocationInput {
       background-color: #ebebeb;
-      cursor: pointer;  
+      cursor: pointer;
+      
     }
 
     &:hover, &:focus {
       background-color: #ebebeb;
-      cursor: pointer;    
+      cursor: pointer;
+      filter: drop-shadow(0px 4px 4px #6B6666);
     }
 
     label {
@@ -58,6 +61,7 @@ form {
       .searchLocationInput {
         border: none;
         font-size: 0.9rem;
+        padding: 3px;
         font-family: $searchFont;
         font-weight: 500;
       }
@@ -72,15 +76,12 @@ form {
 
     &:hover, &:focus {
       background-color: #ebebeb;
-      cursor: pointer;   
+      cursor: pointer;
+      filter: drop-shadow(0px 4px 4px #6B6666);
     }
 
     label {
       display: flex;
-
-      &:active {
-
-      }
 
       &:hover, &focus {
         cursor: pointer;
@@ -92,10 +93,17 @@ form {
       display: flex;
       flex-direction: column;
       padding: 0 5px;
+      border-radius: 30px;
+
+      &:hover .react-date-picker__wrapper {
+        background-color: white;
+      }
     }
 
-    .react-date-picker__wrapper{
+    .react-date-picker__wrapper {
       border: none;
+      padding: 0 3px;
+      border-radius: 30px;
     }
 
     .react-date-picker {
@@ -113,12 +121,14 @@ form {
     &:hover, &focus {
       cursor: pointer;
       background-color: #ebebeb;
+      filter: drop-shadow(0px 4px 4px #6B6666);
     }
 
     .eventTypeGenre {
       font-size: 0.9rem;
       font-family: $searchFont;
       font-weight: 500;
+      padding: 3px;
       color: rgb(119, 115, 115);
       opacity: 1;
       letter-spacing: 0;
