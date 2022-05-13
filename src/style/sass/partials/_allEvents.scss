@@ -41,12 +41,24 @@ p {
             .allEventContainer {
                 width: 100%;
                 position: relative;
-                .eventName {
+                .allEventImage {
+                    border-radius: 5px;
+                }
+                .subtitle {
                     position: absolute;
                     padding: 1rem;
                     bottom: 0;
-                    color: white;
-                    font-weight: 600;
+                    right: 0;
+                    background-color: $mediumBlue;
+                    font-weight: 400;
+                    border-radius: 5px;
+                    h2 {
+                        font-size: 1.2rem;
+                        color: white;
+                    }
+                    h5 {
+                        color: white;
+                    }
                 }
             }
 

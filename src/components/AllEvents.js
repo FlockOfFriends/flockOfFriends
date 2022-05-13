@@ -15,6 +15,8 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
     const finalDate = `${shortDate}${defaultTime}`; 
     return finalDate.toString();
   }
+
+
   useEffect(() => {
   
   const ourStart = dateFunction(dateValue, "T23:00:00Z")
@@ -51,6 +53,14 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
 
   }, [toggleApi])
 
+    // Function to convert date
+  const convertDate = (date) => {
+    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let firstDate = date;
+    let secondDate =  new Date(firstDate);
+    let finalDate = secondDate.toLocaleString('en-US', options);
+    return finalDate;
+  }
   
     return (
         <ul className="allEvents">
@@ -62,12 +72,15 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
               className="allEventContainer"
               key={event.id}>
                 <Link to={`/event/${event.id}`}>
-                <img 
+                <img
+                className="allEventImage" 
                 src={event.images[6].url} 
                 alt={`Placeholder`} />
                 </Link>
-                <h2 className="eventName"
-                >{event.name}</h2>
+                <div className="subtitle">
+                <h2>{event.name}</h2>
+                <h5>{convertDate(event.dates.start.dateTime)}</h5>
+                </div>
               </li>
             )
             

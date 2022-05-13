@@ -12,7 +12,6 @@ import iconPeople from "../assets/iconPeople.svg";
 
 const EventDetails = () => {
   const [userInput, setUserInput] = useState("");
-  // const [newUrl, setNewUrl] = useState('')
   const [firedata, setFiredata] = useState([]);
   const { eventID } = useParams();
   const [detailsArray, setDetailsArray] = useState({ loading: false });
@@ -61,6 +60,24 @@ const EventDetails = () => {
     });
   }, [eventID]);
 
+   // Function to convert date
+  const convertDate = (date) => {
+    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let firstDate = date;
+    let secondDate =  new Date(firstDate);
+    let finalDate = secondDate.toLocaleString('en-US', options);
+    return finalDate;
+  }
+
+    // Function to convert time
+
+  const convertTime = (time) => {
+    let firstTime = time
+    let secondTime = new Date(firstTime)
+    let finalTime = secondTime.toLocaleTimeString('en-US');
+    return finalTime
+  }
+
   const handleInputChange = (event) => {
     setUserInput(event.target.value);
   };
@@ -81,11 +98,9 @@ const EventDetails = () => {
         id: eventID,
         title: detailsArray.name,
         img: detailsArray.images[1].url,
-        start: detailsArray.dates.start.localDate,
-        time: detailsArray.dates.start.localTime,
+        // start: detailsArray.dates.start.localDate,
+        // time: detailsArray.dates.start.localTime,
         dateTime: detailsArray.dates.start.dateTime,
-        // priceMax: detailsArray.priceRanges[0].max,
-        // priceMin: detailsArray.priceRanges[0].min,
         tickets: detailsArray.url,
         address: detailsArray._embedded.venues[0].address.line1,
         city: detailsArray._embedded.venues[0].city.name,
@@ -108,7 +123,8 @@ const EventDetails = () => {
             <div className="titleLeft">
               <h2>{detailsArray.name}</h2>
               
-              <h5>{detailsArray.dates.start.localDate}</h5>
+              <h5>{convertDate(detailsArray.dates.start.dateTime)}</h5>
+              <h5>{convertTime(detailsArray.dates.start.dateTime)}</h5>
               <p>{detailsArray._embedded.venues[0].name}</p>
               {showButton ? (
                 <div className="form">
@@ -166,7 +182,7 @@ const EventDetails = () => {
 
             <div className="rightSide">
               <div class="img">
-                <img src={detailsArray.images[2].url} alt={detailsArray.name} />
+                <img src={detailsArray.images[6].url} alt={detailsArray.name} />
               </div>
             </div>
           </div>

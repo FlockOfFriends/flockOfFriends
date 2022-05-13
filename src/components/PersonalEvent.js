@@ -26,7 +26,7 @@ const PersonalEvent = ({ liked }) => {
     get(userRef)
       .then((data) => {
         const mydata = data.val();
-        console.log(mydata)
+        console.log(mydata);
         setFiredata(mydata);
       })
       .catch((error) => {
@@ -34,13 +34,45 @@ const PersonalEvent = ({ liked }) => {
       });
   }, []);
 
-  // Function to covert date
+  // Function to convert date
   const convertDate = (date) => {
+    let options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
     let firstDate = date;
-    let secondDate =  new Date(firstDate);
-    let finalDate = secondDate.toString();
+    let secondDate = new Date(firstDate);
+    let finalDate = secondDate.toLocaleString("en-US", options);
     return finalDate;
-  }
+  };
+
+  // Function to convert time
+
+  const convertTime = (time) => {
+    let firstTime = time;
+    let secondTime = new Date(firstTime);
+    let finalTime = secondTime.toLocaleTimeString("en-US");
+    return finalTime;
+  };
+
+  const getDay = (userDate) => {
+    let firstDate = userDate;
+    let secondDate = new Date(firstDate);
+    let justDay = secondDate.getDate();
+    return justDay;
+  };
+
+  const getMonth = (userDate) => {
+    let options = {
+      month: "long",
+    };
+    let firstDate = userDate;
+    let secondDate = new Date(firstDate);
+    let finalDate = secondDate.toLocaleString("en-US", options);
+    return finalDate;
+  };
 
   // Function for handling form CHANGES
   const handleInputChange = (event) => {
@@ -69,27 +101,24 @@ const PersonalEvent = ({ liked }) => {
         <div className="wrapper">
           <div className="title">
             <div className="img">
-              <img
-                src={firedata.img}
-                alt={`${firedata.title} event`}
-              />
+              <img src={firedata.img} alt={`${firedata.title} event`} />
             </div>
             <div className="titleBottom">
               <div className="titleText">
                 <h2>{firedata.title}</h2>
                 <h5>
-                  {convertDate(firedata.start)}
-                  {firedata.start} {firedata.time}
+                  {convertDate(firedata.dateTime)} / {convertTime(firedata.dateTime)}
                 </h5>
                 <p>
-                  
                   {firedata.address}, {firedata.city}
                 </p>
               </div>
               <div className="rsvp">
                 <span className="iconCalendar">
-                  <p>15</p>
-                  <img src={iconCal} alt="Calendar icon" />
+                  <p className="getMonth">{getMonth(firedata.dateTime)}</p>
+                  <p className="getDay">{getDay(firedata.dateTime)}</p>
+                  
+                  {/* <img src={iconCal} alt="Calendar icon" /> */}
                 </span>
 
                 <button className="rsvpButton" type="button">
@@ -121,13 +150,13 @@ const PersonalEvent = ({ liked }) => {
               <button onClick={handleSubmit}>SUBMIT</button>
             </div>
             <div>
-            <label htmlFor="description">Description</label>
-            <textarea
-              type="text"
-              id="description"
-              onChange={handleInputChange}
-              value={formInput}
-            />
+              <label htmlFor="description">Description</label>
+              <textarea
+                type="text"
+                id="description"
+                onChange={handleInputChange}
+                value={formInput}
+              />
             </div>
           </form>
 
@@ -175,14 +204,14 @@ const PersonalEvent = ({ liked }) => {
             </p>
           </div>
           <div className="map">
-
-            <iframe title="Google maps"
+            <iframe
+              title="Google maps"
               className="googlemap"
               src={`https://maps.google.com/maps?q=${firedata.latitude}, ${firedata.longitude}&output=embed`}
               loading="lazy"
             ></iframe>
           </div>
-          
+
           <div className="attendees">
             <h2>Attending</h2>
             <div className="guest">
@@ -240,11 +269,10 @@ const PersonalEvent = ({ liked }) => {
 
 export default PersonalEvent;
 
-
 // display attendees:
-  // put attendees in a ul 
-  // a form gettng the info
-  // a function to display to the page
+// put attendees in a ul
+// a form gettng the info
+// a function to display to the page
 // change 'like event' input to 'host'
 // give 'attendees array' its own state
 // .push new name through the form back into unique firebase key
