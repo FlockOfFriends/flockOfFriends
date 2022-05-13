@@ -29,12 +29,19 @@ function App() {
   const [status, setStatus] = useState([])
   const [eventType, setEventType] = useState("")
   const [locationSearchShow, setLocationSearchShow] = useState(true);
+  const [eventTypeShow, setEventTypeShow] = useState(true);
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setToggleApi(!toggleApi);
   };
+
+  const handleShowEventType = () => {
+    setEventTypeShow(!eventTypeShow);
+
+    console.log("event type bar", eventTypeShow);
+  }
 
   const handleShowLocationSearchbar = () => {
     setLocationSearchShow(!locationSearchShow);
@@ -105,11 +112,14 @@ function App() {
               </label>
             </div>
 
-            <div className="searchEventType">
-              <label onChange={(e) => setEventType(e.target.value)}>
+            <div className="searchEventType" onClick={handleShowEventType}>
+              <label
+              onChange={(e) => setEventType(e.target.value)}
+              onClick={(e) => {e.preventDefault();
+              handleShowEventType()}}>
                 <p>Event Type</p>
                 <p className="eventTypeGenre">choose a genre</p>
-                <div className="radioEventList">
+                <div className={eventTypeShow ? "radioEventList" : "radioEventList show"}>
                   <label htmlFor="allEvents">All Events</label>
                   <input type="radio" name="eventChoice" id="allEvents" value=""/>
 

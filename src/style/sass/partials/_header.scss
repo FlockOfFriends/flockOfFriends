@@ -28,7 +28,6 @@ form {
     padding: 10px;
     display: flex;
     justify-content: center;
-    // width: 25%;
     border-radius: 30px;
     position: relative;
 
@@ -161,11 +160,19 @@ form {
     label {
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
     .radioEventList {
-      position: relative;
+      position: absolute;
       display: none;
+      flex-direction: column;
+      background: white;
+      border: 2px solid black;
+      border-radius: 30px;
+      top: 70px;
+      left: -10px;
+      width: 200px;
 
       label {
         font-size: 1rem;
@@ -182,6 +189,10 @@ form {
         position: absolute;
         opacity: 0;
       }
+    }
+
+    .radioEventList.show {
+      display: flex;
     }
   }
 
