@@ -39,8 +39,10 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
     };
     axios(configTicket)
       .then(function (response) {
+        console.log(response)
         const results = response.data._embedded.events;
         console.log(results);
+        
         setEvents(response.data._embedded.events);
       })
       .catch(function (error) {
@@ -51,37 +53,44 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
 
   
     return (
-        <ul className="catalogue">
+        <ul className="allEvents">
+          <div className="wrapper">
         { events.map((event) => {
             
             return (
-              <li key={event.id}>
+              <li 
+              className="allEventContainer"
+              key={event.id}>
                 <Link to={`/event/${event.id}`}>
                 <img 
-                src={event.images[1].url} 
+                src={event.images[6].url} 
                 alt={`Placeholder`} />
                 </Link>
+                <h2 className="eventName"
+                >{event.name}</h2>
               </li>
             )
+            
         })}
+        </div>
       </ul>
 
     )
 
-  return (
-    <ul className="catalogue">
-      {events.map((event) => {
-        return (
-          <li key={event.id}>
-            <Link to={`/event/${event.id}`}>
-              <div className="imgContainer">
-                <img src={event.images[0].url} alt={`Placeholder`} />
-              </div>
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
-  );
+  // return (
+  //   <ul className="catalogue">
+  //     {events.map((event) => {
+  //       return (
+  //         <li key={event.id}>
+  //           <Link to={`/event/${event.id}`}>
+  //             <div className="imgContainer">
+  //               <img src={event.images[0].url} alt={`Placeholder`} />
+  //             </div>
+  //           </Link>
+  //         </li>
+  //       );
+  //     })}
+  //   </ul>
+  // );
 };
 export default AllEvents;

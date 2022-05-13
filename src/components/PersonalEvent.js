@@ -34,6 +34,14 @@ const PersonalEvent = ({ liked }) => {
       });
   }, []);
 
+  // Function to covert date
+  const convertDate = (date) => {
+    let firstDate = date;
+    let secondDate =  new Date(firstDate);
+    let finalDate = secondDate.toString();
+    return finalDate;
+  }
+
   // Function for handling form CHANGES
   const handleInputChange = (event) => {
     // console.log(event.target.value);
@@ -70,9 +78,11 @@ const PersonalEvent = ({ liked }) => {
               <div className="titleText">
                 <h2>{firedata.title}</h2>
                 <h5>
+                  {convertDate(firedata.start)}
                   {firedata.start} {firedata.time}
                 </h5>
                 <p>
+                  
                   {firedata.address}, {firedata.city}
                 </p>
               </div>

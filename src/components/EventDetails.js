@@ -83,6 +83,7 @@ const EventDetails = () => {
         img: detailsArray.images[1].url,
         start: detailsArray.dates.start.localDate,
         time: detailsArray.dates.start.localTime,
+        dateTime: detailsArray.dates.start.dateTime,
         // priceMax: detailsArray.priceRanges[0].max,
         // priceMin: detailsArray.priceRanges[0].min,
         tickets: detailsArray.url,

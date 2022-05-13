@@ -1,5 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+img {
+    width: 100%;
+    display: block;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 400;
+    color: rgb(36, 35, 35);
+}
+
+p {
+    font-size: 1rem;
+}
+
+////////
+
+
+
 // all events styles
 
 .allEvents {
+    width: 100%;
+        padding: 4rem 0;
+        background-color: white;
     
+    .wrapper {
+        display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 75%;
+            gap: 1rem;
+
+            .allEventContainer {
+                width: 100%;
+                position: relative;
+                .eventName {
+                    position: absolute;
+                    padding: 1rem;
+                    bottom: 0;
+                    color: white;
+                    font-weight: 600;
+                }
+            }
+
+    }
 }
