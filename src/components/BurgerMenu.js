@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { MdMenu } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 
@@ -22,21 +22,21 @@ const BurgerMenu = () => {
       </button>
       <ul className={`menuNav ${burgerMenuOpen ? " showMenu" : ""}`}>
         <li>
-          <Link
+          <NavLink
             to="/"
-            activeClassName="active-link"
+            className="active-link"
             onClick={() => closeMenu()}
           >
             Home
-          </Link>
+          </NavLink>
         </li>
 
         <li>
-          <Link to="/">About Creators</Link>
+          <NavLink to="/">About Creators</NavLink>
         </li>
 
         <li>
-          <Link to="/personalhub">Personal Hub</Link>
+          <NavLink to="/personalhub">Personal Hub</NavLink>
         </li>
       </ul>
       </div>

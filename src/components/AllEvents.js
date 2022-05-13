@@ -20,6 +20,8 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
   const ourStart = dateFunction(dateValue, "T23:00:00Z")
   const ourEnd = dateFunction(dateEndValue, "T23:59:59Z")
 
+  console.log("Event Type", eventType)
+
 
     const configTicket = {
       method: "get",
