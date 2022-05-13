@@ -30,11 +30,13 @@ function App() {
   const [eventType, setEventType] = useState("")
   const [locationSearchShow, setLocationSearchShow] = useState(true);
   const [eventTypeShow, setEventTypeShow] = useState(true);
+  const [eventGenre, setEventGenre] = useState("choose a genre");
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setToggleApi(!toggleApi);
+    // write a function that clears and resets all search ui input fields
   };
 
   const handleShowEventType = () => {
@@ -48,6 +50,15 @@ function App() {
 
     console.log("locationSearchShow state!", locationSearchShow)
   }
+
+  const handleEventGenre = () => {
+    const switchGenreText = () => {
+      console.log("THIS");
+    };
+
+    setEventGenre(switchGenreText());
+  }
+
 
   useEffect(() => {
     const database = getDatabase(firebase);
@@ -118,18 +129,18 @@ function App() {
               onClick={(e) => {e.preventDefault();
               handleShowEventType()}}>
                 <p>Event Type</p>
-                <p className="eventTypeGenre">choose a genre</p>
+                <p className="eventTypeGenre">{eventGenre}</p>
                 <div className={eventTypeShow ? "radioEventList" : "radioEventList show"}>
-                  <label htmlFor="allEvents">All Events</label>
+                  <label htmlFor="allEvents" onClick={() => {setEventGenre("All Events")}}>All Events</label>
                   <input type="radio" name="eventChoice" id="allEvents" value=""/>
 
-                  <label htmlFor="sports">Sports</label>
+                  <label htmlFor="sports" onClick={() => {setEventGenre("Sports")}}>Sports</label>
                   <input type="radio" name="eventChoice" id="sports" value="Sports"/>
 
-                  <label htmlFor="music">Music</label>
+                  <label htmlFor="music" onClick={() => {setEventGenre("Music")}}>Music</label>
                   <input type="radio" name="eventChoice" id="music" value="Music" />
 
-                  <label htmlFor="artsTheatre">Arts & Theatre</label>
+                  <label htmlFor="artsTheatre" onClick={() => {setEventGenre("Arts & Theatre")}}>Arts & Theatre</label>
                   <input type="radio" name="eventChoice" id="artsTheatre" value="Art"/>
                 </div>
               </label>
