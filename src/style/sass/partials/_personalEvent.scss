@@ -178,16 +178,78 @@ p {
         border-bottom: 1px solid rgb(36, 35, 35);
       }
 
+      .addGuest {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
       .guest {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .avatar {
+        width: 4rem;
+        border-radius: 100%;
+        margin-right: 1rem;
+      }
 
-        .avatar {
-          width: 3rem;
-          border-radius: 100%;
-          margin-right: 1rem;
+      
+      .guestName {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 5px 0;
+        margin: 5px 10px;
+
+        p {
+          margin: 10px;
+          font-size: 1.3rem;
+        }
+
+        span {
+          margin: 3px;
+        }
+
+        input {
+          padding: 5px;
+          margin: 15px;
+        }
+
+        .addButton,
+        .removeButton {
+          padding: 5px 8px;
+          font-family: $bodyFont;
+          background-color: $whiteBlue;
+          color: black;
+          border: 1px solid $mediumBlue;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+
+        .removeButton {
+          padding: 0 5px;
+          font-size: 1rem;
+          font-style: italic;
+          border: 1px solid $lightBlue;
         }
       }
+    }
+
+    .addedNames {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: flex-start;
+      // justify-content: center;
+      margin: 0 20px;
+      
+      // p {
+      //   font-size: 1.5rem;
+      // }
     }
   }
 }
