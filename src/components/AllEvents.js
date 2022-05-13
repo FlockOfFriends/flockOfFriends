@@ -30,13 +30,10 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
         apikey: "NJCKlZmMAiwCVsFMlf33AlMF11d5iusP",
         city: location,
         classificationName: eventType,
-
         startDateTime: ourStart,
         endDateTime: ourEnd,
         size: "100",
         sort: "random"
-
-
       },
     };
     axios(configTicket)
