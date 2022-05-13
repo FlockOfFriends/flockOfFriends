@@ -28,7 +28,7 @@ function App() {
   const [toggleApi, setToggleApi] = useState(false)
   const [status, setStatus] = useState([])
   const [eventType, setEventType] = useState("")
-  const [locationSearchShow, setLocationSearchShow] = useState(false);
+  const [locationSearchShow, setLocationSearchShow] = useState(true);
 
 
   const handleSubmit = (event) => {
@@ -72,17 +72,9 @@ function App() {
                   placeholder="city, country, etc"
                 />
               </label>
-
-              {/* BRIAN IF YOU DELETE THIS BELOW, YOU HAD BETTER ALSO DELETE THE STYLING ASSOCIATED WITH THEM */}
-
-              {/* <div 
-              className={locationSearchShow ? "searchLocationShow" : "searchLocationHide"}>
-                  <p className="locationHide">{location}</p>
-                  <p className="exitButton">Go</p>
-              </div> */}
             </div>
 
-            <div className="searchDate">
+            <div className="searchDateStart">
               <label
               onClick={(e) => {e.preventDefault()}} className="searchStartDate">
                 <p className="searchLabelText">Start Date</p>
@@ -94,7 +86,9 @@ function App() {
                 onChange={setDateValue}
                 />
               </label>
+            </div>
 
+            <div className="searchDateEnd">
               <label 
               onClick={(e) => {e.preventDefault()}} 
               className="searchEndDate">
