@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getDatabase, ref, onValue, push, get, update } from "firebase/database";
+import { getDatabase, ref, onValue, push, get, remove, child } from "firebase/database";
 import { useParams } from "react-router-dom";
 import firebase from "./firebase";
 
@@ -11,7 +11,7 @@ import iconTicket from "../assets/iconTicket.svg";
 import iconCal from "../assets/iconCal.svg";
 
 const PersonalEvent = ({ liked }) => {
-  const [guestName, setGuestName] = useState('Sam');
+  const [guestName, setGuestName] = useState();
   const [guestList, setGuestList] = useState([])
 
   const [firedata, setFiredata] = useState([]);
@@ -35,9 +35,6 @@ const PersonalEvent = ({ liked }) => {
       });
   }, []);
 
-  // have a conditional to check if guest list exists
-    // if yes, add guest to this list
-    // if not, create a list and add to it
 
   // Function for handling form CHANGES
   const handleInputChange = (event) => {
@@ -50,22 +47,20 @@ const PersonalEvent = ({ liked }) => {
     event.preventDefault();
    
     const database = getDatabase(firebase);
-    const dbRef = ref(database);
-    const newUserSettings = {
+    // const dbRef = ref(database);
+    const newGuestName = {
       guest: guestName,
     };
     const userId1 = personalID;
 
-    const changeSetting = (settingChange) => {
+    const addAttendee = (newName) => {
       const childRef = ref(database, `/${userId1}/attendees`)
-      return push(childRef, settingChange)
+      return push(childRef, newName)
     }
-    changeSetting(newUserSettings)
+    addAttendee(newGuestName)
 
     const userId2 = personalID;
     const childRef = ref(database, `/${userId2}/attendees`);
-
-
 
 
     onValue(childRef, (response) => {
@@ -74,14 +69,28 @@ const PersonalEvent = ({ liked }) => {
       for (let key in data) {
         // pushing the values from the object into our emptryArray
         emptyArray.push({ personalID: key, name: data[key] });
-      }
-      
-      console.log(emptyArray)
+      }  
       setGuestList(emptyArray)
     });
+
+    setGuestName('')
+  }
+  
+  // const clearInputField = () => {
+  //   setGuestName("");
+  // }
+
+
+  const handleRemoveName = (attendee) => {
+    const database = getDatabase(firebase)
+    const userId2 = personalID;
+    const childRef = ref(database, `/${userId2}/attendees`);
+      remove(childRef)
   };
 
-
+  // const clearInput = () => {
+  //   setGuestList('')
+  // }
 
   
   return (
@@ -215,24 +224,31 @@ const PersonalEvent = ({ liked }) => {
                     onChange={handleInputChange}
                     value={guestName}
                   />
-                  <button onClick={handleSubmit}>Add Name</button>
+                  <button className="addButton" onClick={handleSubmit}>Add Name</button>
+                  {/* <button onClick={clearInputField}>Reset</button> */}
                 </form>
               </li>
-              <li className="guestName">
-                <div className="guest">
-                  <span className="avatar">
-                    <img
-                      src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-1024.png"
-                      alt=""
-                    />
-                  </span>
-                  <p>Estaban</p>
-                </div>
-              </li>
+            </ul>
+            <ul className="addedNames">
+              { guestList.map((attendee) => {
+                    return (
+                      <li key={attendee.name.guest}  className="guestName">
+                        <span className="avatar">
+                        <img
+                          src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
+                          alt=""
+                        />
+                      </span>
+                        <p>{attendee.name.guest}</p>
+                        <button className="removeButton" onClick={() => handleRemoveName(attendee.name.guest)}> Can't Make It</button>
+                      </li>
+                      
+                    )
+                })}
             </ul>
           </div>
 
-          <div className="addedNames">
+          {/* <div className="addedNames">
             <ul>
               { guestList.map((attendee) => {
                     return (
@@ -242,7 +258,7 @@ const PersonalEvent = ({ liked }) => {
                     )
                 })}
             </ul>
-          </div>
+          </div> */}
           
 
           <div className="socials">
@@ -275,12 +291,12 @@ export default PersonalEvent;
 // <div className="attendees">
 //             <h2>Attending</h2>
 //             <div className="guest">
-//               <span className="avatar">
-//                 <img
-//                   src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
-//                   alt=""
-//                 />
-//               </span>
+              // <span className="avatar">
+              //   <img
+              //     src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
+              //     alt=""
+              //   />
+              // </span>
             //   <p>Estaban</p>
             // </div>
             // <div className="guest">
