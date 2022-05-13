@@ -17,7 +17,7 @@ const PersonalEvent = ({ liked }) => {
   const [firedata, setFiredata] = useState([]);
   // work with this one:
   const [formInput, setFormInput] = useState([]);
-  const { personalID } = useParams();
+  const { personalID, guestID } = useParams();
   // console.log("personalID", personalID);
 
   useEffect(() => {
@@ -53,6 +53,8 @@ const PersonalEvent = ({ liked }) => {
     };
     const userId1 = personalID;
 
+    console.log(personalID)
+
     const addAttendee = (newName) => {
       const childRef = ref(database, `/${userId1}/attendees`)
       return push(childRef, newName)
@@ -61,7 +63,6 @@ const PersonalEvent = ({ liked }) => {
 
     const userId2 = personalID;
     const childRef = ref(database, `/${userId2}/attendees`);
-
 
     onValue(childRef, (response) => {
       const emptyArray = [];
@@ -75,10 +76,6 @@ const PersonalEvent = ({ liked }) => {
 
     setGuestName('')
   }
-  
-  // const clearInputField = () => {
-  //   setGuestName("");
-  // }
 
 
   const handleRemoveName = (attendee) => {
@@ -88,9 +85,18 @@ const PersonalEvent = ({ liked }) => {
       remove(childRef)
   };
 
-  // const clearInput = () => {
-  //   setGuestList('')
-  // }
+  // const handleRemoveName = (attendee) => {
+  //   onValue(childRef, (response) => {
+  //       const emptyArray = [];
+  //       const data = response.val();
+  //       for (let key in data) {
+  //         // pushing the values from the object into our emptryArray
+  //         emptyArray.push({ personalID: key, name: data[key] });
+  //       }  
+  //       setGuestList(emptyArray)
+  //     });
+  //   }
+
 
   
   return (
@@ -225,7 +231,6 @@ const PersonalEvent = ({ liked }) => {
                     value={guestName}
                   />
                   <button className="addButton" onClick={handleSubmit}>Add Name</button>
-                  {/* <button onClick={clearInputField}>Reset</button> */}
                 </form>
               </li>
             </ul>
