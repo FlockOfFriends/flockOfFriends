@@ -53,24 +53,227 @@
     display: inline;
     background: white;
   }
-----------------------------------------------------
+
+
+header {
+  width: 100%;
+  display: flex;
+}
+
+nav{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
 
 form {
-  display: none;
-}
-// .eventSearchContainer {
-//   display: flex;
-//   align-items: center;
-//   background: whitesmoke;
-//   cursor: pointer;
-//   margin: 0 auto;
-//   .searchElement {
-//     display: flex;
-//     flex-grow: 2;
-//     // flex-direction: column;
-//     #datePicker {
-//       display: flex;
-//     }
-//   }
-// }
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 0;
+  min-height: 0;
+  width: 90%;
+  max-width: 1000px;
+  padding: 10px 15px;
+  margin: 20px;
+  background: white;
+  border: 2px solid $darkBlue;
+  border-radius: 50px;
 
+  .searchLocation {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    border-radius: 30px;
+    position: relative;
+
+    &:hover .searchLocationInput,
+    &:active .searchLocationInput {
+      background-color: #ebebeb;
+      cursor: pointer;
+      border-radius: 30px;
+    }
+
+    &:hover, &:focus, &:focus-within {
+      background-color: #ebebeb;
+      cursor: pointer;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: flex-start;
+      overflow: hidden;
+
+      &:hover, &:focus {
+        cursor: pointer;
+      }
+
+      .searchLocationInput::placeholder {
+        color: rgb(119, 115, 115);
+        opacity: 1;
+        letter-spacing: 0;
+      }
+
+      .searchLocationInput {
+        border: none;
+        font-size: 0.9rem;
+        padding: 3px;
+        font-family: $searchFont;
+        font-weight: 500;
+        border-radius: 30px;
+
+        &:focus, &active {
+          outline: none;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .searchDateStart,
+  .searchDateEnd {
+    display: flex;
+    width: 25%;
+    align-items: center;
+    padding: 10px;
+    border-radius: 30px;
+
+    &:hover, &:focus {
+      background-color: #ebebeb;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+    }
+
+    label {
+      display: flex;
+
+      &:hover, &focus {
+        cursor: pointer;
+      }
+    }
+
+    .searchStartDate,
+    .searchEndDate {
+      display: flex;
+      flex-direction: column;
+      padding: 0 5px;
+      border-radius: 30px;
+      width: 100%;
+
+      .react-date-picker.react-date-picker--closed.react-date-picker--enabled {
+        border: 1px solid #ebebeb;
+        border-radius: 30px;
+        padding: 0 15px;
+      }
+
+      &:hover .react-date-picker__wrapper {
+        background-color:whitesmoke;
+        filter: drop-shadow(0px 2px 2px #6B6666);
+
+      }
+    }
+
+    .react-date-picker__wrapper {
+      border: none;
+      padding: 0 3px;
+      border-radius: 30px;
+    }
+
+    .react-date-picker {
+      font-size: 0.8rem;
+
+      .react-date-picker__clear-button.react-date-picker__button {
+        display: none;
+      }
+    }
+  }
+
+  .searchEventType {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 30px;
+
+    &:hover, &focus {
+      cursor: pointer;
+      background-color: #ebebeb;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+    }
+
+    .eventTypeGenre {
+      font-size: 0.9rem;
+      font-family: $searchFont;
+      font-weight: 500;
+      padding: 3px;
+      color: rgb(119, 115, 115);
+      opacity: 1;
+      letter-spacing: 0;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .radioEventList {
+      position: absolute;
+      display: none;
+      flex-direction: column;
+      background: whitesmoke;
+      border: 2px solid black;
+      border-radius: 30px;
+      top: 70px;
+      left: -10px;
+      width: 200px;
+
+      label {
+        font-size: 1rem;
+        padding: 10px;
+        letter-spacing: 0.03rem;
+        font-weight: 700;
+
+        &:hover, &:focus {
+          background-color: black;
+          color: whitesmoke;
+          border-radius: 30px;
+          filter: drop-shadow(0px 4px 4px #6B6666);
+        }
+      }
+
+      input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+      }
+    }
+
+    .radioEventList.show {
+      display: flex;
+    }
+  }
+
+  .searchSubmit {
+    display: flex;
+    width: 65px;
+    height: 65px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    padding: 5px;
+
+    &:hover, &:focus {
+      cursor: pointer;
+      background-color: #ebebeb;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+    }
+
+    .searchSubmitButton {
+      width: 45px
+    }
+  }
+}

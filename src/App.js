@@ -16,20 +16,38 @@ import PersonalHub from "./components/PersonalHub";
 import PersonalEvent from "./components/PersonalEvent";
 import DatePicker from "react-date-picker";
 
+// images
+import search from "./images/search.png";
+
 function App() {
   // Lets mutate the Date data immediately
 
-  const [location, setLocation] = useState("New York");
+
+  const [location, setLocation] = useState("")
   const [dateValue, setDateValue] = useState(new Date());
   const [dateEndValue, setDateEndValue] = useState(new Date());
-  const [toggleApi, setToggleApi] = useState(false);
-  const [status, setStatus] = useState([]);
-  const [eventType, setEventType] = useState("");
+  const [toggleApi, setToggleApi] = useState(false)
+  const [status, setStatus] = useState([])
+  const [eventType, setEventType] = useState("")
+  const [eventTypeShow, setEventTypeShow] = useState(true);
+  const [eventGenre, setEventGenre] = useState("choose a genre");
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setToggleApi(!toggleApi);
+    // write a function that clears and resets all search ui input fields
   };
+
+  const handleShowEventType = () => {
+    setEventTypeShow(!eventTypeShow);
+  }
+
+  const handleKeypress = (e) => {
+    if (e.keyCode === 13) {
+      handleShowEventType();
+    }
+  }
 
   useEffect(() => {
     const database = getDatabase(firebase);
@@ -56,94 +74,137 @@ function App() {
             alt="A crowd of people watching a show"
           />
         </div>
+        
         <nav>
-          <div className="navContainer">
-            <form className="form" onSubmit={handleSubmit}>
-              <div className="eventSearchContainer">
-                <div className="searchElement">
-                  <label>
-                    <p className="searchLabelText">Location</p>
-                    <input
-                      type="text"
-                      className="search"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      placeholder="city, country, etc"
-                    />
+          <form className="form" onSubmit={handleSubmit}>
+
+            <div className="searchLocation">
+              <label onClick={(e) => {e.preventDefault()}}>
+                <p className="searchLabelText">Location</p>
+                <input
+                  tabIndex="0"
+                  type="text"
+                  className="searchLocationInput"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="city, country, etc"
+                />
+              </label>
+            </div>
+
+            <div className="searchDateStart">
+              <label
+              onClick={(e) => {e.preventDefault()}} 
+              className="searchStartDate">
+                <p className="searchLabelText">Start Date</p>
+                <DatePicker
+                dateFormat="dd/MM/yyyy"
+                closeCalendar={false}
+                name="datePicker"
+                id="datePicker"
+                value={dateValue}
+                onChange={setDateValue}
+                />
+              </label>
+            </div>
+
+            <div className="searchDateEnd">
+              <label 
+              onClick={(e) => {e.preventDefault()}} 
+              className="searchEndDate">
+                <p>End Date</p>
+                <DatePicker
+                dateFormat="dd/MM/yyyy"
+                closeCalendar={false}
+                name="datePicker"
+                id="datePicker"
+                value={dateEndValue}
+                onChange={setDateEndValue}
+                />
+              </label>
+            </div>
+
+            <div className="searchEventType" onClick={handleShowEventType}>
+              <label
+              tabIndex="0"
+              onKeyDown={handleKeypress}
+              onClick={(e) => {e.preventDefault();
+              handleShowEventType()}}>
+              
+
+                <p>Event Type</p>
+                <p className="eventTypeGenre">{eventGenre}</p>
+                <div className={eventTypeShow ? "radioEventList" : "radioEventList show"}>
+
+                  <label
+                    tabIndex="0"
+                    htmlFor="allEvents"
+                    // onKeyDown={ (e) => {e.key === "Enter" ? setEventGenre("All Events") : null}}
+                    onClick={() => {setEventGenre("All Events");
+                    setEventType("")}}>
+                    All Events
                   </label>
-                </div>
 
-                <div className="searchElement">
-                  <label>
-                    <p className="searchLabelText">Start Date</p>
-                    <DatePicker
-                      closeCalendar={false}
-                      name="datePicker"
-                      id="datePicker"
-                      value={dateValue}
-                      onChange={setDateValue}
-                    />
-                    <p>End Date</p>
-                    <DatePicker
-                      closeCalendar={false}
-                      name="datePicker"
-                      id="datePicker"
-                      value={dateEndValue}
-                      onChange={setDateEndValue}
-                    />
+                  <input type="radio" name="eventChoice" id="allEvents" value=""/>
+
+                  <label
+                    tabIndex="0"
+                    htmlFor="sports"
+                    onClick={() => {setEventGenre("Sports");
+                    setEventType("Sports")}}>
+                    Sports
                   </label>
-                </div>
 
-                <div className="searchElement">
-                  <label onChange={(e) => setEventType(e.target.value)}>
-                    <p>Event Type</p>
-                    <div className="radioEventList">
-                      <label htmlFor="allEvents">All Events</label>
-                      <input
-                        type="radio"
-                        name="eventChoice"
-                        id="allEvents"
-                        value=""
-                      />
+                  <input type="radio" name="eventChoice" id="sports" value="Sports"/>
 
-                      <label htmlFor="sports">Sports</label>
-                      <input
-                        type="radio"
-                        name="eventChoice"
-                        id="sports"
-                        value="Sports"
-                      />
-
-                      <label htmlFor="music">Music</label>
-                      <input
-                        type="radio"
-                        name="eventChoice"
-                        id="music"
-                        value="Music"
-                      />
-
-                      <label htmlFor="artsTheatre">Arts & Theatre</label>
-                      <input
-                        type="radio"
-                        name="eventChoice"
-                        id="artsTheatre"
-                        value="Art"
-                      />
-                    </div>
+                  <label
+                    tabIndex="0"
+                    htmlFor="music"
+                    onClick={() => {setEventGenre("Music");
+                    setEventType("Music")}}>
+                    Music
                   </label>
-                </div>
+                  
+                  <input type="radio" name="eventChoice" id="music" value="Music" />
 
-                <div className="searchButton">
-                  <input className="submit" type="submit" />
-                </div>
-              </div>
-            </form>
+                  <label
+                    tabIndex="0"
+                    htmlFor="artsTheatre"
+                    onClick={() => {setEventGenre("Arts & Theatre");
+                    setEventType("Art")}}>
+                    Arts & Theatre
+                  </label>
 
-            <Link to="/">Home</Link>
-            <Link to="/personalhub">
-              <p>{status.length}</p>
-            </Link>
-          </div>
+                  <input type="radio" name="eventChoice" id="artsTheatre" value="Art"/>
+
+                  <label
+                    tabIndex="0"  
+                    htmlFor="family"
+                    onClick={() => {setEventGenre("Family");
+                    setEventType("Family")}}>
+                    Family
+                  </label>
+
+                  <input type="radio" name="eventChoice" id="family" value="Family"/>
+
+                </div>
+              </label>
+            </div>
+
+            <div className="searchSubmit">
+              <input
+              className="searchSubmitButton"
+              type="image"
+              alt="submit"
+              value="Search"
+              src={search}
+              />
+            </div>
+          </form>
+          <Link to="/">Home</Link>
+          <Link to="/personalhub">
+            <p>{status.length}</p>
+          </Link>
         </nav>
       </header>
 

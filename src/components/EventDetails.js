@@ -83,8 +83,12 @@ const handleSubmit = (event) => {
       city: detailsArray._embedded.venues[0].city.name, 
       latitude: detailsArray._embedded.venues[0].location.latitude, 
       longitude: detailsArray._embedded.venues[0].location.longitude,
-      venue: detailsArray._embedded.venues[0].name
+      venue: detailsArray._embedded.venues[0].name,
+      attendees: [
+        userInput
+      ]
     }
+    console.log(uniqueInput)
     push(dbRef, uniqueInput);
     setUserInput('');
   }
