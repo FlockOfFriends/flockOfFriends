@@ -35,9 +35,10 @@ form {
     &:active .searchLocationInput {
       background-color: #ebebeb;
       cursor: pointer;
+      border-radius: 30px;
     }
 
-    &:hover, &:focus {
+    &:hover, &:focus, &:focus-within {
       background-color: #ebebeb;
       cursor: pointer;
       filter: drop-shadow(0px 4px 4px #6B6666);
@@ -67,20 +68,13 @@ form {
         padding: 3px;
         font-family: $searchFont;
         font-weight: 500;
+        border-radius: 30px;
 
-        &:focus {
+        &:focus, &active {
           outline: none;
+          font-size: 1.2rem;
         }
       }
-    }
-  }
-
-  .searchLocation.longer {
-    background-color: #ebebeb;
-    filter: drop-shadow(0px 4px 4px #6B6666);
-
-    .searchLocationInput {
-      background-color: #ebebeb;
     }
   }
 
@@ -111,6 +105,13 @@ form {
       flex-direction: column;
       padding: 0 5px;
       border-radius: 30px;
+      width: 100%;
+
+      .react-date-picker.react-date-picker--closed.react-date-picker--enabled {
+        border: 1px solid #ebebeb;
+        border-radius: 30px;
+        padding: 0 15px;
+      }
 
       &:hover .react-date-picker__wrapper {
         background-color:whitesmoke;

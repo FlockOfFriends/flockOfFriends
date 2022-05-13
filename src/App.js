@@ -28,7 +28,6 @@ function App() {
   const [toggleApi, setToggleApi] = useState(false)
   const [status, setStatus] = useState([])
   const [eventType, setEventType] = useState("")
-  const [locationSearchShow, setLocationSearchShow] = useState(true);
   const [eventTypeShow, setEventTypeShow] = useState(true);
   const [eventGenre, setEventGenre] = useState("choose a genre");
 
@@ -41,24 +40,7 @@ function App() {
 
   const handleShowEventType = () => {
     setEventTypeShow(!eventTypeShow);
-
-    console.log("event type bar", eventTypeShow);
   }
-
-  const handleShowLocationSearchbar = () => {
-    setLocationSearchShow(!locationSearchShow);
-
-    console.log("locationSearchShow state!", locationSearchShow)
-  }
-
-  const handleEventGenre = () => {
-    const switchGenreText = () => {
-      console.log("THIS");
-    };
-
-    setEventGenre(switchGenreText());
-  }
-
 
   useEffect(() => {
     const database = getDatabase(firebase);
@@ -78,11 +60,12 @@ function App() {
       <header>
         <nav>
           <form className="form" onSubmit={handleSubmit}>
-            <div className={locationSearchShow ? "searchLocation" : "searchLocation longer"}>
-              <label onClick={(e) => {e.preventDefault(); handleShowLocationSearchbar()}}>
 
+            <div className="searchLocation">
+              <label onClick={(e) => {e.preventDefault()}}>
                 <p className="searchLabelText">Location</p>
                 <input
+                  tabIndex="0"
                   type="text"
                   className="searchLocationInput"
                   value={location}
@@ -94,9 +77,11 @@ function App() {
 
             <div className="searchDateStart">
               <label
-              onClick={(e) => {e.preventDefault()}} className="searchStartDate">
+              onClick={(e) => {e.preventDefault()}} 
+              className="searchStartDate">
                 <p className="searchLabelText">Start Date</p>
                 <DatePicker
+                dateFormat="dd/MM/yyyy"
                 closeCalendar={false}
                 name="datePicker"
                 id="datePicker"
@@ -118,30 +103,65 @@ function App() {
                 id="datePicker"
                 value={dateEndValue}
                 onChange={setDateEndValue}
-                
                 />
               </label>
             </div>
 
             <div className="searchEventType" onClick={handleShowEventType}>
               <label
-              onChange={(e) => setEventType(e.target.value)}
+              tabIndex="0"
               onClick={(e) => {e.preventDefault();
               handleShowEventType()}}>
+
                 <p>Event Type</p>
                 <p className="eventTypeGenre">{eventGenre}</p>
                 <div className={eventTypeShow ? "radioEventList" : "radioEventList show"}>
-                  <label htmlFor="allEvents" onClick={() => {setEventGenre("All Events")}}>All Events</label>
+
+                  <label
+                    htmlFor="allEvents"
+                    onClick={() => {setEventGenre("All Events");
+                    setEventType("")}}>
+                    All Events
+                  </label>
+
                   <input type="radio" name="eventChoice" id="allEvents" value=""/>
 
-                  <label htmlFor="sports" onClick={() => {setEventGenre("Sports")}}>Sports</label>
+                  <label
+                    htmlFor="sports"
+                    onClick={() => {setEventGenre("Sports");
+                    setEventType("Sports")}}>
+                    Sports
+                  </label>
+
                   <input type="radio" name="eventChoice" id="sports" value="Sports"/>
 
-                  <label htmlFor="music" onClick={() => {setEventGenre("Music")}}>Music</label>
+                  <label
+                    htmlFor="music"
+                    onClick={() => {setEventGenre("Music");
+                    setEventType("Music")}}>
+                    Music
+                  </label>
+                  
                   <input type="radio" name="eventChoice" id="music" value="Music" />
 
-                  <label htmlFor="artsTheatre" onClick={() => {setEventGenre("Arts & Theatre")}}>Arts & Theatre</label>
+                  <label
+                    htmlFor="artsTheatre"
+                    onClick={() => {setEventGenre("Arts & Theatre");
+                    setEventType("Art")}}>
+                    Arts & Theatre
+                  </label>
+
                   <input type="radio" name="eventChoice" id="artsTheatre" value="Art"/>
+
+                  <label
+                    htmlFor="family"
+                    onClick={() => {setEventGenre("Family");
+                    setEventType("Family")}}>
+                    Family
+                  </label>
+
+                  <input type="radio" name="eventChoice" id="family" value="Family"/>
+
                 </div>
               </label>
             </div>
