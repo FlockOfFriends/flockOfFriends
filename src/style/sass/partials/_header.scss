@@ -15,9 +15,11 @@
   button {
     background: #fff;
     border: 1px solid #fff; 
-    
     z-index: 10;
     cursor: pointer;
+  }
+  .burgerMenuContainer {
+    float: right;
   }
 }
 
@@ -25,6 +27,8 @@
   list-style: none;
   display: none;
   position: relative;
+  top: 10px;
+  left: 10px;
   background: $whiteBlue;
   width: 200px;
   height: auto;
@@ -37,6 +41,10 @@
     color: $darkBlue;
     text-transform: uppercase;
     font-weight: bold;
+    &:hover {
+      background: $mediumBlue;
+      color: $whiteBlue;
+    }
   }
 }
 
@@ -65,3 +73,4 @@ form {
 //     }
 //   }
 // }
+
