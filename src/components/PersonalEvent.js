@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+
 import { getDatabase, ref, onValue, push, get, remove, child } from "firebase/database";
+
 import { useParams } from "react-router-dom";
 import firebase from "./firebase";
 
 // importing images
-import iconClock from "../assets/iconClock.svg";
+// import iconClock from "../assets/iconClock.svg";
 import iconLocation from "../assets/iconLocation.svg";
 import iconPeople from "../assets/iconPeople.svg";
 import iconTicket from "../assets/iconTicket.svg";
@@ -22,6 +24,11 @@ const PersonalEvent = ({ liked }) => {
 
   useEffect(() => {
     const database = getDatabase(firebase);
+
+
+    // const dbRef = ref(database);
+    // const userID = "-N1_by51dcpV7FYz8hBY";
+
 
     const userRef = ref(database, `/${personalID}`);
     get(userRef)
@@ -107,7 +114,7 @@ const PersonalEvent = ({ liked }) => {
             <div className="img">
               <img
                 src={firedata.img}
-                alt={`Event image for ${firedata.title}`}
+                alt={`${firedata.title} event`}
               />
             </div>
             <div className="titleBottom">
@@ -169,7 +176,7 @@ const PersonalEvent = ({ liked }) => {
             <h2>Details</h2>
             <div className="subDetails">
               <span>
-                <img src={iconPeople} alt="" />
+                <img src={iconPeople} alt="people icon" />
               </span>
               <p>Respondants/Attending</p>
             </div>
@@ -209,9 +216,8 @@ const PersonalEvent = ({ liked }) => {
             </p>
           </div>
           <div className="map">
-            {/* <iframe className="googlemap" src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.232150037236!2d${firedata.longitude}!3d${firedata.latitude}`}  loading="lazy" ></iframe> */}
 
-            <iframe
+            <iframe title="Google maps"
               className="googlemap"
               src={`https://maps.google.com/maps?q=${firedata.latitude}, ${firedata.longitude}&output=embed`}
               loading="lazy"

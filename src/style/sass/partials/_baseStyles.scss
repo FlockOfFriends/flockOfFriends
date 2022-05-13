@@ -6,3 +6,15 @@ img {
     height: 100%;
     width: 100%;
 }
+
+// **********************
+// ***** TYPOGRAPHY *****
+// **********************
+form {
+    p {
+        font-family: $searchFont;
+        font-weight: 500;
+        font-size: 0.85rem;
+        letter-spacing: 0.03rem;
+    }
+}
