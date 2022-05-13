@@ -1,4 +1,5 @@
 import "./style/sass/App.scss";
+import headerImage from "./assets/headerImage.jpg";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 // import {useParams} from 'react-router-dom'
@@ -8,6 +9,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import firebase from "./components/firebase";
 
 // components
+import BurgerMenu from "./components/BurgerMenu";
 import AllEvents from "./components/AllEvents";
 import EventDetails from "./components/EventDetails";
 import PersonalHub from "./components/PersonalHub";
@@ -18,9 +20,8 @@ import DatePicker from "react-date-picker";
 import search from "./images/search.png";
 
 function App() {
-
   // Lets mutate the Date data immediately
-  
+
 
   const [location, setLocation] = useState("")
   const [dateValue, setDateValue] = useState(new Date());
@@ -64,6 +65,16 @@ function App() {
   return (
     <div className="App">
       <header>
+        <BurgerMenu />
+
+        <div className="headerImgContainer">
+          <img
+            className="headerImg"
+            src={headerImage}
+            alt="A crowd of people watching a show"
+          />
+        </div>
+        
         <nav>
           <form className="form" onSubmit={handleSubmit}>
 
@@ -196,16 +207,20 @@ function App() {
           </Link>
         </nav>
       </header>
-     
-     <Routes>
-        <Route path="/" 
-        element={
-        <AllEvents 
-        location={location} 
-        eventType={eventType}
-        dateValue={dateValue}
-        dateEndValue={dateEndValue}
-        toggleApi={toggleApi} />} />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <AllEvents
+              location={location}
+              eventType={eventType}
+              dateValue={dateValue}
+              dateEndValue={dateEndValue}
+              toggleApi={toggleApi}
+            />
+          }
+        />
 
         <Route path="/event/:eventID" element={<EventDetails />} />
         <Route path="/personal/:personalID" element={<PersonalEvent />} />

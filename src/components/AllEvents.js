@@ -55,13 +55,13 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
         { events.map((event) => {
             
             return (
-              <li key={event.id}>
-                <Link to={`/event/${event.id}`}>
-                <img 
-                src={event.images[1].url} 
-                alt={`Placeholder`} />
-                </Link>
-              </li>
+                  <li key={event.id}>
+                    <Link to={`/event/${event.id}`}>
+                        <img 
+                          src={event.images[1].url} 
+                          alt={`Placeholder`} />
+                    </Link>
+                  </li>
             )
         })}
       </ul>
