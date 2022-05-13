@@ -1,4 +1,5 @@
 import "./style/sass/App.scss";
+import headerImage from "./assets/headerImage.jpg";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 // import {useParams} from 'react-router-dom'
@@ -8,25 +9,22 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import firebase from "./components/firebase";
 
 // components
+import BurgerMenu from "./components/BurgerMenu";
 import AllEvents from "./components/AllEvents";
 import EventDetails from "./components/EventDetails";
 import PersonalHub from "./components/PersonalHub";
 import PersonalEvent from "./components/PersonalEvent";
 import DatePicker from "react-date-picker";
 
-
 function App() {
-
   // Lets mutate the Date data immediately
-  
 
-  const [location, setLocation] = useState("New York")
+  const [location, setLocation] = useState("New York");
   const [dateValue, setDateValue] = useState(new Date());
   const [dateEndValue, setDateEndValue] = useState(new Date());
-  const [toggleApi, setToggleApi] = useState(false)
-  const [status, setStatus] = useState([])
-  const [eventType, setEventType] = useState("")
-
+  const [toggleApi, setToggleApi] = useState(false);
+  const [status, setStatus] = useState([]);
+  const [eventType, setEventType] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -49,74 +47,119 @@ function App() {
   return (
     <div className="App">
       <header>
+        <BurgerMenu />
+
+        <div className="headerImgContainer">
+          <img
+            className="headerImg"
+            src={headerImage}
+            alt="A crowd of people watching a show"
+          />
+        </div>
         <nav>
-          <form className="form" onSubmit={handleSubmit}>
-            <label>
-              <p className="searchLabelText">Location</p>
-              <input
-                type="text"
-                className="search"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="city, country, etc"
-              />
-            </label>
+          <div className="navContainer">
+            <form className="form" onSubmit={handleSubmit}>
+              <div className="eventSearchContainer">
+                <div className="searchElement">
+                  <label>
+                    <p className="searchLabelText">Location</p>
+                    <input
+                      type="text"
+                      className="search"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      placeholder="city, country, etc"
+                    />
+                  </label>
+                </div>
 
-            <label>
-              <p className="searchLabelText">Start Date</p>
-              <DatePicker
+                <div className="searchElement">
+                  <label>
+                    <p className="searchLabelText">Start Date</p>
+                    <DatePicker
+                      closeCalendar={false}
+                      name="datePicker"
+                      id="datePicker"
+                      value={dateValue}
+                      onChange={setDateValue}
+                    />
+                    <p>End Date</p>
+                    <DatePicker
+                      closeCalendar={false}
+                      name="datePicker"
+                      id="datePicker"
+                      value={dateEndValue}
+                      onChange={setDateEndValue}
+                    />
+                  </label>
+                </div>
 
-              closeCalendar={false}
-              name="datePicker"
-              id="datePicker"
-              value={dateValue}
-              onChange={setDateValue}
-              />
-              <p>End Date</p>
-              <DatePicker
-              closeCalendar={false}
-              name="datePicker"
-              id="datePicker"
-              value={dateEndValue}
-              onChange={setDateEndValue}
-              />
-            </label>
+                <div className="searchElement">
+                  <label onChange={(e) => setEventType(e.target.value)}>
+                    <p>Event Type</p>
+                    <div className="radioEventList">
+                      <label htmlFor="allEvents">All Events</label>
+                      <input
+                        type="radio"
+                        name="eventChoice"
+                        id="allEvents"
+                        value=""
+                      />
 
-            <label onChange={(e) => setEventType(e.target.value)}>
-              <p>Event Type</p>
-              <div className="radioEventList">
-                <label htmlFor="allEvents">All Events</label>
-                <input type="radio" name="eventChoice" id="allEvents" value=""/>
+                      <label htmlFor="sports">Sports</label>
+                      <input
+                        type="radio"
+                        name="eventChoice"
+                        id="sports"
+                        value="Sports"
+                      />
 
-                <label htmlFor="sports">Sports</label>
-                <input type="radio" name="eventChoice" id="sports" value="Sports"/>
+                      <label htmlFor="music">Music</label>
+                      <input
+                        type="radio"
+                        name="eventChoice"
+                        id="music"
+                        value="Music"
+                      />
 
-                <label htmlFor="music">Music</label>
-                <input type="radio" name="eventChoice" id="music" value="Music" />
+                      <label htmlFor="artsTheatre">Arts & Theatre</label>
+                      <input
+                        type="radio"
+                        name="eventChoice"
+                        id="artsTheatre"
+                        value="Art"
+                      />
+                    </div>
+                  </label>
+                </div>
 
-                <label htmlFor="artsTheatre">Arts & Theatre</label>
-                <input type="radio" name="eventChoice" id="artsTheatre" value="Art"/>
+                <div className="searchButton">
+                  <input className="submit" type="submit" />
+                </div>
               </div>
-            </label>
+            </form>
 
-            <input className="submit" type="submit" />
-          </form>
-          <Link to="/">Home</Link>
-          <Link to="/personalhub">
-            <p>{status.length}</p>
-          </Link>
+            <Link to="/">Home</Link>
+            <Link to="/personalhub">
+              <p>{status.length}</p>
+            </Link>
+          </div>
         </nav>
       </header>
-     
-     <Routes>
-        <Route path="/" 
-        element={
-        <AllEvents 
-        location={location} 
-        eventType={eventType}
-        dateValue={dateValue}
-        dateEndValue={dateEndValue}
-        toggleApi={toggleApi} />} />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <AllEvents
+              location={location}
+              eventType={eventType}
+              dateValue={dateValue}
+              dateEndValue={dateEndValue}
+              toggleApi={toggleApi}
+            />
+          }
+        />
 
         <Route path="/event/:eventID" element={<EventDetails />} />
         <Route path="/personal/:personalID" element={<PersonalEvent />} />
