@@ -67,13 +67,13 @@ function App() {
       <header>
         <BurgerMenu />
 
-        <div className="headerImgContainer">
+        {/* <div className="headerImgContainer">
           <img
             className="headerImg"
             src={headerImage}
             alt="A crowd of people watching a show"
           />
-        </div>
+        </div> */}
         
         <nav>
           <form className="form" onSubmit={handleSubmit}>
