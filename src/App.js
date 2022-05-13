@@ -42,6 +42,12 @@ function App() {
     setEventTypeShow(!eventTypeShow);
   }
 
+  const handleKeypress = (e) => {
+    if (e.keyCode === 13) {
+      handleShowEventType();
+    }
+  }
+
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
@@ -110,15 +116,19 @@ function App() {
             <div className="searchEventType" onClick={handleShowEventType}>
               <label
               tabIndex="0"
+              onKeyDown={handleKeypress}
               onClick={(e) => {e.preventDefault();
               handleShowEventType()}}>
+              
 
                 <p>Event Type</p>
                 <p className="eventTypeGenre">{eventGenre}</p>
                 <div className={eventTypeShow ? "radioEventList" : "radioEventList show"}>
 
                   <label
+                    tabIndex="0"
                     htmlFor="allEvents"
+                    // onKeyDown={ (e) => {e.key === "Enter" ? setEventGenre("All Events") : null}}
                     onClick={() => {setEventGenre("All Events");
                     setEventType("")}}>
                     All Events
@@ -127,6 +137,7 @@ function App() {
                   <input type="radio" name="eventChoice" id="allEvents" value=""/>
 
                   <label
+                    tabIndex="0"
                     htmlFor="sports"
                     onClick={() => {setEventGenre("Sports");
                     setEventType("Sports")}}>
@@ -136,6 +147,7 @@ function App() {
                   <input type="radio" name="eventChoice" id="sports" value="Sports"/>
 
                   <label
+                    tabIndex="0"
                     htmlFor="music"
                     onClick={() => {setEventGenre("Music");
                     setEventType("Music")}}>
@@ -145,6 +157,7 @@ function App() {
                   <input type="radio" name="eventChoice" id="music" value="Music" />
 
                   <label
+                    tabIndex="0"
                     htmlFor="artsTheatre"
                     onClick={() => {setEventGenre("Arts & Theatre");
                     setEventType("Art")}}>
@@ -154,6 +167,7 @@ function App() {
                   <input type="radio" name="eventChoice" id="artsTheatre" value="Art"/>
 
                   <label
+                    tabIndex="0"  
                     htmlFor="family"
                     onClick={() => {setEventGenre("Family");
                     setEventType("Family")}}>
