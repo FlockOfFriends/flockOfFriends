@@ -84,9 +84,10 @@ const PersonalEvent = ({ liked }) => {
 
 
   const handleRemoveName = (attendee) => {
-    const removedName = attendee.filter(() => {
+    // guestList.map((attendee) => {
 
-    })
+    // })
+
     const database = getDatabase(firebase)
     // const userId1 = personalID;
     // console.log(personalID)
@@ -95,8 +96,12 @@ const PersonalEvent = ({ liked }) => {
   };
 
   // I've tried:
-    // referencing the guests by adding 'guests' onto pathway
-    // passing in 
+    // referencing the guests by adding 'guests' onto ref pathway
+    // having the handleRemoveName function inside a useEffect and the handleSubmit, but then I can't access it in the global scope
+    // adding 'guests' to the EventDetails uniqueInput in case there's a connection needed there
+    // changing the argument in the remove funciton when I call it 
+    // moving the function call into its own mapping function (but then it's not connected to a single name)
+
 
   // const handleRemoveName = (attendee) => {
   //   onValue(childRef, (response) => {
@@ -257,7 +262,7 @@ const PersonalEvent = ({ liked }) => {
                           />
                         </span>
                         <p>{attendee.name.guest}</p>
-                        <button className="removeButton" onClick={() => handleRemoveName(guestList.attendee)}> Can't Make It</button>
+                        <button className="removeButton" onClick={() => handleRemoveName()}> Can't Make It</button>
                       </li>
                       
                     )
