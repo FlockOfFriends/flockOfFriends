@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import failedEventCall from "./failedEventCall";
 
 
 const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) => {
@@ -39,13 +40,7 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
     axios(configTicket)
       .then(function (response) {
 
-        
-        if(response.data._embedded === undefined) {
-          console.log("NO RESULTS RETURNED BRO")
-          
-          setEvents([]);
 
-          }
 
 
 
@@ -56,15 +51,32 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
       .catch(function (error) {
         console.log(error);
         setEvents([]);
+        console.log("when error is present, the array state is =>", events)
+        
       });
 
   }, [toggleApi]);
+
+    if(events.length === 0) {
+
+      console.log(failedEventCall)
+      return (
+          <li key={failedEventCall.id}>
+            <Link to={`/event/${failedEventCall.id}`}>
+                <img 
+                  src="https://placekitten.com/1024/768"
+                  alt={"A child using a laptop"} />
+            </Link>
+          </li>
+      )
+    }
 
     return (
         <ul className="catalogue">
         { events.map((event) => {
 
           // filter through images available and save index position of the largest for display
+
           const imagesArray = event.images;
           const largeWidthPhoto = Math.max(...imagesArray.map(function(i) {return i.width}));
           const largePhotoIndex = imagesArray.map(e => e.width).indexOf(largeWidthPhoto);
