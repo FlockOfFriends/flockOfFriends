@@ -67,13 +67,33 @@ p {
           justify-content: flex-end;
           align-items: flex-end;
           .iconCalendar {
-            width: 3rem;
-            position: relative;
-            p {
+            width: 7rem;
+            height: 7rem;
+              position: relative;
+              background-image: url(/assets/iconCal.svg);
+              background-repeat: no-repeat;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+              gap: 0.93rem;
+            
+            .getDay {
               font-weight: 600;
-              position: absolute;
-              top: 45%;
-              left: 35%;
+              font-size: 2.4rem;
+              // position: absolute;
+              // top: 45%;
+              // left: 30%;
+              text-align: center;
+            }
+            .getMonth {
+              text-transform: uppercase;
+              font-weight: 600;
+              font-size: 0.55rem;
+              // position: absolute;
+              // top: 19%;
+              // left: 40%;
+              text-align: center;
             }
           }
           .rsvpButton {
@@ -88,6 +108,7 @@ p {
             color: white;
             font-family: inherit;
             font-size: 0.7rem;
+            display: none;
             &:hover,
             &:focus {
               opacity: 0.8;
@@ -106,11 +127,10 @@ p {
         flex-direction: column;
         width: 50%;
         input {
-            margin-bottom: 1rem;
-          }
+          margin-bottom: 1rem;
+        }
       }
 
-      
       textarea {
         height: 100%;
       }
