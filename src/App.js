@@ -76,7 +76,7 @@ function App() {
         </div> */}
         
         <nav>
-          <form className="form" onSubmit={handleSubmit}>
+          <form className="searchForm" onSubmit={handleSubmit}>
 
             <div className="searchLocation">
               <label onClick={(e) => {e.preventDefault()}}>
