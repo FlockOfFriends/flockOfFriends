@@ -1,5 +1,4 @@
 import "./style/sass/App.scss";
-import headerImage from "./assets/headerImage.jpg";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 // import {useParams} from 'react-router-dom'
@@ -32,11 +31,17 @@ function App() {
   const [eventTypeShow, setEventTypeShow] = useState(true);
   const [eventGenre, setEventGenre] = useState("choose a genre");
 
+  const clearSearchInputs = () => {
+    setLocation("");
+    setDateValue(new Date());
+    setDateEndValue(new Date());
+    setEventType("");
+    setEventGenre("choose a genre");
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setToggleApi(!toggleApi);
-    // write a function that clears and resets all search ui input fields
   };
 
   const handleShowEventType = () => {
@@ -66,15 +71,6 @@ function App() {
     <div className="App">
       <header>
         <BurgerMenu />
-
-        {/* <div className="headerImgContainer">
-          <img
-            className="headerImg"
-            src={headerImage}
-            alt="A crowd of people watching a show"
-          />
-        </div> */}
-        
         <nav>
           <form className="form" onSubmit={handleSubmit}>
 

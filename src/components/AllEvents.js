@@ -48,6 +48,8 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
 
   }, [toggleApi])
 
+  // clear search fields now
+  
   
     return (
         <ul className="catalogue">
