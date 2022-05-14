@@ -57,8 +57,8 @@ const PersonalEvent = ({ liked }) => {
 
     };
 
-    const userId1 = personalID;
-    const childRef = ref(database, `/${userId1}/attendees`);
+    // const userId1 = personalID;
+    const childRef = ref(database, `/${personalID}/attendees`);
     // const userId2 = personalID;
 
     const addAttendee = (newName) => {
@@ -87,11 +87,11 @@ const PersonalEvent = ({ liked }) => {
     // guestList.map((attendee) => {
 
     // })
-
+    console.log(attendee)
     const database = getDatabase(firebase)
     // const userId1 = personalID;
     // console.log(personalID)
-    const childRef = ref(database, `/${personalID}/attendees`)
+    const childRef = ref(database, `/${personalID}/attendees/${attendee}`)
     remove(childRef)
   };
 
@@ -262,7 +262,7 @@ const PersonalEvent = ({ liked }) => {
                           />
                         </span>
                         <p>{attendee.name.guest}</p>
-                        <button className="removeButton" onClick={() => handleRemoveName()}> Can't Make It</button>
+                        <button className="removeButton" onClick={() => handleRemoveName(attendee.personalID)}> Can't Make It</button>
                       </li>
                       
                     )
