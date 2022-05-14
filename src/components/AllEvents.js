@@ -39,35 +39,49 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
     };
     axios(configTicket)
       .then(function (response) {
-
-
-
-
-
         const results = response.data._embedded.events;
         console.log("results", results);
         setEvents(response.data._embedded.events);
       })
       .catch(function (error) {
         console.log(error);
-        setEvents([]);
-        console.log("when error is present, the array state is =>", events)
-        
+        // if we catch an error, clear events array
+        setEvents([]);        
       });
-
   }, [toggleApi]);
 
+    // if events array is cleared from error, return search suggestions.
     if(events.length === 0) {
-
-      console.log(failedEventCall)
+      console.log("failed call", failedEventCall)
       return (
-          <li key={failedEventCall.id}>
-            <Link to={`/event/${failedEventCall.id}`}>
-                <img 
-                  src="https://placekitten.com/1024/768"
-                  alt={"A child using a laptop"} />
-            </Link>
-          </li>
+          <main>
+            <li className="error">
+              <div className="errorMessage">
+                <h1>Oops! No events match your search</h1>
+              </div>
+              <img 
+                src={failedEventCall[0].images[0].url}
+                alt={"A child using a laptop"}
+              />
+              <div className="errorHints">
+                <h3>Search Suggestions</h3>
+                <ul>
+                  <li>
+                    <p>Try updating your location</p>
+                  </li>
+                  <li>
+                    <p>Try expanding your date range</p>
+                  </li>
+                  <li>
+                    <p>Try searching for all event types</p>
+                  </li>
+                  <li>
+                    <p>Check your spelling</p>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </main>
       )
     }
 
