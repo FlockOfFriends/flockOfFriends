@@ -55,7 +55,7 @@
   }
 
 
-header {
+.header {
   width: 100%;
   height: 60vh;
   display: flex;
@@ -63,14 +63,35 @@ header {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  transition: all 0.6s;
 }
 
-nav{
+.header.small {
+  // height: 40vh;
+  justify-content: flex-end;
+  transition: all 0.6s
+}
+
+.nav{
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
+  transition: all 0.6s;
+  // position: absolute;
+  // top: 400px;
+}
+
+nav.small {
+  position: fixed;
+  top: 0;
+  transition: all 0.6s;
+  margin-top: 10px;
+
+  form {
+    margin-top: 0;
+  }
 }
 
 form {
@@ -85,6 +106,7 @@ form {
   background: white;
   border: 2px solid $darkBlue;
   border-radius: 50px;
+  transition: all 0.4s;
 
   .searchLocation {
     padding: 10px;
@@ -131,10 +153,13 @@ form {
         font-family: $searchFont;
         font-weight: 500;
         border-radius: 30px;
+        transition: all 0.2s;
 
         &:focus, &active {
           outline: none;
           font-size: 1.2rem;
+          transition: all 0.2s;
+          background-color: whitesmoke;
         }
       }
     }
@@ -169,16 +194,20 @@ form {
       border-radius: 30px;
       width: 100%;
 
+      .react-date-picker.react-date-picker--open.react-date-picker--enabled {
+        transition: all 0.2s;
+      }
+
       .react-date-picker.react-date-picker--closed.react-date-picker--enabled {
-        border: 1px solid #ebebeb;
         border-radius: 30px;
         padding: 0 15px;
+        transition: all 0.2s;
       }
 
       &:hover .react-date-picker__wrapper {
         background-color:whitesmoke;
         filter: drop-shadow(0px 2px 2px #6B6666);
-
+        transition: all 0.2s;
       }
     }
 
@@ -186,6 +215,8 @@ form {
       border: none;
       padding: 0 3px;
       border-radius: 30px;
+      border: 1px solid #ebebeb;
+      transition: all 0.2s;
     }
 
     .react-date-picker {
@@ -199,6 +230,7 @@ form {
 
   .searchEventType {
     display: flex;
+    width: 130px;
     justify-content: center;
     align-items: center;
     padding: 10px;
@@ -269,7 +301,6 @@ form {
     justify-content: center;
     align-items: center;
     border-radius: 30px;
-    padding: 5px;
 
     &:hover, &:focus {
       cursor: pointer;
@@ -277,8 +308,17 @@ form {
       filter: drop-shadow(0px 4px 4px #6B6666);
     }
 
+    &:active {
+      filter: drop-shadow(2px 4px 4px #524f4f);
+    }
+
     .searchSubmitButton {
-      width: 45px
+      padding: 10px;
+      width: 100%;
+
+      &:active {
+        filter: drop-shadow(0px 4px 4px #6B6666);
+      }
     }
   }
 }
