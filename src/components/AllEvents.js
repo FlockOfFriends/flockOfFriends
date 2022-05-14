@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import FindImages from "./FindImages";
 
 
 const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) => {
@@ -39,46 +38,37 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
     };
     axios(configTicket)
       .then(function (response) {
+
+        
+        if(response.data._embedded === undefined) {
+          console.log("NO RESULTS RETURNED BRO")
+          
+          setEvents([]);
+
+          }
+
+
+
         const results = response.data._embedded.events;
-        console.log(results);
+        console.log("results", results);
         setEvents(response.data._embedded.events);
       })
       .catch(function (error) {
         console.log(error);
+        setEvents([]);
       });
 
   }, [toggleApi]);
-
-  const FindImages = (info) => {
-    const searchImages = info.map((singleEvent) => {
-      const imagesArray = singleEvent.images;
-      console.log("event photo", imagesArray);
-      const largeWidthPhoto = Math.max(...imagesArray.map(function(i) {return i.width}));
-      const largePhotoIndex = imagesArray.map(e => e.width).indexOf(largeWidthPhoto);
-      return largePhotoIndex;
-      console.log("???", largeWidthPhoto)
-      console.log("index of largest photo", largePhotoIndex)
-    })
-    console.log("search Images", searchImages);
-    // const [image, setImage] = useState("")
-  }
-
-  // FindImages(events);
-  
-
 
     return (
         <ul className="catalogue">
         { events.map((event) => {
 
+          // filter through images available and save index position of the largest for display
           const imagesArray = event.images;
-          console.log("event photo", imagesArray);
           const largeWidthPhoto = Math.max(...imagesArray.map(function(i) {return i.width}));
           const largePhotoIndex = imagesArray.map(e => e.width).indexOf(largeWidthPhoto);
-          console.log("largePhotoindex", largePhotoIndex);
 
-          
-            
             return (
                   <li key={event.id}>
                     <Link to={`/event/${event.id}`}>
