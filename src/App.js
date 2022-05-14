@@ -30,7 +30,10 @@ function App() {
   const [eventType, setEventType] = useState("")
   const [eventTypeShow, setEventTypeShow] = useState(true);
   const [eventGenre, setEventGenre] = useState("choose a genre");
+  const [shrinkHeader, setShrinkHeader] = useState(false);
 
+
+  // clear all search inputs after form submission. not sure where to fire this.
   const clearSearchInputs = () => {
     setLocation("");
     setDateValue(new Date());
@@ -38,6 +41,14 @@ function App() {
     setEventType("");
     setEventGenre("choose a genre");
   }
+
+  useEffect(() => {
+    if(typeof window !== "undefined") {
+      window.addEventListener("scroll", () => {
+        setShrinkHeader(window.scrollY > 200)
+      });
+    }
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -69,10 +80,14 @@ function App() {
 
   return (
     <div className="App">
-      <header>
+      <header className={ `header ${
+        shrinkHeader ? "small" : ""
+      }` }>
         <BurgerMenu />
-        <nav>
-          <form className="form" onSubmit={handleSubmit}>
+        <nav  className={ `nav ${
+        shrinkHeader ? "small" : ""
+      }` }>
+          <form className="searchForm" onSubmit={handleSubmit}>
 
             <div className="searchLocation">
               <label onClick={(e) => {e.preventDefault()}}>
@@ -95,6 +110,7 @@ function App() {
                 <p className="searchLabelText">Start Date</p>
                 <DatePicker
                 dateFormat="dd/MM/yyyy"
+                minDate={new Date()}
                 closeCalendar={false}
                 name="datePicker"
                 id="datePicker"
@@ -111,6 +127,7 @@ function App() {
                 <p>End Date</p>
                 <DatePicker
                 dateFormat="dd/MM/yyyy"
+                minDate={new Date()}
                 closeCalendar={false}
                 name="datePicker"
                 id="datePicker"
