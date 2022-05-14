@@ -16,25 +16,22 @@ const PersonalEvent = ({ liked }) => {
   const [guestName, setGuestName] = useState();
   const [guestList, setGuestList] = useState([])
 
+  // const [guestID, setGuestID] = useState()
+
   const [firedata, setFiredata] = useState([]);
   // work with this one:
   const [formInput, setFormInput] = useState([]);
-  const { personalID, guestID } = useParams();
+  const { personalID } = useParams();
   // console.log("personalID", personalID);
 
   useEffect(() => {
     const database = getDatabase(firebase);
 
-
-    // const dbRef = ref(database);
-    // const userID = "-N1_by51dcpV7FYz8hBY";
-
-
     const userRef = ref(database, `/${personalID}`);
     get(userRef)
       .then((data) => {
         const mydata = data.val();
-        console.log(mydata)
+        // console.log(mydata)
         setFiredata(mydata);
       })
       .catch((error) => {
@@ -57,19 +54,19 @@ const PersonalEvent = ({ liked }) => {
     // const dbRef = ref(database);
     const newGuestName = {
       guest: guestName,
-    };
-    const userId1 = personalID;
 
-    console.log(personalID)
+    };
+
+    const userId1 = personalID;
+    const childRef = ref(database, `/${userId1}/attendees`);
+    // const userId2 = personalID;
 
     const addAttendee = (newName) => {
-      const childRef = ref(database, `/${userId1}/attendees`)
+      // const childRef = ref(database, `/${userId1}/attendees`)
       return push(childRef, newName)
     }
     addAttendee(newGuestName)
 
-    const userId2 = personalID;
-    const childRef = ref(database, `/${userId2}/attendees`);
 
     onValue(childRef, (response) => {
       const emptyArray = [];
@@ -79,6 +76,7 @@ const PersonalEvent = ({ liked }) => {
         emptyArray.push({ personalID: key, name: data[key] });
       }  
       setGuestList(emptyArray)
+      // console.log(setGuestList)
     });
 
     setGuestName('')
@@ -86,11 +84,19 @@ const PersonalEvent = ({ liked }) => {
 
 
   const handleRemoveName = (attendee) => {
+    const removedName = attendee.filter(() => {
+
+    })
     const database = getDatabase(firebase)
-    const userId2 = personalID;
-    const childRef = ref(database, `/${userId2}/attendees`);
-      remove(childRef)
+    // const userId1 = personalID;
+    // console.log(personalID)
+    const childRef = ref(database, `/${personalID}/attendees`)
+    remove(childRef)
   };
+
+  // I've tried:
+    // referencing the guests by adding 'guests' onto pathway
+    // passing in 
 
   // const handleRemoveName = (attendee) => {
   //   onValue(childRef, (response) => {
@@ -100,7 +106,7 @@ const PersonalEvent = ({ liked }) => {
   //         // pushing the values from the object into our emptryArray
   //         emptyArray.push({ personalID: key, name: data[key] });
   //       }  
-  //       setGuestList(emptyArray)
+  //       setGuestList(emptyArray)       
   //     });
   //   }
 
@@ -245,13 +251,13 @@ const PersonalEvent = ({ liked }) => {
                     return (
                       <li key={attendee.name.guest}  className="guestName">
                         <span className="avatar">
-                        <img
-                          src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
-                          alt=""
-                        />
-                      </span>
+                          <img
+                            src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
+                            alt=""
+                          />
+                        </span>
                         <p>{attendee.name.guest}</p>
-                        <button className="removeButton" onClick={() => handleRemoveName(attendee.name.guest)}> Can't Make It</button>
+                        <button className="removeButton" onClick={() => handleRemoveName(guestList.attendee)}> Can't Make It</button>
                       </li>
                       
                     )
