@@ -79,13 +79,16 @@ const PersonalEvent = ({ liked }) => {
 
   const handleRemoveName = (attendee) => {
 
+    // accessing firebase data and creating a reference to the attendee's unique ID in order to remove them from the guest list one at a time:
     const database = getDatabase(firebase)
     const childRef = ref(database, `/${personalID}/attendees/${attendee}`)
     remove(childRef)
 
-    const subChildRef = ref(database, `/${personalID}/attendees`)
+    // creating a reference to the updated guestlist (after name removal):
+    const guestListRef = ref(database, `/${personalID}/attendees`)
     
-    onValue(subChildRef, (response) => {
+    // updating guestlist display:
+    onValue(guestListRef, (response) => {
       const emptyArray = [];
       const data = response.val();
       for (let key in data) {
