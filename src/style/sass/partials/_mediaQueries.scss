@@ -1,0 +1,38 @@
+// *******************
+//      TABLETS
+// *******************
+
+@media (max-width: 1024px) {
+  
+  // ***** Header *****
+  // ******************
+
+
+}
+
+// *******************
+//     LARGE MOBILE
+// *******************
+@media (max-width: 768px) {
+
+  // ***** Header *****
+  // ******************
+  .searchStartDate,
+  .searchEndDate {
+
+    .react-date-picker.react-date-picker--closed.react-date-picker--enabled {
+      padding: 0;
+    }
+
+  }
+}
+
+// *******************
+//     SMALL MOBILE
+// *******************
+@media (max-width: 450px) { 
+
+  // ***** Header *****
+  // ******************
+
+}

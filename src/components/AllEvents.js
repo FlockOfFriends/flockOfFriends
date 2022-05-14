@@ -68,6 +68,7 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
         { events.map((event) => {
             
             return (
+
               <li 
               className="allEventContainer"
               key={event.id}>
@@ -82,6 +83,7 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
                 <h5>{convertDate(event.dates.start.dateTime)}</h5>
                 </div>
               </li>
+
             )
             
         })}
