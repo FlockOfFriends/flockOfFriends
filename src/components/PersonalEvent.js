@@ -16,24 +16,22 @@ const PersonalEvent = ({ liked }) => {
   const [guestName, setGuestName] = useState();
   const [guestList, setGuestList] = useState([])
 
+  // const [guestID, setGuestID] = useState()
+
   const [firedata, setFiredata] = useState([]);
   // work with this one:
   const [formInput, setFormInput] = useState([]);
-  const { personalID, guestID } = useParams();
+  const { personalID } = useParams();
   // console.log("personalID", personalID);
 
   useEffect(() => {
     const database = getDatabase(firebase);
 
-
-    // const dbRef = ref(database);
-    // const userID = "-N1_by51dcpV7FYz8hBY";
-
-
     const userRef = ref(database, `/${personalID}`);
     get(userRef)
       .then((data) => {
         const mydata = data.val();
+
         console.log(mydata);
         setFiredata(mydata);
       })
@@ -86,7 +84,6 @@ const PersonalEvent = ({ liked }) => {
 
   // Function for handling form CHANGES
   const handleInputChange = (event) => {
-    // console.log(event.target.value);
     setGuestName(event.target.value);
   };
 
@@ -95,22 +92,18 @@ const PersonalEvent = ({ liked }) => {
     event.preventDefault();
    
     const database = getDatabase(firebase);
-    // const dbRef = ref(database);
     const newGuestName = {
       guest: guestName,
-    };
-    const userId1 = personalID;
 
-    console.log(personalID)
+    };
+
+    const childRef = ref(database, `/${personalID}/attendees`);
 
     const addAttendee = (newName) => {
-      const childRef = ref(database, `/${userId1}/attendees`)
       return push(childRef, newName)
     }
     addAttendee(newGuestName)
 
-    const userId2 = personalID;
-    const childRef = ref(database, `/${userId2}/attendees`);
 
     onValue(childRef, (response) => {
       const emptyArray = [];
@@ -127,26 +120,27 @@ const PersonalEvent = ({ liked }) => {
 
 
   const handleRemoveName = (attendee) => {
+
+    // accessing firebase data and creating a reference to the attendee's unique ID in order to remove them from the guest list one at a time:
     const database = getDatabase(firebase)
-    const userId2 = personalID;
-    const childRef = ref(database, `/${userId2}/attendees`);
-      remove(childRef)
+    const childRef = ref(database, `/${personalID}/attendees/${attendee}`)
+    remove(childRef)
+
+    // creating a reference to the updated guestlist (after name removal):
+    const guestListRef = ref(database, `/${personalID}/attendees`)
+    
+    // updating guestlist display:
+    onValue(guestListRef, (response) => {
+      const emptyArray = [];
+      const data = response.val();
+      for (let key in data) {
+        // pushing the values from the object into our emptryArray
+        emptyArray.push({ personalID: key, name: data[key] });
+      }  
+      setGuestList(emptyArray)
+    })
   };
 
-  // const handleRemoveName = (attendee) => {
-  //   onValue(childRef, (response) => {
-  //       const emptyArray = [];
-  //       const data = response.val();
-  //       for (let key in data) {
-  //         // pushing the values from the object into our emptryArray
-  //         emptyArray.push({ personalID: key, name: data[key] });
-  //       }  
-  //       setGuestList(emptyArray)
-  //     });
-  //   }
-
-
-  
   return (
     <div className="personalEvent">
       {firedata ? (
@@ -281,36 +275,23 @@ const PersonalEvent = ({ liked }) => {
               </li>
             </ul>
             <ul className="addedNames">
-              { guestList.map((attendee) => {
+              { guestList.map((guestName) => {
                     return (
-                      <li key={attendee.name.guest}  className="guestName">
+                      <li key={guestName.name.guest}  className="guestName">
                         <span className="avatar">
-                        <img
-                          src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
-                          alt=""
-                        />
-                      </span>
-                        <p>{attendee.name.guest}</p>
-                        <button className="removeButton" onClick={() => handleRemoveName(attendee.name.guest)}> Can't Make It</button>
+                          <img
+                            src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
+                            alt=""
+                          />
+                        </span>
+                        <p>{guestName.name.guest}</p>
+                        <button className="removeButton" onClick={() => handleRemoveName(guestName.personalID)}> Can't Make It</button>
                       </li>
                       
                     )
                 })}
             </ul>
           </div>
-
-          {/* <div className="addedNames">
-            <ul>
-              { guestList.map((attendee) => {
-                    return (
-                      <li>
-                        <p>{attendee.name.guest}</p>
-                      </li>
-                    )
-                })}
-            </ul>
-          </div> */}
-          
 
           <div className="socials">
             <a
@@ -328,59 +309,3 @@ const PersonalEvent = ({ liked }) => {
 };
 
 export default PersonalEvent;
-
-// display attendees:
-
-// put attendees in a ul
-// a form gettng the info
-// a function to display to the page
-
-  // put attendees in a ul✅ 
-  // a form to get the info✅
-  // a function to have info display to the page
-
-// change 'like event' input to 'host'
-// give 'attendees array' its own state
-// .push new name through the form back into unique firebase key
-
-
-// <div className="attendees">
-//             <h2>Attending</h2>
-//             <div className="guest">
-              // <span className="avatar">
-              //   <img
-              //     src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
-              //     alt=""
-              //   />
-              // </span>
-            //   <p>Estaban</p>
-            // </div>
-            // <div className="guest">
-            //   <span className="avatar">
-            //     <img
-            //       src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-1024.png"
-            //       alt=""
-            //     />
-            //   </span>
-//               <p>Willow</p>
-//             </div>
-
-//             <div className="guest">
-//               <span className="avatar">
-//                 <img
-//                   src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/scientist_einstein_avatar_professor-1024.png"
-//                   alt=""
-//                 />
-//               </span>
-//               <p>Albert</p>
-//             </div>
-//             <div className="guest">
-//               <span className="avatar">
-//                 <img
-//                   src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/cactus_cacti_avatar_pirate-1024.png"
-//                   alt=""
-//                 />
-//               </span>
-//               <p>Martin</p>
-//             </div>
-//           </div>

@@ -127,6 +127,7 @@ const EventDetails = () => {
         venue: detailsArray._embedded.venues[0].name,
         host:userInput,
         attendees: [],
+        // guests: [],
           
 //         attendees: [userInput],
           
