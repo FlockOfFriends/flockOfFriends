@@ -13,7 +13,7 @@ import iconTicket from "../assets/iconTicket.svg";
 import iconCal from "../assets/iconCal.svg";
 
 const PersonalEvent = ({ liked }) => {
-  const [guestName, setGuestName] = useState();
+  const [guestName, setGuestName] = useState([]);
   const [guestList, setGuestList] = useState([])
 
   // const [guestID, setGuestID] = useState()
@@ -296,7 +296,7 @@ const PersonalEvent = ({ liked }) => {
           <div className="socials">
             <a
               href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-              class="twitter-share-button"
+              className="twitter-share-button"
               data-show-count="false"
             >
               Tweet
