@@ -1,6 +1,7 @@
 .headerImgContainer {
   width: 100%;
   height: 500px;
+
   .headerImg {
     width: 100%;
     height: 600px;
@@ -9,31 +10,94 @@
 }
 
 // Burger menu style
-.burgerMenu {
-  position: absolute;
-  background-color: white;
+
+.wrapper.headerIcons {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 90;
+}
+
+.burgerMenu, .searchIcon {
+  z-index: 90;
+  padding: 20px 0;
+  transition: all 0.2s;
+
   button {
     background: #fff;
-    border: 1px solid #fff; 
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    border: 2px solid #ebebeb;
+    width: 70px;
+    height: 70px;
+    padding: 10px;
+    border-radius: 50px;
     z-index: 10;
     cursor: pointer;
+
+    &:hover, &:focus {
+      background-color: $whiteBlue;
+    }
+    
+      svg {
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+      }
   }
-  .burgerMenuContainer {
-    float: right;
+}
+
+.burgerMenu {
+
+  .dot {
+    opacity: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+  }
+
+  .dot.show {
+    opacity: 1;
+  }
+
+  .hubAmount {
+    padding: 0 30px;
+    display: inline-block;
+    color: $darkBlue;
+    text-transform: lowercase;
+    font-weight: bold;
+    font-size: 0.9rem;
+
+    span {
+      color: red;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
   }
 }
 
 .menuNav {
   list-style: none;
-  display: none;
-  position: relative;
-  top: 10px;
-  left: 10px;
+  position: absolute;
+  top: 100px;
+  left: -800px;
   background: $whiteBlue;
-  width: 200px;
-  height: auto;
-  max-width: 290px;
+  width: 320px;
+  padding: 20px 0;
+  border-radius: 30px;
   z-index: 9;
+  transition: all 0.4s;
+
   a {
     display: block;
     padding: 10px 40px;
@@ -41,19 +105,72 @@
     color: $darkBlue;
     text-transform: uppercase;
     font-weight: bold;
+
     &:hover {
+      border-radius: 30px;
       background: $mediumBlue;
       color: $whiteBlue;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+    }
+
+    &:active, :focus {
+      border-radius: 30px;
+      background: black;
+      color: $whiteBlue;
+      filter: drop-shadow(0px 4px 4px #6B6666);
     }
   }
 }
 
-.showMenu {
-    width: 100%;
-    display: inline;
-    background: white;
+.menuNav.showMenu {
+    left: 0;
+    transition: all 0.4s;
   }
 
+// searchbar collapsed icon
+.searchIcon {
+
+  .searchIconList {
+    list-style: none;
+    position: absolute;
+    top: 100px;
+    right: -800px;
+    background: $whiteBlue;
+    border-radius: 30px;
+    width: 320px;
+    padding: 20px 0;
+    z-index: 9;
+    transition: all 0.4s;
+
+    a {
+    display: block;
+    padding: 10px 40px;
+    text-decoration: none;
+    color: $darkBlue;
+    text-transform: uppercase;
+    font-weight: bold;
+
+      &:hover {
+        border-radius: 30px;
+        background: $mediumBlue;
+        color: $whiteBlue;
+        filter: drop-shadow(0px 4px 4px #6B6666);
+      }
+
+      &:active, &:focus {
+        border-radius: 30px;
+        background: black;
+        color: $whiteBlue;
+        filter: drop-shadow(0px 4px 4px #6B6666);
+      }
+    }
+  }
+}
+
+.searchIconList.show {
+  right: 0;
+  transition: all 0.4s;
+}
 
 .header {
   width: 100%;
@@ -66,12 +183,6 @@
   transition: all 0.6s;
 }
 
-.header.small {
-  // height: 40vh;
-  justify-content: flex-end;
-  transition: all 0.6s
-}
-
 .nav{
   width: 100%;
   display: flex;
@@ -79,12 +190,12 @@
   justify-content: center;
   align-content: center;
   transition: all 0.6s;
-  // position: absolute;
-  // top: 400px;
+  position: absolute;
+  top: 40vh;
+  z-index: 100;
 }
 
 nav.small {
-  position: fixed;
   top: 0;
   transition: all 0.6s;
   margin-top: 10px;
