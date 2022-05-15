@@ -46,7 +46,7 @@ function App() {
   useEffect(() => {
     if(typeof window !== "undefined") {
       window.addEventListener("scroll", () => {
-        setShrinkHeader(window.scrollY > 200)
+        setShrinkHeader(window.scrollY > 100)
       });
     }
   }, []);

@@ -98,12 +98,6 @@
   transition: all 0.6s;
 }
 
-.header.small {
-  // height: 40vh;
-  justify-content: flex-end;
-  transition: all 0.6s
-}
-
 .nav{
   width: 100%;
   display: flex;
@@ -111,8 +105,8 @@
   justify-content: center;
   align-content: center;
   transition: all 0.6s;
-  // position: absolute;
-  // top: 400px;
+  position: absolute;
+  top: 40vh;
 }
 
 nav.small {
