@@ -89,25 +89,6 @@ const EventDetails = () => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
 
-//     const uniqueInput = {
-//       userInput, id: eventID, 
-//       title: detailsArray.name, 
-//       img: detailsArray.images[1].url, 
-//       start: detailsArray.dates.start.localDate, 
-//       time: detailsArray.dates.start.localTime, 
-//       // priceMax: detailsArray.priceRanges[0].max, 
-//       // priceMin: detailsArray.priceRanges[0].min, 
-//       tickets: detailsArray.url, 
-//       address: detailsArray._embedded.venues[0].address.line1, 
-//       city: detailsArray._embedded.venues[0].city.name, 
-//       latitude: detailsArray._embedded.venues[0].location.latitude, 
-//       longitude: detailsArray._embedded.venues[0].location.longitude,
-//       venue: detailsArray._embedded.venues[0].name,
-//       host:userInput,
-//       attendees: [],
-
-
-
     if (!userInput) {
       alert("Please enter your host name");
     } else {
@@ -126,11 +107,8 @@ const EventDetails = () => {
         longitude: detailsArray._embedded.venues[0].location.longitude,
         venue: detailsArray._embedded.venues[0].name,
         host:userInput,
-        attendees: [],
-        // guests: [],
-          
-//         attendees: [userInput],
-          
+        description: "TBD",
+        attendees: [],          
       };
       console.log(uniqueInput);
       push(dbRef, uniqueInput);
