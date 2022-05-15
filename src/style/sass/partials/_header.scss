@@ -1,0 +1,324 @@
+.headerImgContainer {
+  width: 100%;
+  height: 500px;
+  .headerImg {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+  }
+}
+
+// Burger menu style
+.burgerMenu {
+  position: absolute;
+  background-color: white;
+  button {
+    background: #fff;
+    border: 1px solid #fff; 
+    z-index: 10;
+    cursor: pointer;
+  }
+  .burgerMenuContainer {
+    float: right;
+  }
+}
+
+.menuNav {
+  list-style: none;
+  display: none;
+  position: relative;
+  top: 10px;
+  left: 10px;
+  background: $whiteBlue;
+  width: 200px;
+  height: auto;
+  max-width: 290px;
+  z-index: 9;
+  a {
+    display: block;
+    padding: 10px 40px;
+    text-decoration: none;
+    color: $darkBlue;
+    text-transform: uppercase;
+    font-weight: bold;
+    &:hover {
+      background: $mediumBlue;
+      color: $whiteBlue;
+    }
+  }
+}
+
+.showMenu {
+    width: 100%;
+    display: inline;
+    background: white;
+  }
+
+
+.header {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  background-image: url(../../../assets/headerImage.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.6s;
+}
+
+.header.small {
+  // height: 40vh;
+  justify-content: flex-end;
+  transition: all 0.6s
+}
+
+.nav{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  transition: all 0.6s;
+  // position: absolute;
+  // top: 400px;
+}
+
+nav.small {
+  position: fixed;
+  top: 0;
+  transition: all 0.6s;
+  margin-top: 10px;
+
+  form {
+    margin-top: 0;
+  }
+}
+
+form {
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 0;
+  min-height: 0;
+  width: 90%;
+  max-width: 1000px;
+  padding: 10px 15px;
+  margin: 20px;
+  background: white;
+  border: 2px solid $darkBlue;
+  border-radius: 50px;
+  transition: all 0.4s;
+
+  .searchLocation {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    border-radius: 30px;
+    position: relative;
+
+    &:hover .searchLocationInput,
+    &:active .searchLocationInput {
+      background-color: #ebebeb;
+      cursor: pointer;
+      border-radius: 30px;
+    }
+
+    &:hover, &:focus, &:focus-within {
+      background-color: #ebebeb;
+      cursor: pointer;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: flex-start;
+      overflow: hidden;
+
+      &:hover, &:focus {
+        cursor: pointer;
+      }
+
+      .searchLocationInput::placeholder {
+        color: rgb(119, 115, 115);
+        opacity: 1;
+        letter-spacing: 0;
+      }
+
+      .searchLocationInput {
+        border: none;
+        font-size: 0.9rem;
+        padding: 3px;
+        font-family: $searchFont;
+        font-weight: 500;
+        border-radius: 30px;
+        transition: all 0.2s;
+
+        &:focus, &active {
+          outline: none;
+          font-size: 1.2rem;
+          transition: all 0.2s;
+          background-color: whitesmoke;
+        }
+      }
+    }
+  }
+
+  .searchDateStart,
+  .searchDateEnd {
+    display: flex;
+    width: 25%;
+    align-items: center;
+    padding: 10px;
+    border-radius: 30px;
+
+    &:hover, &:focus {
+      background-color: #ebebeb;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+    }
+
+    label {
+      display: flex;
+
+      &:hover, &focus {
+        cursor: pointer;
+      }
+    }
+
+    .searchStartDate,
+    .searchEndDate {
+      display: flex;
+      flex-direction: column;
+      padding: 0 5px;
+      border-radius: 30px;
+      width: 100%;
+
+      .react-date-picker.react-date-picker--open.react-date-picker--enabled {
+        transition: all 0.2s;
+      }
+
+      .react-date-picker.react-date-picker--closed.react-date-picker--enabled {
+        border-radius: 30px;
+        padding: 0 15px;
+        transition: all 0.2s;
+      }
+
+      &:hover .react-date-picker__wrapper {
+        background-color:whitesmoke;
+        filter: drop-shadow(0px 2px 2px #6B6666);
+        transition: all 0.2s;
+      }
+    }
+
+    .react-date-picker__wrapper {
+      border: none;
+      padding: 0 3px;
+      border-radius: 30px;
+      border: 1px solid #ebebeb;
+      transition: all 0.2s;
+    }
+
+    .react-date-picker {
+      font-size: 0.8rem;
+
+      .react-date-picker__clear-button.react-date-picker__button {
+        display: none;
+      }
+    }
+  }
+
+  .searchEventType {
+    display: flex;
+    width: 130px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 30px;
+
+    &:hover, &focus {
+      cursor: pointer;
+      background-color: #ebebeb;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+    }
+
+    .eventTypeGenre {
+      font-size: 0.9rem;
+      font-family: $searchFont;
+      font-weight: 500;
+      padding: 3px;
+      color: rgb(119, 115, 115);
+      opacity: 1;
+      letter-spacing: 0;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .radioEventList {
+      position: absolute;
+      display: none;
+      flex-direction: column;
+      background: whitesmoke;
+      border: 2px solid black;
+      border-radius: 30px;
+      top: 70px;
+      left: -10px;
+      width: 200px;
+
+      label {
+        font-size: 1rem;
+        padding: 10px;
+        letter-spacing: 0.03rem;
+        font-weight: 700;
+
+        &:hover, &:focus {
+          background-color: black;
+          color: whitesmoke;
+          border-radius: 30px;
+          filter: drop-shadow(0px 4px 4px #6B6666);
+        }
+      }
+
+      input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+      }
+    }
+
+    .radioEventList.show {
+      display: flex;
+    }
+  }
+
+  .searchSubmit {
+    display: flex;
+    width: 65px;
+    height: 65px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+
+    &:hover, &:focus {
+      cursor: pointer;
+      background-color: #ebebeb;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+    }
+
+    &:active {
+      filter: drop-shadow(2px 4px 4px #524f4f);
+    }
+
+    .searchSubmitButton {
+      padding: 10px;
+      width: 100%;
+
+      &:active {
+        filter: drop-shadow(0px 4px 4px #6B6666);
+      }
+    }
+  }
+}

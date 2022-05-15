@@ -19,7 +19,7 @@ const PersonalHub = () => {
         // pushing the values from the object into our newState array
         newState.push({ personalID: key, name: data[key] });
       }
-      console.log("hub", newState);
+      // console.log("hub", newState);
       setLiked(newState);
     });
   }, []);

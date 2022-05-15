@@ -2,16 +2,16 @@
 @import "./partials/variables";
 @import "./partials/baseStyles";
 @import "./partials/header";
+@import "./partials/allEvents";
+@import "./partials/personalEvent";
+@import "./partials/eventDetails";
 @import "./partials/footer";
 @import "./partials/personalHub";
 @import "./partials/mediaQueries";
 
 .App {
-  background-color: $bgColor;
+  background-color: $whiteBlue;
 }
-
-// header {
-// }
 
 // ALLEVENTS.JS
 .catalogue {
