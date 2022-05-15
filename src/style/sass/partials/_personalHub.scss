@@ -1,14 +1,21 @@
 .personalHub {
+    box-sizing: border-box;
     color: $darkBlue;
-
+    background-color: white;
+    
     .catalogue {
-        background-color: $lightBlue;
+        background-color: white;
+        border: 1px solid $darkBlue;
         padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
     
         li {
-        padding: 50px;
         display: flex;
         flex-direction: column;
+        // align-items: space-between;
         }
 
         p {
@@ -21,9 +28,9 @@
     }
     
     .eventContent {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: 450px;
+        border: 2px solid $darkBlue;
+        border-radius: 5px;
     }
 
     .wrapper {
@@ -45,23 +52,23 @@
     }
 
     h4 {
-        font-size: 3rem;
-        margin: 0 auto;
+        width: 450px;
+        font-size: 1.5rem;
+        margin: 0;
         font-family: $headingFont;
         padding: 0 40px;
         margin-bottom: 15px;
         text-align: center;
         text-shadow: 1px 1px 1px $whiteBlue;
-        border: 1px solid $darkBlue;
     }
     
     .hubText {
-        padding: 20px;
+        padding: 10px;
         display: flex;
         flex-direction: column;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: flex-start;
-        margin-left: 30px;
     }
 
     p {
@@ -69,72 +76,16 @@
 
     }
 
-    form {
-        font-family: $bodyFont;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-
-        input, 
-        textarea, 
-        button {
-            text-align: center;
-            border-radius: 7px;
-            background-color: $whiteBlue;
-            border: none;
-            font-family: $bodyFont;
-            color: $darkBlue;
-        }
-
-        input {
-            margin: 10px 0;
-            font-size: 1.5rem;
-            padding: 7px;
-        }
-        
-        textarea {
-            text-align: left;
-            padding: 15px;
-        }
-        
-        input::placeholder, 
-        textarea::placeholder {
-            opacity: 1;
-            font-size: 1.2rem;
-            font-style: italic;
-            font-family: $bodyFont;
-            letter-spacing: 0.6px;
-        }
-
-        button {
-            font-family: $headingFont;
-            padding: 6px 20px;
-            font-weight: bold;
-            margin: 10px 0;
-            cursor: pointer;
-        }
-
-        input:hover,
-        input:focus,
-        textarea:hover,
-        textarea:focus,
-        button:hover,
-        button:focus {
-            box-shadow: 3px 3px 6px $darkBlue, -3px -3px 6px $darkBlue;
-            background-color: white;
-            color: $mediumBlue;
-        }
-    }
-
     .personalEventImg {
         width: 450px;
         height: auto;
         object-fit: contain;
-        border-radius: 10px;
         margin: 0;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
 
         img {
-            border: 5px solid $whiteBlue;
             border-radius: 10px;
         }
     }
