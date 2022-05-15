@@ -43,12 +43,16 @@ function App() {
 
   //when user scrolls 200 px down, set state for shrinkHeader
   useEffect(() => {
-    if(typeof window !== "undefined") {
+    const currentURL = window.location.pathname;
+    if (currentURL !== "/") {
+      console.log("I am not on the home page");
+      setShrinkHeader(true);
+    } else if (typeof window !== "undefined") {
       window.addEventListener("scroll", () => {
         setShrinkHeader(window.scrollY > 10)
       });
-    }
-  }, []);
+    } 
+  }, [window.location.pathname]);
 
   // check current URL path, if not on home page - sends them home and runs api call, otherwise nothing.
   const checkURL = () => {

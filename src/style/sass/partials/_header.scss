@@ -196,9 +196,10 @@
 }
 
 nav.small {
-  top: 0;
+  top: -200px;
   transition: all 0.6s;
   margin-top: 10px;
+  transition: all 0.8s;
 
   form {
     margin-top: 0;
