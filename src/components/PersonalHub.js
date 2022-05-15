@@ -28,16 +28,15 @@ const PersonalHub = () => {
   }, []);
 
   const handleRemoveEvent = (event) => {
-    console.log(event)
 
-    // accessing firebase data and creating a reference to the attendee's unique ID in order to remove them from the guest list one at a time:
+    // accessing firebase data and creating a reference to the event's unique ID in order to remove it from the hub:
     const database = getDatabase(firebase)
     const childRef = ref(database, `/${event}`)
     remove(childRef)
     
     const eventRef = ref(database)
     
-    // updating guestlist display:
+    // updating event display:
     onValue(eventRef, (response) => {
       const emptyArray = [];
       const data = response.val();
