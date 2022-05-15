@@ -82,6 +82,7 @@ const EventDetails = () => {
     setUserInput(event.target.value);
   };
 
+  // return index of highest quality image 
   const getImage = () => {
     if (detailsArray.loading === true ) {
       const largeWidthPhoto = Math.max(...detailsArray.images.map(function(i) {return i.width}));
@@ -89,11 +90,7 @@ const EventDetails = () => {
       return largePhotoIndex;
     }
   }
-  // sort through event's images array and pull out index of the largest photo, store that index in a variable.
-
   const imageBig = getImage();
-
-
 
   // Form submission that will store our new firebase data on submit
   const handleSubmit = (event) => {
