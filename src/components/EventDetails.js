@@ -107,6 +107,7 @@ const EventDetails = () => {
         longitude: detailsArray._embedded.venues[0].location.longitude,
         venue: detailsArray._embedded.venues[0].name,
         host:userInput,
+        description: "TBD",
         attendees: [],          
       };
       console.log(uniqueInput);

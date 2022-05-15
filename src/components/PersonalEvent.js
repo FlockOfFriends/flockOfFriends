@@ -1,6 +1,15 @@
 import { useState, useEffect } from "react";
 
-import { getDatabase, ref, onValue, push, get, remove, child } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  onValue,
+  push,
+  get,
+  remove,
+  update,
+  child,
+} from "firebase/database";
 
 import { useParams } from "react-router-dom";
 import firebase from "./firebase";
@@ -22,35 +31,43 @@ import avatar10 from "../assets/avatar10.png";
 import avatar11 from "../assets/avatar11.png";
 import avatarHost from "../assets/avatarHost.png";
 
-
-
 const PersonalEvent = ({ liked }) => {
-  const avatarArray = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11];
+  const avatarArray = [
+    avatar1,
+    avatar2,
+    avatar3,
+    avatar4,
+    avatar5,
+    avatar6,
+    avatar7,
+    avatar8,
+    avatar9,
+    avatar10,
+    avatar11,
+  ];
   const [guestName, setGuestName] = useState([]);
-  const [guestList, setGuestList] = useState([])
+  const [guestList, setGuestList] = useState([]);
+  const [description, setDescription] = useState("");
   const [firedata, setFiredata] = useState([]);
   // work with this one:
-  const [formInput, setFormInput] = useState([]);
+  const [formInput, setFormInput] = useState("");
   const { personalID, guestID } = useParams();
-  // console.log("personalID", personalID);
 
   useEffect(() => {
     const database = getDatabase(firebase);
-
 
     // const dbRef = ref(database);
     const userRef = ref(database, `/${personalID}`);
     get(userRef)
       .then((data) => {
         const mydata = data.val();
-        console.log(mydata);
         setFiredata(mydata);
       })
       .catch((error) => {
         console.log(error);
       });
 
-      // Calling the db for existing guests right away
+    // Calling the db for existing guests right away
     const userId2 = personalID;
     const childRef = ref(database, `/${userId2}/attendees`);
 
@@ -60,11 +77,20 @@ const PersonalEvent = ({ liked }) => {
       for (let key in data) {
         // pushing the values from the object into our emptryArray
         emptyArray.push({ personalID: key, name: data[key] });
-      }  
-      setGuestList(emptyArray)
+      }
+      setGuestList(emptyArray);
+    });
+
+    // Calling the description right away
+
+    // const userId2 = personalID;
+    const childRef2 = ref(database, `/${personalID}/description`);
+    onValue(childRef2, (response) => {
+      const emptyArray = [];
+      const data = response.val();
+      setDescription(data);
     });
   }, []);
-
 
   // Function to convert date
   const convertDate = (date) => {
@@ -106,18 +132,15 @@ const PersonalEvent = ({ liked }) => {
     return finalDate;
   };
 
-
-  // Function for handling form CHANGES
+  // Function for handling form CHANGES of the guest list
   const handleInputChange = (event) => {
-    // console.log(event.target.value);
     setGuestName(event.target.value);
   };
 
-  // Function for handling form SUBMIT
-  
+  // Function for handling form SUBMIT of the guest list
+
   const handleSubmit = (event) => {
     event.preventDefault();
-   
     const database = getDatabase(firebase);
     // const dbRef = ref(database);
     const newGuestName = {
@@ -125,13 +148,13 @@ const PersonalEvent = ({ liked }) => {
     };
     const userId1 = personalID;
 
-    console.log(personalID)
+    console.log(personalID);
 
     const addAttendee = (newName) => {
-      const childRef = ref(database, `/${userId1}/attendees`)
-      return push(childRef, newName)
-    }
-    addAttendee(newGuestName)
+      const childRef = ref(database, `/${userId1}/attendees`);
+      return push(childRef, newName);
+    };
+    addAttendee(newGuestName);
 
     const userId2 = personalID;
     const childRef = ref(database, `/${userId2}/attendees`);
@@ -142,19 +165,42 @@ const PersonalEvent = ({ liked }) => {
       for (let key in data) {
         // pushing the values from the object into our emptryArray
         emptyArray.push({ personalID: key, name: data[key] });
-      }  
-      setGuestList(emptyArray)
+      }
+      setGuestList(emptyArray);
     });
 
-    setGuestName('')
-  }
+    setGuestName("");
+  };
 
-
+  // Remove names from the guest list
   const handleRemoveName = (attendee) => {
-    const database = getDatabase(firebase)
+    const database = getDatabase(firebase);
     const userId2 = personalID;
     const childRef = ref(database, `/${userId2}/attendees`);
-      remove(childRef)
+    remove(childRef);
+  };
+
+  const handleFormChange = (event) => {
+    setFormInput(event.target.value);
+  };
+  // Function for handling description submit
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+    const newUserSettings = {
+      description: formInput,
+    };
+
+    const userId = personalID;
+
+    const changeSetting = (settingChange) => {
+      const childRef = ref(database, `/${userId}`);
+      return update(childRef, settingChange);
+    };
+
+    changeSetting(newUserSettings);
+    setFormInput("");
   };
 
   // const handleRemoveName = (attendee) => {
@@ -164,13 +210,11 @@ const PersonalEvent = ({ liked }) => {
   //       for (let key in data) {
   //         // pushing the values from the object into our emptryArray
   //         emptyArray.push({ personalID: key, name: data[key] });
-  //       }  
+  //       }
   //       setGuestList(emptyArray)
   //     });
   //   }
 
-
-  
   return (
     <div className="personalEvent">
       {firedata ? (
@@ -183,57 +227,21 @@ const PersonalEvent = ({ liked }) => {
               <div className="titleText">
                 <h2>{firedata.title}</h2>
                 <h5>
-                  {convertDate(firedata.dateTime)} / {convertTime(firedata.dateTime)}
+                  {convertDate(firedata.dateTime)} /{" "}
+                  {convertTime(firedata.dateTime)}
                 </h5>
                 <p>
                   {firedata.address}, {firedata.city}
                 </p>
               </div>
-              <div className="rsvp">
+              <div className="calendar">
                 <span className="iconCalendar">
                   <p className="getMonth">{getMonth(firedata.dateTime)}</p>
                   <p className="getDay">{getDay(firedata.dateTime)}</p>
-                  
                 </span>
-
-                <button className="rsvpButton" type="button">
-                  RSVP
-                </button>
-                <button className="rsvpButton" type="button">
-                  INTEREST
-                </button>
               </div>
             </div>
           </div>
-
-          <form action="submit" className="form">
-            <div>
-              <label htmlFor="eventName">Event Name</label>
-              <input
-                type="text"
-                id="eventName"
-                // onChange={handleInputChange}
-                // value={formInput}
-              />
-              <label htmlFor="hostName">Host Name</label>
-              <input
-                type="text"
-                id="hostName"
-                // onChange={handleInputChange}
-                // value={formInput}
-              />
-              {/* <button onClick={handleSubmit}>SUBMIT</button> */}
-            </div>
-            <div>
-              <label htmlFor="description">Description</label>
-              <textarea
-                type="text"
-                id="description"
-                // onChange={handleInputChange}
-                // value={formInput}
-              />
-            </div>
-          </form>
 
           <div className="details">
             <h2>Details</h2>
@@ -241,7 +249,7 @@ const PersonalEvent = ({ liked }) => {
               <span>
                 <img src={iconPeople} alt="people icon" />
               </span>
-              <p>Attending {((guestList.length) + 1)}</p>
+              <p>Attending: {guestList.length + 1}</p>
             </div>
 
             {/* <div className="subDetails">
@@ -261,7 +269,7 @@ const PersonalEvent = ({ liked }) => {
               <p>{firedata.venue}</p>
             </div>
 
-            <div className="subDetails">
+            <div className="subDetails bottom">
               <span>
                 <img src={iconTicket} alt="tickets icon" />
               </span>
@@ -270,20 +278,28 @@ const PersonalEvent = ({ liked }) => {
               </p>
             </div>
 
-            <p className="blurb">
-              {firedata.userInput}
-              Blurb that is created by users Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Eaque ducimus distinctio, nisi
-              repellat, labore quasi, tenetur ex voluptatibus nemo eos expedita
-              numquam provident ab rerum praesentium error ad facilis deleniti!
-            </p>
+            <div className="description">
+            <form action="submit" className="describeForm">
+              <label htmlFor="describe">Description:</label>
+              <p>{description}</p>
+              <textarea
+                type="text"
+                id="describe"
+                onChange={handleFormChange}
+                value={formInput}
+              />
+              <button className="addButton" onClick={handleFormSubmit}>
+                Change Details
+              </button>
+            </form>
+            </div>
+
           </div>
           <div className="map">
             <iframe
               title="Google maps"
               className="googlemap"
               src={`https://maps.google.com/maps?q=${firedata.latitude}, ${firedata.longitude}&output=embed`}
-              loading="lazy"
             ></iframe>
           </div>
 
@@ -292,49 +308,47 @@ const PersonalEvent = ({ liked }) => {
             <ul className="guest">
               <li className="guestName">
                 <form className="addGuest" action="submit">
-                  <label htmlFor="attendeeName">Put Yourself on the Guest List:</label>
-                  <input 
+                  <label htmlFor="attendeeName">
+                    Put Yourself on the Guest List:
+                  </label>
+                  <input
                     id="attendeeName"
-                    type="text" 
+                    type="text"
                     onChange={handleInputChange}
                     value={guestName}
                   />
-                  <button className="addButton" onClick={handleSubmit}>Add Name</button>
+                  <button className="addButton" onClick={handleSubmit}>
+                    Add Name
+                  </button>
                 </form>
               </li>
             </ul>
             <ul className="addedNames">
               <li className="guestName">
                 <span className="avatar">
-                        <img
-                          src={avatarHost}
-                          alt="avatar icon"
-                        />
-                      </span>
+                  <img src={avatarHost} alt="avatar icon" />
+                </span>
                 <p>Hosted by: {firedata.userInput}</p>
-                
               </li>
-              { guestList.map((attendee, index) => {
-                    return (
-                    
-                      <li key={attendee.name.guest}  
-                      
-                      className="guestName">
-                        <span className="avatar">
-                        <img
-                          src={(avatarArray[index])}
-                          alt="avatar icon"
-                        />
-                      </span>
-                        <p>{attendee.name.guest}</p>
-                        <button className="removeButton" onClick={() => handleRemoveName(attendee.name.guest)}> Can't Make It</button>
-                      </li>
-                      
-                    )
-                })}
+              {guestList.map((attendee, index) => {
+                return (
+                  <li key={attendee.name.guest} className="guestName">
+                    <span className="avatar">
+                      <img src={avatarArray[index]} alt="avatar icon" />
+                    </span>
+                    <p>{attendee.name.guest}</p>
+                    <button
+                      className="removeButton"
+                      onClick={() => handleRemoveName(attendee.name.guest)}
+                    >
+                      {" "}
+                      Can't Make It
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </div>
-          
 
           <div className="socials">
             <a
@@ -359,33 +373,32 @@ export default PersonalEvent;
 // a form gettng the info
 // a function to display to the page
 
-  // put attendees in a ul✅ 
-  // a form to get the info✅
-  // a function to have info display to the page
+// put attendees in a ul✅
+// a form to get the info✅
+// a function to have info display to the page
 
 // change 'like event' input to 'host'
 // give 'attendees array' its own state
 // .push new name through the form back into unique firebase key
 
-
 // <div className="attendees">
 //             <h2>Attending</h2>
 //             <div className="guest">
-              // <span className="avatar">
-              //   <img
-              //     src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
-              //     alt=""
-              //   />
-              // </span>
-            //   <p>Estaban</p>
-            // </div>
-            // <div className="guest">
-            //   <span className="avatar">
-            //     <img
-            //       src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-1024.png"
-            //       alt=""
-            //     />
-            //   </span>
+// <span className="avatar">
+//   <img
+//     src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
+//     alt=""
+//   />
+// </span>
+//   <p>Estaban</p>
+// </div>
+// <div className="guest">
+//   <span className="avatar">
+//     <img
+//       src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-1024.png"
+//       alt=""
+//     />
+//   </span>
 //               <p>Willow</p>
 //             </div>
 
