@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
-import { getDatabase, ref, onValue, push } from "firebase/database";
+import { getDatabase, ref, onValue, push, remove } from "firebase/database";
 import { Link } from "react-router-dom";
 
+import { useParams } from "react-router-dom";
 import firebase from "./firebase";
 
 const PersonalHub = () => {
   const [liked, setLiked] = useState([]);
-  const [eventInput, setEventInput] = useState('');
+  const [eventID, setEventID] = useState([]);
+
+  const { personalID } = useParams();
 
   useEffect(() => {
     const database = getDatabase(firebase);
@@ -24,6 +27,28 @@ const PersonalHub = () => {
     });
   }, []);
 
+  const handleRemoveEvent = (event) => {
+    console.log(event)
+
+    // accessing firebase data and creating a reference to the attendee's unique ID in order to remove them from the guest list one at a time:
+    const database = getDatabase(firebase)
+    const childRef = ref(database, `/${event}`)
+    remove(childRef)
+    
+    const eventRef = ref(database)
+    
+    // updating guestlist display:
+    onValue(eventRef, (response) => {
+      const emptyArray = [];
+      const data = response.val();
+      for (let key in data) {
+        // pushing the values from the object into our emptryArray
+        emptyArray.push({ personalID: key, name: data[key] });
+      }  
+      setLiked(emptyArray)
+    })
+  };
+
   return (
     <div className="personalHub">
       <h3>Personalized Event Hub</h3>
@@ -33,16 +58,13 @@ const PersonalHub = () => {
             return (
                 <li key={like.personalID}>
                   <div className="eventContent">
-                    <Link to={`/personal/${like.personalID}`}>
+                    <h4>{like.name.title}</h4>
+                    <Link className="links" to={`/personal/${like.personalID}`}>
                       <div className="personalEventImg">
                         <img src={like.name.img} alt={`Placeholder`} />
                       </div>
-                      <div className="hubText">
-                        <h4>{like.name.title}</h4>
-                        <button>See Event</button>
-                        <button>Delete Event</button>
-                      </div>  
                     </Link>
+                    <button onClick={() => handleRemoveEvent(like.personalID)} className="button">Delete Event</button>  
                   </div>
                 </li>
             );
