@@ -55,6 +55,8 @@ function App() {
     const currentURL = window.location.pathname;
     if(currentURL !== "/") {
       console.log("I am not on the home page");
+      window.location.pathname = "/";
+      setToggleApi(!toggleApi);
     } else {
       console.log ("I am on the home page");
     }
