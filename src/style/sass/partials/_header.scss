@@ -10,7 +10,7 @@
 }
 
 // Burger menu style
-.burgerMenu {
+.burgerMenu, .searchIcon {
   position: absolute;
   padding: 20px;
   transition: all 0.2s;
@@ -34,6 +34,10 @@
         border-radius: 30px;
       }
   }
+}
+
+.searchIcon {
+  right: 0;
 }
 
 .menuNav {

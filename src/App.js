@@ -1,14 +1,13 @@
 import "./style/sass/App.scss";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-// import {useParams} from 'react-router-dom'
-// import axios from "axios";
 import { getDatabase, ref, onValue } from "firebase/database";
 
 import firebase from "./components/firebase";
 
 // components
 import BurgerMenu from "./components/BurgerMenu";
+import SearchSmall from "./components/SearchSmall";
 import AllEvents from "./components/AllEvents";
 import EventDetails from "./components/EventDetails";
 import PersonalHub from "./components/PersonalHub";
@@ -96,6 +95,8 @@ function App() {
         shrinkHeader ? "small" : ""
       }` }>
         <BurgerMenu />
+        <SearchSmall />
+
         <nav  className={ `nav ${
         shrinkHeader ? "small" : ""
       }` }>
