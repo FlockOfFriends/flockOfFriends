@@ -1,15 +1,13 @@
 import "./style/sass/App.scss";
-import headerImage from "./assets/headerImage.jpg";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-// import {useParams} from 'react-router-dom'
-// import axios from "axios";
 import { getDatabase, ref, onValue } from "firebase/database";
 
 import firebase from "./components/firebase";
 
 // components
 import BurgerMenu from "./components/BurgerMenu";
+import SearchSmall from "./components/SearchSmall";
 import AllEvents from "./components/AllEvents";
 import EventDetails from "./components/EventDetails";
 import PersonalHub from "./components/PersonalHub";
@@ -31,12 +29,41 @@ function App() {
   const [eventType, setEventType] = useState("")
   const [eventTypeShow, setEventTypeShow] = useState(true);
   const [eventGenre, setEventGenre] = useState("choose a genre");
+  const [shrinkHeader, setShrinkHeader] = useState(false);
 
+
+  // clear all search inputs after form submission. not sure where to fire this.
+  const clearSearchInputs = () => {
+    setLocation("");
+    setDateValue(new Date());
+    setDateEndValue(new Date());
+    setEventType("");
+    setEventGenre("choose a genre");
+  }
+
+  //when user scrolls 200 px down, set state for shrinkHeader
+  useEffect(() => {
+    if(typeof window !== "undefined") {
+      window.addEventListener("scroll", () => {
+        setShrinkHeader(window.scrollY > 10)
+      });
+    }
+  }, []);
+
+  // function that checks if the current page is on the home page (root = /) and runs some code, otherwise it runs some different code. Implement to bring user to homepage if they use submission form from any other page.
+  const checkURL = () => {
+    const currentURL = window.location.pathname;
+    if(currentURL !== "/") {
+      console.log("I am not on the home page");
+    } else {
+      console.log ("I am on the home page");
+    }
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setToggleApi(!toggleApi);
-    // write a function that clears and resets all search ui input fields
+    checkURL();
   };
 
   const handleShowEventType = () => {
@@ -64,18 +91,19 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <BurgerMenu />
-
-        {/* <div className="headerImgContainer">
-          <img
-            className="headerImg"
-            src={headerImage}
-            alt="A crowd of people watching a show"
+      <header className={ `header ${
+        shrinkHeader ? "small" : ""
+      }` }>
+        <div className="wrapper headerIcons">
+          <BurgerMenu
+          hub={status.length}
           />
-        </div> */}
-        
-        <nav>
+          <SearchSmall />
+        </div>
+
+        <nav  className={ `nav ${
+        shrinkHeader ? "small" : ""
+      }` }>
           <form className="searchForm" onSubmit={handleSubmit}>
 
             <div className="searchLocation">
@@ -99,6 +127,7 @@ function App() {
                 <p className="searchLabelText">Start Date</p>
                 <DatePicker
                 dateFormat="dd/MM/yyyy"
+                minDate={new Date()}
                 closeCalendar={false}
                 name="datePicker"
                 id="datePicker"
@@ -115,6 +144,7 @@ function App() {
                 <p>End Date</p>
                 <DatePicker
                 dateFormat="dd/MM/yyyy"
+                minDate={new Date()}
                 closeCalendar={false}
                 name="datePicker"
                 id="datePicker"
@@ -139,7 +169,6 @@ function App() {
                   <label
                     tabIndex="0"
                     htmlFor="allEvents"
-                    // onKeyDown={ (e) => {e.key === "Enter" ? setEventGenre("All Events") : null}}
                     onClick={() => {setEventGenre("All Events");
                     setEventType("")}}>
                     All Events
@@ -208,25 +237,28 @@ function App() {
         </nav>
       </header>
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <AllEvents
-              location={location}
-              eventType={eventType}
-              dateValue={dateValue}
-              dateEndValue={dateEndValue}
-              toggleApi={toggleApi}
-            />
-          }
-        />
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <AllEvents
+                location={location}
+                eventType={eventType}
+                dateValue={dateValue}
+                dateEndValue={dateEndValue}
+                toggleApi={toggleApi}
+              />
+            }
+          />
 
-        <Route path="/event/:eventID" element={<EventDetails />} />
-        <Route path="/personal/:personalID" element={<PersonalEvent />} />
+          <Route path="/event/:eventID" element={<EventDetails />} />
+          <Route path="/personal/:personalID" element={<PersonalEvent />} />
 
-        <Route path="/personalhub" element={<PersonalHub />} />
-      </Routes>
+          <Route path="/personalhub" element={<PersonalHub />} />
+        </Routes>
+      </main>
+              
     </div>
   );
 }

@@ -7,7 +7,29 @@
   // ***** Header *****
   // ******************
 
+}
 
+
+@media (max-width: 930px) {
+  // ***** Personal Event Hub *****
+    // ******************
+    .personalHub {
+      .catalogue {
+        li {
+          width: 70%;
+          height: fit-content;
+        }
+      }
+
+      .eventContent {
+        width: 100%;
+        height: 100%;
+      }
+      
+      .personalEventImg {
+        height: fit-content;
+      }
+    }
 }
 
 // *******************
@@ -17,6 +39,7 @@
 
   // ***** Header *****
   // ******************
+
   .searchStartDate,
   .searchEndDate {
 

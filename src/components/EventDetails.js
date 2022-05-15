@@ -182,7 +182,7 @@ const EventDetails = () => {
             </div>
 
             <div className="rightSide">
-              <div class="img">
+              <div className="img">
                 <img src={detailsArray.images[6].url} alt={detailsArray.name} />
               </div>
             </div>
