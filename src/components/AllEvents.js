@@ -59,7 +59,6 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
     if(events.length === 0) {
       console.log("failed call", failedEventCall)
       return (
-          <main>
             <li className="error">
               <LoadingSpinner />
               <div className="errorMessage">
@@ -83,7 +82,6 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
                 </ul>
               </div> */}
             </li>
-          </main>
       )
     }
 

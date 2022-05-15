@@ -30,6 +30,7 @@
     background: #fff;
     display: flex;
     justify-content: center;
+    position: relative;
     align-items: center;
     border: 2px solid #ebebeb;
     width: 70px;
@@ -38,12 +39,50 @@
     border-radius: 50px;
     z-index: 10;
     cursor: pointer;
+
+    &:hover, &:focus {
+      background-color: $whiteBlue;
+    }
     
       svg {
         width: 100%;
         height: 100%;
         border-radius: 30px;
       }
+  }
+}
+
+.burgerMenu {
+
+  .dot {
+    opacity: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+  }
+
+  .dot.show {
+    opacity: 1;
+  }
+
+  .hubAmount {
+    padding: 0 30px;
+    display: inline-block;
+    color: $darkBlue;
+    text-transform: lowercase;
+    font-weight: bold;
+    font-size: 0.9rem;
+
+    span {
+      color: red;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
   }
 }
 

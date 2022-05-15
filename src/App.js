@@ -95,7 +95,9 @@ function App() {
         shrinkHeader ? "small" : ""
       }` }>
         <div className="wrapper headerIcons">
-          <BurgerMenu />
+          <BurgerMenu
+          hub={status.length}
+          />
           <SearchSmall />
         </div>
 
@@ -167,7 +169,6 @@ function App() {
                   <label
                     tabIndex="0"
                     htmlFor="allEvents"
-                    // onKeyDown={ (e) => {e.key === "Enter" ? setEventGenre("All Events") : null}}
                     onClick={() => {setEventGenre("All Events");
                     setEventType("")}}>
                     All Events
@@ -236,25 +237,28 @@ function App() {
         </nav>
       </header>
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <AllEvents
-              location={location}
-              eventType={eventType}
-              dateValue={dateValue}
-              dateEndValue={dateEndValue}
-              toggleApi={toggleApi}
-            />
-          }
-        />
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <AllEvents
+                location={location}
+                eventType={eventType}
+                dateValue={dateValue}
+                dateEndValue={dateEndValue}
+                toggleApi={toggleApi}
+              />
+            }
+          />
 
-        <Route path="/event/:eventID" element={<EventDetails />} />
-        <Route path="/personal/:personalID" element={<PersonalEvent />} />
+          <Route path="/event/:eventID" element={<EventDetails />} />
+          <Route path="/personal/:personalID" element={<PersonalEvent />} />
 
-        <Route path="/personalhub" element={<PersonalHub />} />
-      </Routes>
+          <Route path="/personalhub" element={<PersonalHub />} />
+        </Routes>
+      </main>
+              
     </div>
   );
 }
