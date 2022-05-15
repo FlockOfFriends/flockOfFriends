@@ -50,13 +50,12 @@ function App() {
     }
   }, []);
 
-  // function that checks if the current page is on the home page (root = /) and runs some code, otherwise it runs some different code. Implement to bring user to homepage if they use submission form from any other page.
+  // check current URL path, if not on home page - sends them home and runs api call, otherwise nothing.
   const checkURL = () => {
     const currentURL = window.location.pathname;
     if(currentURL !== "/") {
       console.log("I am not on the home page");
       window.location.pathname = "/";
-      setToggleApi(!toggleApi);
     } else {
       console.log ("I am on the home page");
     }
