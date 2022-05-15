@@ -82,6 +82,19 @@ const EventDetails = () => {
     setUserInput(event.target.value);
   };
 
+  const getImage = () => {
+    if (detailsArray.loading === true ) {
+      const largeWidthPhoto = Math.max(...detailsArray.images.map(function(i) {return i.width}));
+      const largePhotoIndex = detailsArray.images.map(e => e.width).indexOf(largeWidthPhoto);
+      return largePhotoIndex;
+    }
+  }
+  // sort through event's images array and pull out index of the largest photo, store that index in a variable.
+
+  const imageBig = getImage();
+
+
+
   // Form submission that will store our new firebase data on submit
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -96,7 +109,7 @@ const EventDetails = () => {
         userInput,
         id: eventID,
         title: detailsArray.name,
-        img: detailsArray.images[1].url,
+        img: detailsArray.images[imageBig].url,
         // start: detailsArray.dates.start.localDate,
         // time: detailsArray.dates.start.localTime,
         dateTime: detailsArray.dates.start.dateTime,
@@ -183,7 +196,7 @@ const EventDetails = () => {
 
             <div className="rightSide">
               <div className="img">
-                <img src={detailsArray.images[6].url} alt={detailsArray.name} />
+                <img src={detailsArray.images[imageBig].url} alt={detailsArray.name} />
               </div>
             </div>
           </div>
