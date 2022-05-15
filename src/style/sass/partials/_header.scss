@@ -1,6 +1,7 @@
 .headerImgContainer {
   width: 100%;
   height: 500px;
+
   .headerImg {
     width: 100%;
     height: 600px;
@@ -14,8 +15,6 @@
   padding: 20px;
   transition: all 0.2s;
 
-
-  
   button {
     background: #fff;
     display: flex;
@@ -29,16 +28,11 @@
     z-index: 10;
     cursor: pointer;
     
-
-    svg {
-      width: 100%;
-      height: 100%;
-      border-radius: 30px;
-    }
-
-  }
-  .burgerMenuContainer {
-    float: right;
+      svg {
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+      }
   }
 }
 
@@ -49,7 +43,7 @@
   left: 0;
   background: $whiteBlue;
   width: 200px;
-  height: auto;
+  padding: 20px 0;
   max-width: 290px;
   z-index: 9;
   transition: all 0.4s;
@@ -63,9 +57,17 @@
     color: $darkBlue;
     text-transform: uppercase;
     font-weight: bold;
+
     &:hover {
       border-radius: 30px;
       background: $mediumBlue;
+      color: $whiteBlue;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+    }
+
+    &:active, :focus {
+      border-radius: 30px;
+      background: black;
       color: $whiteBlue;
       filter: drop-shadow(0px 4px 4px #6B6666);
     }
