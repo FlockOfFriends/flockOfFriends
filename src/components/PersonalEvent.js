@@ -179,7 +179,7 @@ const PersonalEvent = ({ liked }) => {
 
     // creating a reference to the updated guestlist (after name removal):
     const guestListRef = ref(database, `/${personalID}/attendees`)
-    
+  
     // updating guestlist display:
     onValue(guestListRef, (response) => {
       const emptyArray = [];
@@ -188,7 +188,7 @@ const PersonalEvent = ({ liked }) => {
         // pushing the values from the object into our emptryArray
         emptyArray.push({ personalID: key, name: data[key] });
       }  
-      setGuestList(emptyArray)
+      setGuestList(emptyArray);
     })
   };
 
