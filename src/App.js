@@ -45,7 +45,7 @@ function App() {
   useEffect(() => {
     if(typeof window !== "undefined") {
       window.addEventListener("scroll", () => {
-        setShrinkHeader(window.scrollY > 100)
+        setShrinkHeader(window.scrollY > 10)
       });
     }
   }, []);
@@ -94,8 +94,10 @@ function App() {
       <header className={ `header ${
         shrinkHeader ? "small" : ""
       }` }>
-        <BurgerMenu />
-        <SearchSmall />
+        <div className="wrapper headerIcons">
+          <BurgerMenu />
+          <SearchSmall />
+        </div>
 
         <nav  className={ `nav ${
         shrinkHeader ? "small" : ""

@@ -14,6 +14,18 @@ const BurgerMenu = () => {
     setBurgerMenuOpen(false);
   };
 
+  const checkURL = () => {
+    const currentURL = window.location.pathname;
+    if(currentURL !== "/") {
+      console.log("I am not on the home page");
+      // return "/"
+    } else {
+      console.log("HOMEPAGE RELOAD NOW")
+
+      window.location.reload();
+    }
+  }
+
   return (
     <nav className="burgerMenu">
       <div className="burgerMenuContainer">
@@ -25,7 +37,7 @@ const BurgerMenu = () => {
           <NavLink
             to="/"
             className="active-link"
-            onClick={() => closeMenu()}
+            onClick={() => {closeMenu(); checkURL()}}
           >
             Home
           </NavLink>

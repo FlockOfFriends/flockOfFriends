@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import failedEventCall from "./failedEventCall";
+import LoadingSpinner from "./LoadingSpinner";
 
 
 const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) => {
@@ -60,14 +61,11 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
       return (
           <main>
             <li className="error">
+              <LoadingSpinner />
               <div className="errorMessage">
-                <h1>Oops! No events match your search</h1>
+                <h1>Loading...</h1>
               </div>
-              <img 
-                src={failedEventCall[0].images[0].url}
-                alt={"A child using a laptop"}
-              />
-              <div className="errorHints">
+              {/* <div className="errorHints">
                 <h3>Search Suggestions</h3>
                 <ul>
                   <li>
@@ -83,7 +81,7 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
                     <p>Check your spelling</p>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </li>
           </main>
       )

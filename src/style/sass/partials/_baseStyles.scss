@@ -25,35 +25,3 @@ form {
         letter-spacing: 0.03rem;
     }
 }
-
-.error {
-  display: flex;
-  margin: 0 auto;
-  flex-direction: column;;
-  position: relative;
-  width: 100%;
-  align-items: center;
-
-  .errorMessage {
-    display: flex;
-    justify-content: center;
-  }
-
-  h1 {
-    font-size: 2rem;
-    text-align: center;
-  }
-  
-  h1, .errorHints {
-    width: 80%;
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 30px;
-    padding: 15px;
-  }
-
-  .errorHints {
-    bottom: 0;
-
-  }
-}

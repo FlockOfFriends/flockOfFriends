@@ -23,27 +23,11 @@ const SearchSmall = () => {
       <ul className={`searchIconList ${searchIcon ? "show" : ""}`}>
         <li>
           <NavLink
-            to="#"
+            to="/"
             className="active-link"
             onClick={() => closeSearchMenu()}
           >
-            Location
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink
-            to="#"
-            onClick={() => closeSearchMenu()}>
-            Date
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink
-            to="#"
-            onClick={() => closeSearchMenu()}>
-            Event Type
+            Search
           </NavLink>
         </li>
       </ul>

@@ -10,9 +10,20 @@
 }
 
 // Burger menu style
+
+.wrapper.headerIcons {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 90;
+}
+
 .burgerMenu, .searchIcon {
-  position: absolute;
-  padding: 20px;
+  z-index: 90;
+  padding: 20px 0;
   transition: all 0.2s;
 
   button {
@@ -20,7 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: none;
+    border: 2px solid #ebebeb;
     width: 70px;
     height: 70px;
     padding: 10px;
@@ -36,23 +47,17 @@
   }
 }
 
-.searchIcon {
-  right: 0;
-}
-
 .menuNav {
   list-style: none;
-  position: relative;
+  position: absolute;
   top: 100px;
-  left: 0;
+  left: -800px;
   background: $whiteBlue;
-  width: 200px;
+  width: 320px;
   padding: 20px 0;
-  max-width: 290px;
+  border-radius: 30px;
   z-index: 9;
   transition: all 0.4s;
-  position: absolute;
-  left: -500px;
 
   a {
     display: block;
@@ -79,17 +84,54 @@
 }
 
 .menuNav.showMenu {
-    width: 350px;
-    display: flex;
-    position: absolute;
-    top: 100px;
     left: 0;
-    flex-direction: column;
-    border-radius: 30px;
-    background: white;
-    transition: all 0.5s;
+    transition: all 0.4s;
   }
 
+// searchbar collapsed icon
+.searchIcon {
+
+  .searchIconList {
+    list-style: none;
+    position: absolute;
+    top: 100px;
+    right: -800px;
+    background: $whiteBlue;
+    border-radius: 30px;
+    width: 320px;
+    padding: 20px 0;
+    z-index: 9;
+    transition: all 0.4s;
+
+    a {
+    display: block;
+    padding: 10px 40px;
+    text-decoration: none;
+    color: $darkBlue;
+    text-transform: uppercase;
+    font-weight: bold;
+
+      &:hover {
+        border-radius: 30px;
+        background: $mediumBlue;
+        color: $whiteBlue;
+        filter: drop-shadow(0px 4px 4px #6B6666);
+      }
+
+      &:active, &:focus {
+        border-radius: 30px;
+        background: black;
+        color: $whiteBlue;
+        filter: drop-shadow(0px 4px 4px #6B6666);
+      }
+    }
+  }
+}
+
+.searchIconList.show {
+  right: 0;
+  transition: all 0.4s;
+}
 
 .header {
   width: 100%;
@@ -111,10 +153,10 @@
   transition: all 0.6s;
   position: absolute;
   top: 40vh;
+  z-index: 100;
 }
 
 nav.small {
-  position: fixed;
   top: 0;
   transition: all 0.6s;
   margin-top: 10px;
