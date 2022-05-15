@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
-import { getDatabase, ref, onValue, push } from "firebase/database";
+import { getDatabase, ref, onValue, push, remove } from "firebase/database";
 import { Link } from "react-router-dom";
 
+import { useParams } from "react-router-dom";
 import firebase from "./firebase";
 
 const PersonalHub = () => {
   const [liked, setLiked] = useState([]);
-  const [eventInput, setEventInput] = useState('');
+  const [eventID, setEventID] = useState([]);
+
+  const { personalID } = useParams();
 
   useEffect(() => {
     const database = getDatabase(firebase);
@@ -24,6 +27,27 @@ const PersonalHub = () => {
     });
   }, []);
 
+  const handleRemoveEvent = (event) => {
+
+    // accessing firebase data and creating a reference to the event's unique ID in order to remove it from the hub:
+    const database = getDatabase(firebase)
+    const childRef = ref(database, `/${event}`)
+    remove(childRef)
+    
+    const eventRef = ref(database)
+    
+    // updating event display:
+    onValue(eventRef, (response) => {
+      const emptyArray = [];
+      const data = response.val();
+      for (let key in data) {
+        // pushing the values from the object into our emptryArray
+        emptyArray.push({ personalID: key, name: data[key] });
+      }  
+      setLiked(emptyArray)
+    })
+  };
+
   return (
     <div className="personalHub">
       <h3>Personalized Event Hub</h3>
@@ -32,34 +56,14 @@ const PersonalHub = () => {
           {liked.map((like) => {
             return (
                 <li key={like.personalID}>
-                  <h4>{like.name.title}</h4>
-                  <p>Make This Your Event!</p>
                   <div className="eventContent">
-                    <Link to={`/personal/${like.personalID}`}>
+                    <h4>{like.name.title}</h4>
+                    <Link className="links" to={`/personal/${like.personalID}`}>
                       <div className="personalEventImg">
                         <img src={like.name.img} alt={`Placeholder`} />
                       </div>
                     </Link>
-                    <div className="hubText">
-                      <form action="submit">
-                        <label htmlFor="newEvent" className="sr-only">Make This Your Event</label>
-                        <input 
-                          type="text" 
-                          id="newEvent" 
-                          placeholder="Event Name"
-                        />
-                        <label htmlFor="eventDescription"className="sr-only">Type a message</label>
-                        <textarea 
-                          name="eventDescription" 
-                          id="eventDescription" 
-                          cols="30" 
-                          rows="5"
-                          placeholder="Write your event description here so you and your flock can get excited!">
-                        </textarea>
-                        {/* need to add an onSubmit function to the button */}
-                        <button>Create Event</button>
-                      </form>
-                    </div>  
+                    <button onClick={() => handleRemoveEvent(like.personalID)} className="button">Delete Event</button>  
                   </div>
                 </li>
             );
