@@ -42,6 +42,7 @@ function App() {
     setEventGenre("choose a genre");
   }
 
+  //when user scrolls 200 px down, set state for shrinkHeader
   useEffect(() => {
     if(typeof window !== "undefined") {
       window.addEventListener("scroll", () => {

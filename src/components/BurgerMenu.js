@@ -32,11 +32,19 @@ const BurgerMenu = () => {
         </li>
 
         <li>
-          <NavLink to="/">About Creators</NavLink>
+          <NavLink
+            to="/"
+            onClick={() => closeMenu()}>
+            About Creators
+          </NavLink>
         </li>
 
         <li>
-          <NavLink to="/personalhub">Personal Hub</NavLink>
+          <NavLink
+            to="/personalhub"
+            onClick={() => closeMenu()}>
+            Personal Hub
+          </NavLink>
         </li>
       </ul>
       </div>

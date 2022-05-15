@@ -11,12 +11,31 @@
 // Burger menu style
 .burgerMenu {
   position: absolute;
-  background-color: white;
+  padding: 20px;
+  transition: all 0.2s;
+
+
+  
   button {
     background: #fff;
-    border: 1px solid #fff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: 70px;
+    height: 70px;
+    padding: 10px;
+    border-radius: 50px;
     z-index: 10;
     cursor: pointer;
+    
+
+    svg {
+      width: 100%;
+      height: 100%;
+      border-radius: 30px;
+    }
+
   }
   .burgerMenuContainer {
     float: right;
@@ -25,15 +44,18 @@
 
 .menuNav {
   list-style: none;
-  display: none;
   position: relative;
-  top: 10px;
-  left: 10px;
+  top: 100px;
+  left: 0;
   background: $whiteBlue;
   width: 200px;
   height: auto;
   max-width: 290px;
   z-index: 9;
+  transition: all 0.4s;
+  position: absolute;
+  left: -500px;
+
   a {
     display: block;
     padding: 10px 40px;
@@ -42,16 +64,24 @@
     text-transform: uppercase;
     font-weight: bold;
     &:hover {
+      border-radius: 30px;
       background: $mediumBlue;
       color: $whiteBlue;
+      filter: drop-shadow(0px 4px 4px #6B6666);
     }
   }
 }
 
-.showMenu {
-    width: 100%;
-    display: inline;
+.menuNav.showMenu {
+    width: 350px;
+    display: flex;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    flex-direction: column;
+    border-radius: 30px;
     background: white;
+    transition: all 0.5s;
   }
 
 
