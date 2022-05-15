@@ -6,16 +6,28 @@ import { useParams } from "react-router-dom";
 import firebase from "./firebase";
 
 // importing images
-// import iconClock from "../assets/iconClock.svg";
 import iconLocation from "../assets/iconLocation.svg";
 import iconPeople from "../assets/iconPeople.svg";
 import iconTicket from "../assets/iconTicket.svg";
-import iconCal from "../assets/iconCal.svg";
+import avatar1 from "../assets/avatar1.png";
+import avatar2 from "../assets/avatar2.png";
+import avatar3 from "../assets/avatar3.png";
+import avatar4 from "../assets/avatar4.png";
+import avatar5 from "../assets/avatar5.png";
+import avatar6 from "../assets/avatar6.png";
+import avatar7 from "../assets/avatar7.png";
+import avatar8 from "../assets/avatar8.png";
+import avatar9 from "../assets/avatar9.png";
+import avatar10 from "../assets/avatar10.png";
+import avatar11 from "../assets/avatar11.png";
+import avatarHost from "../assets/avatarHost.png";
+
+
 
 const PersonalEvent = ({ liked }) => {
-  const [guestName, setGuestName] = useState();
+  const avatarArray = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11];
+  const [guestName, setGuestName] = useState([]);
   const [guestList, setGuestList] = useState([])
-
   const [firedata, setFiredata] = useState([]);
   // work with this one:
   const [formInput, setFormInput] = useState([]);
@@ -27,9 +39,6 @@ const PersonalEvent = ({ liked }) => {
 
 
     // const dbRef = ref(database);
-    // const userID = "-N1_by51dcpV7FYz8hBY";
-
-
     const userRef = ref(database, `/${personalID}`);
     get(userRef)
       .then((data) => {
@@ -40,6 +49,20 @@ const PersonalEvent = ({ liked }) => {
       .catch((error) => {
         console.log(error);
       });
+
+      // Calling the db for existing guests right away
+    const userId2 = personalID;
+    const childRef = ref(database, `/${userId2}/attendees`);
+
+    onValue(childRef, (response) => {
+      const emptyArray = [];
+      const data = response.val();
+      for (let key in data) {
+        // pushing the values from the object into our emptryArray
+        emptyArray.push({ personalID: key, name: data[key] });
+      }  
+      setGuestList(emptyArray)
+    });
   }, []);
 
 
@@ -91,6 +114,7 @@ const PersonalEvent = ({ liked }) => {
   };
 
   // Function for handling form SUBMIT
+  
   const handleSubmit = (event) => {
     event.preventDefault();
    
@@ -170,7 +194,6 @@ const PersonalEvent = ({ liked }) => {
                   <p className="getMonth">{getMonth(firedata.dateTime)}</p>
                   <p className="getDay">{getDay(firedata.dateTime)}</p>
                   
-                  {/* <img src={iconCal} alt="Calendar icon" /> */}
                 </span>
 
                 <button className="rsvpButton" type="button">
@@ -189,25 +212,25 @@ const PersonalEvent = ({ liked }) => {
               <input
                 type="text"
                 id="eventName"
-                onChange={handleInputChange}
-                value={formInput}
+                // onChange={handleInputChange}
+                // value={formInput}
               />
               <label htmlFor="hostName">Host Name</label>
               <input
                 type="text"
                 id="hostName"
-                onChange={handleInputChange}
-                value={formInput}
+                // onChange={handleInputChange}
+                // value={formInput}
               />
-              <button onClick={handleSubmit}>SUBMIT</button>
+              {/* <button onClick={handleSubmit}>SUBMIT</button> */}
             </div>
             <div>
               <label htmlFor="description">Description</label>
               <textarea
                 type="text"
                 id="description"
-                onChange={handleInputChange}
-                value={formInput}
+                // onChange={handleInputChange}
+                // value={formInput}
               />
             </div>
           </form>
@@ -218,10 +241,10 @@ const PersonalEvent = ({ liked }) => {
               <span>
                 <img src={iconPeople} alt="people icon" />
               </span>
-              <p>Respondants/Attending</p>
+              <p>Attending {((guestList.length) + 1)}</p>
             </div>
 
-            <div className="subDetails">
+            {/* <div className="subDetails">
               <span>
                 <img
                   src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_timer-1024.png"
@@ -229,7 +252,7 @@ const PersonalEvent = ({ liked }) => {
                 />
               </span>
               <p>Hosts</p>
-            </div>
+            </div> */}
 
             <div className="subDetails">
               <span>
@@ -281,13 +304,26 @@ const PersonalEvent = ({ liked }) => {
               </li>
             </ul>
             <ul className="addedNames">
-              { guestList.map((attendee) => {
+              <li className="guestName">
+                <span className="avatar">
+                        <img
+                          src={avatarHost}
+                          alt="avatar icon"
+                        />
+                      </span>
+                <p>Hosted by: {firedata.userInput}</p>
+                
+              </li>
+              { guestList.map((attendee, index) => {
                     return (
-                      <li key={attendee.name.guest}  className="guestName">
+                    
+                      <li key={attendee.name.guest}  
+                      
+                      className="guestName">
                         <span className="avatar">
                         <img
-                          src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/sloth_lazybones_sluggard_avatar-1024.png"
-                          alt=""
+                          src={(avatarArray[index])}
+                          alt="avatar icon"
                         />
                       </span>
                         <p>{attendee.name.guest}</p>
@@ -298,24 +334,12 @@ const PersonalEvent = ({ liked }) => {
                 })}
             </ul>
           </div>
-
-          {/* <div className="addedNames">
-            <ul>
-              { guestList.map((attendee) => {
-                    return (
-                      <li>
-                        <p>{attendee.name.guest}</p>
-                      </li>
-                    )
-                })}
-            </ul>
-          </div> */}
           
 
           <div className="socials">
             <a
               href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-              class="twitter-share-button"
+              className="twitter-share-button"
               data-show-count="false"
             >
               Tweet
