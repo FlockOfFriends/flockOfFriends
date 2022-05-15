@@ -192,6 +192,29 @@ const PersonalEvent = ({ liked }) => {
     })
   };
 
+  const handleFormChange = (event) => {
+    setFormInput(event.target.value);
+  };
+  // Function for handling description submit
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+    const newUserSettings = {
+      description: formInput,
+    };
+
+    const userId = personalID;
+
+    const changeSetting = (settingChange) => {
+      const childRef = ref(database, `/${userId}`);
+      return update(childRef, settingChange);
+    };
+
+    changeSetting(newUserSettings);
+    setFormInput("");
+  };
+
   return (
     <div className="personalEvent">
       {firedata ? (
@@ -314,13 +337,6 @@ const PersonalEvent = ({ liked }) => {
                       <img src={avatarArray[index]} alt="avatar icon" />
                     </span>
                     <p>{guestName.name.guest}</p>
-//                     <button
-//                       className="removeButton"
-//                       onClick={() => handleRemoveName(attendee.name.guest)}
-//                     >
-//                       {" "}
-//                       Can't Make It
-//                     </button>
                        <button className="removeButton" onClick={() => handleRemoveName(guestName.personalID)}> Can't Make It</button>
 
                   </li>
