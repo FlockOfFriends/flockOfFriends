@@ -8,7 +8,7 @@ const failedEventCall = [
     images: [
       {
         width: 1000,
-        url: `${laptopBaby}`
+        url: "https://placekitten.com/800/600"
       }
     ]
   }
