@@ -7,7 +7,7 @@ import firebase from "./firebase";
 
 const PersonalHub = () => {
   const [liked, setLiked] = useState([]);
-  const [eventID, setEventID] = useState([]);
+  // const [eventID, setEventID] = useState([]);
 
   const { personalID } = useParams();
 
@@ -28,14 +28,13 @@ const PersonalHub = () => {
   }, []);
 
   const handleRemoveEvent = (event) => {
-
     // accessing firebase data and creating a reference to the event's unique ID in order to remove it from the hub:
-    const database = getDatabase(firebase)
-    const childRef = ref(database, `/${event}`)
-    remove(childRef)
-    
-    const eventRef = ref(database)
-    
+    const database = getDatabase(firebase);
+    const childRef = ref(database, `/${event}`);
+    remove(childRef);
+
+    const eventRef = ref(database);
+
     // updating event display:
     onValue(eventRef, (response) => {
       const emptyArray = [];
@@ -43,9 +42,9 @@ const PersonalHub = () => {
       for (let key in data) {
         // pushing the values from the object into our emptryArray
         emptyArray.push({ personalID: key, name: data[key] });
-      }  
-      setLiked(emptyArray)
-    })
+      }
+      setLiked(emptyArray);
+    });
   };
 
   return (
@@ -55,17 +54,22 @@ const PersonalHub = () => {
         <ul className="catalogue">
           {liked.map((like) => {
             return (
-                <li key={like.personalID}>
-                  <div className="eventContent">
-                    <h4>{like.name.title}</h4>
-                    <Link className="links" to={`/personal/${like.personalID}`}>
-                      <div className="personalEventImg">
-                        <img src={like.name.img} alt={`Placeholder`} />
-                      </div>
-                    </Link>
-                    <button onClick={() => handleRemoveEvent(like.personalID)} className="button">Delete Event</button>  
-                  </div>
-                </li>
+              <li key={like.personalID}>
+                <div className="eventContent">
+                  <h4>{like.name.title}</h4>
+                  <Link className="links" to={`/personal/${like.personalID}`}>
+                    <div className="personalEventImg">
+                      <img src={like.name.img} alt={`Placeholder`} />
+                    </div>
+                  </Link>
+                  <button
+                    onClick={() => handleRemoveEvent(like.personalID)}
+                    className="button"
+                  >
+                    Delete Event
+                  </button>
+                </div>
+              </li>
             );
           })}
         </ul>

@@ -6,8 +6,7 @@ import firebase from "./firebase";
 import { getDatabase, ref, push, onValue } from "firebase/database";
 
 // image import
-import iconClock from "../assets/iconClock.svg";
-import iconPeople from "../assets/iconPeople.svg";
+import iconLocation from "../assets/iconLocation.svg";
 
 
 const EventDetails = () => {
@@ -29,7 +28,7 @@ const EventDetails = () => {
     };
     axios(configDetails)
       .then(function (response) {
-        const data = { ...response.data, loading: true };
+        const data = { ...response.data, loading: true};
         setDetailsArray(data);
       })
       .catch(function (error) {
@@ -109,8 +108,6 @@ const EventDetails = () => {
         id: eventID,
         title: detailsArray.name,
         img: detailsArray.images[imageBig].url,
-        // start: detailsArray.dates.start.localDate,
-        // time: detailsArray.dates.start.localTime,
         dateTime: detailsArray.dates.start.dateTime,
         tickets: detailsArray.url,
         address: detailsArray._embedded.venues[0].address.line1,
@@ -138,7 +135,7 @@ const EventDetails = () => {
               
               <h5>{convertDate(detailsArray.dates.start.dateTime)}</h5>
               <h5>{convertTime(detailsArray.dates.start.dateTime)}</h5>
-              <p>{detailsArray._embedded.venues[0].name}</p>
+              {detailsArray._embedded.venues[0].name ? <p>{detailsArray._embedded.venues[0].name}</p> : null}
               {showButton ? (
                 <div className="form">
                   <div className="formUser inputOff">
@@ -202,18 +199,13 @@ const EventDetails = () => {
           <div className="titleBottom">
             <div className="titleText">
               <span>
-                <img className="icons" src={iconPeople} alt="people icon" />
+                <img className="icons" src={iconLocation} alt="people icon" />
               
-              <p>
+              {detailsArray._embedded.venues[0].address.line1 ? <p>
                 {detailsArray._embedded.venues[0].address.line1},{" "}
                 {detailsArray._embedded.venues[0].city.name},{" "}
                 {detailsArray._embedded.venues[0].state.name}
-              </p>
-              </span>
-              <span >
-                <img className="icons" src={iconClock} alt="clock icon" />
-              
-              <p>{detailsArray.dates.start.localTime}</p>
+              </p> : null}
               </span>
             </div>
           </div>

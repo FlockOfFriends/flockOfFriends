@@ -60,6 +60,15 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
           setErrorState(2);
           setEvents(response.data._embedded.events);
         } 
+
+//         const results = response.data._embedded.events;
+//         // console.log(results)
+//         const newResults = results.filter(dat => dat._embedded !== undefined)
+//         console.log("our new data", newResults);
+
+
+//         setEvents(newResults);
+
       })
       .catch(function (error) {
         console.log(error);
