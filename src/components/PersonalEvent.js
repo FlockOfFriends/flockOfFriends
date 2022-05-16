@@ -15,6 +15,10 @@ import { useParams } from "react-router-dom";
 import firebase from "./firebase";
 
 // importing images
+import iconFB from "../assets/iconFB.png";
+import iconTwitter from "../assets/iconTwitter.png";
+import iconWhats from "../assets/iconWhats.png";
+import iconLink from "../assets/iconLink.png";
 import iconLocation from "../assets/iconLocation.svg";
 import iconPeople from "../assets/iconPeople.svg";
 import iconTicket from "../assets/iconTicket.svg";
@@ -52,7 +56,6 @@ const PersonalEvent = ({ liked }) => {
   // work with this one:
   const [formInput, setFormInput] = useState("");
   const { personalID, guestID } = useParams();
-
 
   useEffect(() => {
     const database = getDatabase(firebase);
@@ -144,17 +147,14 @@ const PersonalEvent = ({ liked }) => {
     const database = getDatabase(firebase);
     const newGuestName = {
       guest: guestName,
-
     };
-
 
     const childRef = ref(database, `/${personalID}/attendees`);
 
     const addAttendee = (newName) => {
-      return push(childRef, newName)
-    }
-    addAttendee(newGuestName)
-
+      return push(childRef, newName);
+    };
+    addAttendee(newGuestName);
 
     onValue(childRef, (response) => {
       const emptyArray = [];
@@ -171,15 +171,14 @@ const PersonalEvent = ({ liked }) => {
 
   // Remove names from the guest list
   const handleRemoveName = (attendee) => {
-
     // accessing firebase data and creating a reference to the attendee's unique ID in order to remove them from the guest list one at a time:
-    const database = getDatabase(firebase)
-    const childRef = ref(database, `/${personalID}/attendees/${attendee}`)
-    remove(childRef)
+    const database = getDatabase(firebase);
+    const childRef = ref(database, `/${personalID}/attendees/${attendee}`);
+    remove(childRef);
 
     // creating a reference to the updated guestlist (after name removal):
-    const guestListRef = ref(database, `/${personalID}/attendees`)
-  
+    const guestListRef = ref(database, `/${personalID}/attendees`);
+
     // updating guestlist display:
     onValue(guestListRef, (response) => {
       const emptyArray = [];
@@ -187,9 +186,9 @@ const PersonalEvent = ({ liked }) => {
       for (let key in data) {
         // pushing the values from the object into our emptryArray
         emptyArray.push({ personalID: key, name: data[key] });
-      }  
+      }
       setGuestList(emptyArray);
-    })
+    });
   };
 
   const handleFormChange = (event) => {
@@ -279,21 +278,20 @@ const PersonalEvent = ({ liked }) => {
             </div>
 
             <div className="description">
-            <form action="submit" className="describeForm">
-              <label htmlFor="describe">Description:</label>
-              <p>{description}</p>
-              <textarea
-                type="text"
-                id="describe"
-                onChange={handleFormChange}
-                value={formInput}
-              />
-              <button className="addButton" onClick={handleFormSubmit}>
-                Change Details
-              </button>
-            </form>
+              <form action="submit" className="describeForm">
+                <label htmlFor="describe">Description:</label>
+                <p>{description}</p>
+                <textarea
+                  type="text"
+                  id="describe"
+                  onChange={handleFormChange}
+                  value={formInput}
+                />
+                <button className="addButton" onClick={handleFormSubmit}>
+                  Change Details
+                </button>
+              </form>
             </div>
-
           </div>
           <div className="map">
             <iframe
@@ -337,33 +335,108 @@ const PersonalEvent = ({ liked }) => {
                       <img src={avatarArray[index]} alt="avatar icon" />
                     </span>
                     <p>{guestName.name.guest}</p>
-                       <button className="removeButton" onClick={() => handleRemoveName(guestName.personalID)}> Can't Make It</button>
-
+                    <button
+                      className="removeButton"
+                      onClick={() => handleRemoveName(guestName.personalID)}
+                    >
+                      {" "}
+                      Can't Make It
+                    </button>
                   </li>
                 );
               })}
             </ul>
           </div>
 
+              {/* Social media share links - change url once netlify name is chosen */}
           <div className="socials">
+            <h2>Share Event</h2>
+            <ul>
+              <li>
+                <a
+                  target="_blank"
+                  href={`https://www.facebook.com/sharer/sharer.php?u=https://flockevents.netlify.app/personal/${personalID}`}
+                >
+                  <img
+                    src={iconFB}
+                    alt="Facebook Icon"
+                    class="socialIcons"
+                    aria-hidden="true"
+                  />
+                  <span class="sr-only">Link to Share Event on Facebook</span>
+                </a>
+              </li>
 
-            <a target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=https://flockevents.netlify.app/personal/${personalID}`}>Facebook</a>
+              <li className="mobile">
+                <a
+              href={`https://api.whatsapp.com/send?text=https://flockevents.netlify.app/personal/${personalID}`}
+              data-action="share/whatsapp/share"
+            ><img
+                    src={iconWhats}
+                    alt="WhatsApp Icon"
+                    class="socialIcons"
+                    aria-hidden="true"
+                  />
+                  <span class="sr-only">Link to Share Event on WhatsApp Mobile</span>
+                </a>
+              </li>
 
+              <li className="desktop">
+                <a
+              href={`whatsapp://send?text=https://flockevents.netlify.app/personal/${personalID}`}
+              data-action="share/whatsapp/share"
+            ><img
+                    src={iconWhats}
+                    alt="WhatsApp Icon"
+                    class="socialIcons desktop"
+                    aria-hidden="true"
+                  />
+                  <span class="sr-only">Link to Share Event on WhatsApp</span>
+                </a>
+              </li>
 
-              {/* <a href="whatsapp://send" data-text="Take a look at this awesome website:" data-href={`https://flockevents.netlify.app/personal/${personalID}`}>Whatsapp</a> */}
+              <li>
+                <a
+              target="_blank"
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=https://flockevents.netlify.app/personal/${personalID}`}
+            ><img
+                    src={iconLink}
+                    alt="LinkedIn Icon"
+                    class="socialIcons"
+                    aria-hidden="true"
+                  />
+                  <span class="sr-only">Link to Share Event on LinkedIn</span>
+                </a>
+              </li>
 
-              <a href={`https://api.whatsapp.com/send?text=https://flockevents.netlify.app/personal/${personalID}`}data-action="share/whatsapp/share">WhatsApp Mobile</a>
+              <li>
+                <a
+              target="_blank"
+              href={`https://twitter.com/intent/tweet?url=https://flockevents.netlify.app/personal/${personalID}`}
+            ><img
+                    src={iconTwitter}
+                    alt="Twitter Icon"
+                    class="socialIcons"
+                    aria-hidden="true"
+                  />
+                  <span class="sr-only">Link to Share Event on Twitter</span>
+                </a>
+              </li>
+            </ul>
+
+            {/* <a href={`https://flockevents.netlify.app/personal/${personalID}`}>
+              Link
+            </a>
+
+            <button
+              onClick={() =>
+                navigator.clipboard.writeText("Copy this text to clipboard")
+              }
+            >
+              Copy
+            </button> */}
 
             
-
-              <a target="_blank" href={`https://www.linkedin.com/sharing/share-offsite/?url=https://flockevents.netlify.app/personal/${personalID}`}>LinkedIn</a>
-
-
-              <a target="_blank" href={`https://twitter.com/intent/tweet?url=https://flockevents.netlify.app/personal/${personalID}`}>Twitter</a>
-            
-            <a href={`https://flockevents.netlify.app/personal/${personalID}`}>Link</a>
-
-            <a href={`whatsapp://send?text=https://flockevents.netlify.app/personal/${personalID}`} data-action="share/whatsapp/share">WhatsApp Desk</a>
           </div>
         </div>
       ) : null}
@@ -372,4 +445,3 @@ const PersonalEvent = ({ liked }) => {
 };
 
 export default PersonalEvent;
-
