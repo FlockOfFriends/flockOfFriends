@@ -1,6 +1,6 @@
 import "./style/sass/App.scss";
 import { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
 
 import firebase from "./components/firebase";
@@ -29,7 +29,8 @@ function App() {
   const [eventType, setEventType] = useState("")
   const [eventTypeShow, setEventTypeShow] = useState(true);
   const [eventGenre, setEventGenre] = useState("choose a genre");
-  const [shrinkHeader, setShrinkHeader] = useState(false);
+  const [hideSearchbar, setHideSearchBar] = useState(false);
+  const [shrinkHeaderHeight, setShrinkHeaderHeight] = useState(false);
 
 
   // clear all search inputs after form submission. not sure where to fire this.
@@ -41,14 +42,29 @@ function App() {
     setEventGenre("choose a genre");
   }
 
-  //when user scrolls 200 px down, set state for shrinkHeader
+  //when user scrolls 200 px down, big search bar goes off screen
   useEffect(() => {
     if(typeof window !== "undefined") {
       window.addEventListener("scroll", () => {
-        setShrinkHeader(window.scrollY > 10)
+        setHideSearchBar(window.scrollY > 10)
       });
     }
   }, []);
+
+  // if not on home page, shrink entire header
+  const currentURL = useLocation();
+
+  useEffect(() => {
+    if(typeof window !== "undefined") {
+      const currentURL = window.location.pathname;
+      if(currentURL !== "/") {
+        setShrinkHeaderHeight(true);
+        setHideSearchBar(true);
+      } else {
+        setShrinkHeaderHeight(false);
+      }
+    }
+  }, [currentURL]);
 
   // function to check current URL path, if not on home page - sends them home and runs api call, otherwiseruns some other stuff.
   const checkURL = () => {
@@ -92,10 +108,9 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className={ `App ${shrinkHeaderHeight ? "headerShrink" : ""}` }>
       <header className={ `header ${
-        shrinkHeader ? "small" : ""
-      }` }>
+        hideSearchbar ? "small" : ""}` }>
         <div className="wrapper headerIcons">
           <BurgerMenu
           hub={status.length}
@@ -104,7 +119,7 @@ function App() {
         </div>
 
         <nav  className={ `nav ${
-        shrinkHeader ? "small" : ""
+        hideSearchbar ? "small" : ""
       }` }>
           <form className="searchForm" onSubmit={handleSubmit}>
 

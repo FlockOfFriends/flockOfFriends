@@ -6,7 +6,6 @@ import { FiMenu } from "react-icons/fi";
 const BurgerMenu = (props) => {
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
   const [showHubDot, setShowHubDot] = useState(false);
-  console.log("inside burger menu", props.hub);
 
   const handleToggle = () => {
     setBurgerMenuOpen(!burgerMenuOpen);
@@ -19,11 +18,8 @@ const BurgerMenu = (props) => {
   const checkURL = () => {
     const currentURL = window.location.pathname;
     if(currentURL !== "/") {
-      console.log("I am not on the home page");
-      // return "/"
-    } else {
-      console.log("HOMEPAGE RELOAD NOW")
 
+    } else {
       window.location.reload();
     }
   }
