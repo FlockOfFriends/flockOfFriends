@@ -277,5 +277,17 @@ p {
       //   font-size: 1.5rem;
       // }
     }
+
+    
   }
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid rgb(36, 35, 35);
+  width: 100%;
+  border-radius: 5px;
+  gap: 2rem;
+
 }

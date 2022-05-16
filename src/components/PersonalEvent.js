@@ -346,13 +346,24 @@ const PersonalEvent = ({ liked }) => {
           </div>
 
           <div className="socials">
-            <a
-              href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-              className="twitter-share-button"
-              data-show-count="false"
-            >
-              Tweet
-            </a>
+
+            <a target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=https://flockevents.netlify.app/personal/${personalID}`}>Facebook</a>
+
+
+              {/* <a href="whatsapp://send" data-text="Take a look at this awesome website:" data-href={`https://flockevents.netlify.app/personal/${personalID}`}>Whatsapp</a> */}
+
+              <a href={`https://api.whatsapp.com/send?text=https://flockevents.netlify.app/personal/${personalID}`}data-action="share/whatsapp/share">WhatsApp Mobile</a>
+
+            
+
+              <a target="_blank" href={`https://www.linkedin.com/sharing/share-offsite/?url=https://flockevents.netlify.app/personal/${personalID}`}>LinkedIn</a>
+
+
+              <a target="_blank" href={`https://twitter.com/intent/tweet?url=https://flockevents.netlify.app/personal/${personalID}`}>Twitter</a>
+            
+            <a href={`https://flockevents.netlify.app/personal/${personalID}`}>Link</a>
+
+            <a href={`whatsapp://send?text=https://flockevents.netlify.app/personal/${personalID}`} data-action="share/whatsapp/share">WhatsApp Desk</a>
           </div>
         </div>
       ) : null}
