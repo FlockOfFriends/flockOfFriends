@@ -9,6 +9,10 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
 
   const [events, setEvents] = useState([])
   const [errorState, setErrorState] = useState(0);
+  // errorState 0 = No Results found
+  // errorState 1 = Between 1 and 5 results returned
+  // errorState 2 = Many results found. Good!
+  // errorState 3 = Something went wrong! Unknown error returned.
 
   const dateFunction = (userDate, defaultTime) => {
     const todaysDate = userDate
@@ -41,33 +45,29 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
     axios(configTicket)
       .then(function (response) {
         console.log(response)
-        const results = response.data._embedded.events;
+
         const errorHandling = response.data.page.totalElements;
-        console.log("brian error stuff here", errorHandling);
-        console.log(results);
-        // insert state set to false intially, if false display spinner.
-        // update spinner icon/loading state here
+        console.log("errorHandling = ", errorHandling);
 
-        if(errorHandling > 0) {
-          setEvents(response.data._embedded.events);
+        if( errorHandling === 0 ) {
           setErrorState(0);
+          console.log("0 RESULTS FOUND", errorState);
+        } else if( errorHandling > 0  && errorHandling < 5 ) {
+          console.log("GREATER THAN 0 AND LESS THAN 5")
+          setErrorState(1);
+          setEvents(response.data._embedded.events);
         } else {
-
-        }
-
+          setErrorState(2);
+          setEvents(response.data._embedded.events);
+        } 
       })
       .catch(function (error) {
         console.log(error);
-        // if we catch an error, clear events array
-        // setEvents([failedEventCall]);
+        setErrorState(3);
       });
   }, [toggleApi]);
 
-    // if events array is cleared from error, return search suggestions.
     if(events.length === 0) {
-
-      // console.log("BRIANAAAAAAAAAAA", events[0]);
-
       return (
             <li className="error">
               <LoadingSpinner />
@@ -76,31 +76,33 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
               </div>
             </li>
       )
-    } 
+    } else if( errorState === 0) {
+        return (
+          <div className="errorHints">
+            <h3>Oh No! No events match your search.</h3>
+            <ul>
+              <li>
+                <p>Try updating your location</p>
+              </li>
+              <li>
+                <p>Try expanding your date range</p>
+              </li>
+              <li>
+                <p>Try searching for all event types</p>
+              </li>
+              <li>
+                <p>Check your spelling</p>
+              </li>
+            </ul>
+          </div>
+  )
+
+    }
     
     // else if(events[0].name === "fail") {
 
     //   console.log("FAILED TO RETURN EVENTS");
-    //   return (
-    //         <div className="errorHints">
-    //           <h3>Oh No! No events match your search.</h3>
-    //           <ul>
-    //             <li>
-    //               <p>Try updating your location</p>
-    //             </li>
-    //             <li>
-    //               <p>Try expanding your date range</p>
-    //             </li>
-    //             <li>
-    //               <p>Try searching for all event types</p>
-    //             </li>
-    //             <li>
-    //               <p>Check your spelling</p>
-    //             </li>
-    //           </ul>
-    //         </div>
 
-    //   )
     // }
 
     // Function to convert date
