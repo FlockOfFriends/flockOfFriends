@@ -46,6 +46,15 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
       .then(function (response) {
         console.log(response)
 
+
+        const results = response.data._embedded.events;
+        const newResults = results.filter(dat => dat._embedded !== undefined)
+        console.log("our new data", newResults);
+
+
+//         setEvents(newResults);
+
+
         const errorHandling = response.data.page.totalElements;
         console.log("errorHandling = ", errorHandling);
 
@@ -55,19 +64,13 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
         } else if( errorHandling > 0  && errorHandling < 5 ) {
           console.log("GREATER THAN 0 AND LESS THAN 5")
           setErrorState(1);
-          setEvents(response.data._embedded.events);
+          setEvents(newResults);
         } else {
           setErrorState(2);
-          setEvents(response.data._embedded.events);
+          setEvents(newResults);
         } 
 
-//         const results = response.data._embedded.events;
-//         // console.log(results)
-//         const newResults = results.filter(dat => dat._embedded !== undefined)
-//         console.log("our new data", newResults);
 
-
-//         setEvents(newResults);
 
       })
       .catch(function (error) {
@@ -104,15 +107,8 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
               </li>
             </ul>
           </div>
-  )
-
-    }
-    
-    // else if(events[0].name === "fail") {
-
-    //   console.log("FAILED TO RETURN EVENTS");
-
-    // }
+        )
+      }
 
     // Function to convert date
   const convertDate = (date) => {
