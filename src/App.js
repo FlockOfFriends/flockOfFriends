@@ -75,7 +75,8 @@ function App() {
             alt="A crowd of people watching a show"
           />
         </div> */}
-        
+        {/* <AboutCreators /> */}
+
         <nav>
           <form className="form" onSubmit={handleSubmit}>
 
