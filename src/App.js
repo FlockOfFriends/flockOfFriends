@@ -13,6 +13,7 @@ import PersonalHub from "./components/PersonalHub";
 import PersonalEvent from "./components/PersonalEvent";
 import AboutCreators from "./components/AboutCreators";
 import DatePicker from "react-date-picker";
+import SearchSmall from "./components/SearchSmall";
 
 // images
 import search from "./images/search.png";
