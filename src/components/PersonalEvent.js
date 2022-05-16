@@ -8,7 +8,6 @@ import {
   get,
   remove,
   update,
-  child,
 } from "firebase/database";
 
 import { useParams } from "react-router-dom";
@@ -55,7 +54,7 @@ const PersonalEvent = ({ liked }) => {
   const [firedata, setFiredata] = useState([]);
   // work with this one:
   const [formInput, setFormInput] = useState("");
-  const { personalID, guestID } = useParams();
+  const { personalID } = useParams();
 
   useEffect(() => {
     const database = getDatabase(firebase);
@@ -81,6 +80,7 @@ const PersonalEvent = ({ liked }) => {
         // pushing the values from the object into our emptryArray
         emptyArray.push({ personalID: key, name: data[key] });
       }
+      console.log(emptyArray)
       setGuestList(emptyArray);
     });
 
@@ -89,7 +89,7 @@ const PersonalEvent = ({ liked }) => {
     // const userId2 = personalID;
     const childRef2 = ref(database, `/${personalID}/description`);
     onValue(childRef2, (response) => {
-      const emptyArray = [];
+      // const emptyArray = [];
       const data = response.val();
       setDescription(data);
     });
@@ -235,8 +235,12 @@ const PersonalEvent = ({ liked }) => {
               </div>
               <div className="calendar">
                 <span className="iconCalendar">
-                  <p className="getMonth">{getMonth(firedata.dateTime)}</p>
-                  <p className="getDay">{getDay(firedata.dateTime)}</p>
+                  
+                  {firedata.dateTime ? 
+                  <p className="getMonth">{getMonth(firedata.dateTime)} </p> : null}
+                  
+                  {firedata.dateTime ? <p className="getDay">{getDay(firedata.dateTime)}</p> : null}
+                  
                 </span>
               </div>
             </div>
@@ -248,7 +252,8 @@ const PersonalEvent = ({ liked }) => {
               <span>
                 <img src={iconPeople} alt="people icon" />
               </span>
-              <p>Attending: {guestList.length + 1}</p>
+              {guestList.length === undefined ? null : <p>Attending: {(guestList.length) + 1}</p>}
+              
             </div>
 
             {/* <div className="subDetails">
@@ -354,16 +359,17 @@ const PersonalEvent = ({ liked }) => {
             <ul>
               <li>
                 <a
+                  rel="noreferrer"
                   target="_blank"
                   href={`https://www.facebook.com/sharer/sharer.php?u=https://flockevents.netlify.app/personal/${personalID}`}
                 >
                   <img
                     src={iconFB}
                     alt="Facebook Icon"
-                    class="socialIcons"
+                    className="socialIcons"
                     aria-hidden="true"
                   />
-                  <span class="sr-only">Link to Share Event on Facebook</span>
+                  <span className="sr-only">Link to Share Event on Facebook</span>
                 </a>
               </li>
 
@@ -374,10 +380,10 @@ const PersonalEvent = ({ liked }) => {
             ><img
                     src={iconWhats}
                     alt="WhatsApp Icon"
-                    class="socialIcons"
+                    className="socialIcons"
                     aria-hidden="true"
                   />
-                  <span class="sr-only">Link to Share Event on WhatsApp Mobile</span>
+                  <span className="sr-only">Link to Share Event on WhatsApp Mobile</span>
                 </a>
               </li>
 
@@ -388,38 +394,40 @@ const PersonalEvent = ({ liked }) => {
             ><img
                     src={iconWhats}
                     alt="WhatsApp Icon"
-                    class="socialIcons desktop"
+                    className="socialIcons desktop"
                     aria-hidden="true"
                   />
-                  <span class="sr-only">Link to Share Event on WhatsApp</span>
+                  <span className="sr-only">Link to Share Event on WhatsApp</span>
                 </a>
               </li>
 
               <li>
                 <a
+              rel="noreferrer"
               target="_blank"
               href={`https://www.linkedin.com/sharing/share-offsite/?url=https://flockevents.netlify.app/personal/${personalID}`}
             ><img
                     src={iconLink}
                     alt="LinkedIn Icon"
-                    class="socialIcons"
+                    className="socialIcons"
                     aria-hidden="true"
                   />
-                  <span class="sr-only">Link to Share Event on LinkedIn</span>
+                  <span className="sr-only">Link to Share Event on LinkedIn</span>
                 </a>
               </li>
 
               <li>
                 <a
+              rel="noreferrer"
               target="_blank"
               href={`https://twitter.com/intent/tweet?url=https://flockevents.netlify.app/personal/${personalID}`}
             ><img
                     src={iconTwitter}
                     alt="Twitter Icon"
-                    class="socialIcons"
+                    className="socialIcons"
                     aria-hidden="true"
                   />
-                  <span class="sr-only">Link to Share Event on Twitter</span>
+                  <span className="sr-only">Link to Share Event on Twitter</span>
                 </a>
               </li>
             </ul>

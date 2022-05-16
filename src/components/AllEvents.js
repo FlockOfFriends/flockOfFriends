@@ -44,9 +44,12 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
       .then(function (response) {
         console.log(response)
         const results = response.data._embedded.events;
-        console.log(results);
+        // console.log(results)
+        const newResults = results.filter(dat => dat._embedded !== undefined)
+        console.log("our new data", newResults);
 
-        setEvents(response.data._embedded.events);
+
+        setEvents(newResults);
       })
       .catch(function (error) {
         console.log(error);
@@ -98,9 +101,7 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
         <ul className="allEvents">
           <div className="wrapper">
         { events.map((event) => {
-
           // filter through images available and save index position of the largest for display
-
           const imagesArray = event.images;
           const largeWidthPhoto = Math.max(...imagesArray.map(function(i) {return i.width}));
           const largePhotoIndex = imagesArray.map(e => e.width).indexOf(largeWidthPhoto);
