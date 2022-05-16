@@ -6,6 +6,10 @@
   
   // ***** Header *****
   // ******************
+
+  .header {
+    height: 50vh;
+  }
   .wrapper.headerIcons {
     z-index: 200;
   }
@@ -30,7 +34,6 @@
       background-color: white;
       width: 900px;
       height: auto;
-      border-radius: 30px;
       padding: 10px 4px;
       transition: all 0.3s;
       
@@ -45,9 +48,6 @@
       }
     }
   }
-
-
-
 
   // ***** Personal Event Hub *****
     // ******************
@@ -77,6 +77,9 @@
 
   // ***** Header *****
   // ******************
+  .nav.small {
+    top: -800px;
+  }
   .nav {
     top: 90px;
 
@@ -89,9 +92,10 @@
       height: 100%;
       max-height: 90vh;
       padding: 40px;
-      text-align:  center;
+      // text-align:  center;
 
       div {
+        padding: 5px 20px;
         width: 100%;
         height: auto;
       }

@@ -8,6 +8,7 @@ import LoadingSpinner from "./LoadingSpinner";
 const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) => {
 
   const [events, setEvents] = useState([])
+  const [errorState, setErrorState] = useState(0);
 
   const dateFunction = (userDate, defaultTime) => {
     const todaysDate = userDate
@@ -23,9 +24,6 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
   
   const ourStart = dateFunction(dateValue, "T23:00:00Z")
   const ourEnd = dateFunction(dateEndValue, "T23:59:59Z")
-
-  console.log("Event Type", eventType)
-
 
     const configTicket = {
       method: "get",
@@ -44,46 +42,66 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
       .then(function (response) {
         console.log(response)
         const results = response.data._embedded.events;
+        const errorHandling = response.data.page.totalElements;
+        console.log("brian error stuff here", errorHandling);
         console.log(results);
+        // insert state set to false intially, if false display spinner.
+        // update spinner icon/loading state here
 
-        setEvents(response.data._embedded.events);
+        if(errorHandling > 0) {
+          setEvents(response.data._embedded.events);
+          setErrorState(0);
+        } else {
+
+        }
+
       })
       .catch(function (error) {
         console.log(error);
         // if we catch an error, clear events array
-        setEvents([]);        
+        // setEvents([failedEventCall]);
       });
   }, [toggleApi]);
 
     // if events array is cleared from error, return search suggestions.
     if(events.length === 0) {
-      console.log("failed call", failedEventCall)
+
+      // console.log("BRIANAAAAAAAAAAA", events[0]);
+
       return (
             <li className="error">
               <LoadingSpinner />
               <div className="errorMessage">
                 <h1>Loading...</h1>
               </div>
-              {/* <div className="errorHints">
-                <h3>Search Suggestions</h3>
-                <ul>
-                  <li>
-                    <p>Try updating your location</p>
-                  </li>
-                  <li>
-                    <p>Try expanding your date range</p>
-                  </li>
-                  <li>
-                    <p>Try searching for all event types</p>
-                  </li>
-                  <li>
-                    <p>Check your spelling</p>
-                  </li>
-                </ul>
-              </div> */}
             </li>
       )
-    }
+    } 
+    
+    // else if(events[0].name === "fail") {
+
+    //   console.log("FAILED TO RETURN EVENTS");
+    //   return (
+    //         <div className="errorHints">
+    //           <h3>Oh No! No events match your search.</h3>
+    //           <ul>
+    //             <li>
+    //               <p>Try updating your location</p>
+    //             </li>
+    //             <li>
+    //               <p>Try expanding your date range</p>
+    //             </li>
+    //             <li>
+    //               <p>Try searching for all event types</p>
+    //             </li>
+    //             <li>
+    //               <p>Check your spelling</p>
+    //             </li>
+    //           </ul>
+    //         </div>
+
+    //   )
+    // }
 
     // Function to convert date
   const convertDate = (date) => {
@@ -98,9 +116,7 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
         <ul className="allEvents">
           <div className="wrapper">
         { events.map((event) => {
-
           // filter through images available and save index position of the largest for display
-
           const imagesArray = event.images;
           const largeWidthPhoto = Math.max(...imagesArray.map(function(i) {return i.width}));
           const largePhotoIndex = imagesArray.map(e => e.width).indexOf(largeWidthPhoto);
