@@ -104,6 +104,7 @@
   position: absolute;
   top: 100px;
   left: -800px;
+  opacity: 0;
   background: $whiteBlue;
   width: 320px;
   padding: 20px 0;
@@ -136,8 +137,9 @@
 }
 
 .menuNav.showMenu {
-    left: 0;
-    transition: all 0.4s;
+  opacity: 1;
+  left: 0;
+  transition: all 0.4s;
   }
 
 // searchbar collapsed icon
@@ -148,6 +150,7 @@
     position: absolute;
     top: 100px;
     right: -800px;
+    opacity: 0;
     background: $whiteBlue;
     border-radius: 30px;
     width: 320px;
@@ -181,6 +184,7 @@
 }
 
 .searchIconList.show {
+  opacity: 1;
   right: 0;
   transition: all 0.4s;
 }
@@ -336,6 +340,11 @@ nav.small {
       padding: 0 5px;
       border-radius: 30px;
       width: 100%;
+
+      .react-calendar {
+        position: relative;
+        z-index: 9999 !important;
+      }
 
       .react-date-picker.react-date-picker--open.react-date-picker--enabled {
         transition: all 0.2s;
