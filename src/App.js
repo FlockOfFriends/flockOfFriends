@@ -122,9 +122,7 @@ function App() {
           <SearchSmall />
         </div>
 
-        <nav  className={ `nav ${
-        hideSearchbar ? "small" : ""
-      }` }>
+        <nav  className={ `nav ${hideSearchbar ? "small" : ""}` }>
           <form className="searchForm" onSubmit={handleSubmit}>
 
             <div className="searchLocation">

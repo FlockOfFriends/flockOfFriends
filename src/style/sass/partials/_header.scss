@@ -434,13 +434,14 @@ nav.small {
 
     .radioEventList.show {
       display: flex;
+      transition: all 0.4s;
     }
   }
 
   .searchSubmit {
     display: flex;
     width: 65px;
-    height: 65px;
+    height: 100%;
     justify-content: center;
     align-items: center;
     border-radius: 30px;
