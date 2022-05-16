@@ -115,6 +115,10 @@ function App() {
           <BurgerMenu
           hub={status.length}
           />
+          <Link className="homeLink" to="/"><p>Home</p></Link>
+          {/* <Link to="/personalhub">
+            <p>{status.length}</p>
+          </Link> */}
           <SearchSmall />
         </div>
 
@@ -247,10 +251,6 @@ function App() {
               />
             </div>
           </form>
-          <Link to="/">Home</Link>
-          <Link to="/personalhub">
-            <p>{status.length}</p>
-          </Link>
         </nav>
       </header>
 
