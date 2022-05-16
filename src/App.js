@@ -1,17 +1,17 @@
 import "./style/sass/App.scss";
+import headerImage from "./assets/headerImage.jpg";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
-
 import firebase from "./components/firebase";
 
 // components
 import BurgerMenu from "./components/BurgerMenu";
-import SearchSmall from "./components/SearchSmall";
 import AllEvents from "./components/AllEvents";
 import EventDetails from "./components/EventDetails";
 import PersonalHub from "./components/PersonalHub";
 import PersonalEvent from "./components/PersonalEvent";
+import AboutCreators from "./components/AboutCreators";
 import DatePicker from "react-date-picker";
 
 // images
@@ -19,7 +19,6 @@ import search from "./images/search.png";
 
 function App() {
   // Lets mutate the Date data immediately
-
 
   const [location, setLocation] = useState("")
   const [dateValue, setDateValue] = useState(new Date());
@@ -31,7 +30,6 @@ function App() {
   const [eventGenre, setEventGenre] = useState("choose a genre");
   const [hideSearchbar, setHideSearchBar] = useState(false);
   const [shrinkHeaderHeight, setShrinkHeaderHeight] = useState(false);
-
 
   // clear all search inputs after form submission. not sure where to fire this.
   const clearSearchInputs = () => {
@@ -81,7 +79,7 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setToggleApi(!toggleApi);
-    checkURL();
+    // write a function that clears and resets all search ui input fields
   };
 
   const handleShowEventType = () => {
@@ -108,22 +106,19 @@ function App() {
   }, []);
 
   return (
-    <div className={ `App ${shrinkHeaderHeight ? "headerShrink" : ""}` }>
-      <header className={ `header ${
-        hideSearchbar ? "small" : ""}` }>
+    <div className={ `App ${ shrinkHeaderHeight ? "headerShrink" : ""}` }>
+      <header className={ `header ${ hideSearchbar ? "small" : ""}` }>
         <div className="wrapper headerIcons">
           <BurgerMenu
           hub={status.length}
           />
           <Link className="homeLink" to="/"><p>Home</p></Link>
-          {/* <Link to="/personalhub">
-            <p>{status.length}</p>
-          </Link> */}
           <SearchSmall />
         </div>
 
         <nav  className={ `nav ${hideSearchbar ? "small" : ""}` }>
           <form className="searchForm" onSubmit={handleSubmit}>
+
 
             <div className="searchLocation">
               <label onClick={(e) => {e.preventDefault()}}>
@@ -146,7 +141,6 @@ function App() {
                 <p className="searchLabelText">Start Date</p>
                 <DatePicker
                 dateFormat="dd/MM/yyyy"
-                minDate={new Date()}
                 closeCalendar={false}
                 name="datePicker"
                 id="datePicker"
@@ -163,7 +157,6 @@ function App() {
                 <p>End Date</p>
                 <DatePicker
                 dateFormat="dd/MM/yyyy"
-                minDate={new Date()}
                 closeCalendar={false}
                 name="datePicker"
                 id="datePicker"
@@ -188,6 +181,7 @@ function App() {
                   <label
                     tabIndex="0"
                     htmlFor="allEvents"
+                    // onKeyDown={ (e) => {e.key === "Enter" ? setEventGenre("All Events") : null}}
                     onClick={() => {setEventGenre("All Events");
                     setEventType("")}}>
                     All Events
@@ -252,28 +246,26 @@ function App() {
         </nav>
       </header>
 
-      <main>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <AllEvents
-                location={location}
-                eventType={eventType}
-                dateValue={dateValue}
-                dateEndValue={dateEndValue}
-                toggleApi={toggleApi}
-              />
-            }
-          />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <AllEvents
+              location={location}
+              eventType={eventType}
+              dateValue={dateValue}
+              dateEndValue={dateEndValue}
+              toggleApi={toggleApi}
+            />
+          }
+        />
 
-          <Route path="/event/:eventID" element={<EventDetails />} />
-          <Route path="/personal/:personalID" element={<PersonalEvent />} />
+        <Route path="/event/:eventID" element={<EventDetails />} />
+        <Route path="/personal/:personalID" element={<PersonalEvent />} />
 
-          <Route path="/personalhub" element={<PersonalHub />} />
-        </Routes>
-      </main>
-              
+        <Route path="/personalhub" element={<PersonalHub />} />
+        <Route path="/aboutcreators" element={<AboutCreators />} />
+      </Routes>
     </div>
   );
 }

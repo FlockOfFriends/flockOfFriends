@@ -57,7 +57,7 @@ const BurgerMenu = (props) => {
 
           <li>
             <NavLink
-              to="/"
+              to="/aboutcreators"
               onClick={() => closeMenu()}>
               About Creators
             </NavLink>
