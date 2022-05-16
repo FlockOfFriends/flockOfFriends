@@ -1,11 +1,8 @@
 import "./style/sass/App.scss";
 import headerImage from "./assets/headerImage.jpg";
 import { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-// import {useParams} from 'react-router-dom'
-// import axios from "axios";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
-
 import firebase from "./components/firebase";
 
 // components
@@ -23,7 +20,6 @@ import search from "./images/search.png";
 function App() {
   // Lets mutate the Date data immediately
 
-
   const [location, setLocation] = useState("")
   const [dateValue, setDateValue] = useState(new Date());
   const [dateEndValue, setDateEndValue] = useState(new Date());
@@ -32,7 +28,53 @@ function App() {
   const [eventType, setEventType] = useState("")
   const [eventTypeShow, setEventTypeShow] = useState(true);
   const [eventGenre, setEventGenre] = useState("choose a genre");
+  const [hideSearchbar, setHideSearchBar] = useState(false);
+  const [shrinkHeaderHeight, setShrinkHeaderHeight] = useState(false);
 
+  // clear all search inputs after form submission. not sure where to fire this.
+  const clearSearchInputs = () => {
+    setLocation("");
+    setDateValue(new Date());
+    setDateEndValue(new Date());
+    setEventType("");
+    setEventGenre("choose a genre");
+  }
+
+  //when user scrolls 200 px down, big search bar goes off screen
+  useEffect(() => {
+    if(typeof window !== "undefined") {
+      window.addEventListener("scroll", () => {
+        setHideSearchBar(window.scrollY > 10)
+      });
+    }
+  }, []);
+
+  // if not on home page, shrink entire header
+  const currentURL = useLocation();
+
+  useEffect(() => {
+    if(typeof window !== "undefined") {
+      const currentURL = window.location.pathname;
+      if(currentURL !== "/") {
+        setShrinkHeaderHeight(true);
+        setHideSearchBar(true);
+      } else {
+        setShrinkHeaderHeight(false);
+      }
+    }
+  }, [currentURL]);
+
+  // function to check current URL path, if not on home page - sends them home and runs api call, otherwiseruns some other stuff.
+  const checkURL = () => {
+    const currentURL = window.location.pathname;
+    if(currentURL !== "/") {
+      console.log("I am not on the home page");
+      window.location.pathname = "/";
+      setToggleApi(!toggleApi);
+    } else {
+      console.log ("I am on the home page");
+    }
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -64,21 +106,19 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header>
-        <BurgerMenu />
-
-        {/* <div className="headerImgContainer">
-          <img
-            className="headerImg"
-            src={headerImage}
-            alt="A crowd of people watching a show"
+    <div className={ `App ${ shrinkHeaderHeight ? "headerShrink" : ""}` }>
+      <header className={ `header ${ hideSearchbar ? "small" : ""}` }>
+        <div className="wrapper headerIcons">
+          <BurgerMenu
+          hub={status.length}
           />
-        </div> */}
-        {/* <AboutCreators /> */}
+          <Link className="homeLink" to="/"><p>Home</p></Link>
+          <SearchSmall />
+        </div>
 
-        <nav>
-          <form className="form" onSubmit={handleSubmit}>
+        <nav  className={ `nav ${hideSearchbar ? "small" : ""}` }>
+          <form className="searchForm" onSubmit={handleSubmit}>
+
 
             <div className="searchLocation">
               <label onClick={(e) => {e.preventDefault()}}>
@@ -203,10 +243,6 @@ function App() {
               />
             </div>
           </form>
-          <Link to="/">Home</Link>
-          <Link to="/personalhub">
-            <p>{status.length}</p>
-          </Link>
         </nav>
       </header>
 
