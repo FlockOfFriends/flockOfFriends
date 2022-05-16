@@ -8,10 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const  AboutCreators = () => {
     return (
         <div className="aboutCreators">
+
+            <div className="aboutCreatorsHeading">
+                <h1>About Creators</h1>
+            </div>
+            
             <div className="wrapper">
-                <div className="aboutCreatorsHeading">
-                    <h1>About Creators</h1>
-                </div>
 
                 <div> 
                     <h2>Meet our awesome team</h2>
