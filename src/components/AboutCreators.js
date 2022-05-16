@@ -26,13 +26,13 @@ const  AboutCreators = () => {
                                 <h3>Brian Charles O'Reilly</h3>
                                 <div className="socialIcons">
                                     <a href="https://www.briancharlesoreilly.com/" aria-label="Portfolio Link"></a>
-                                    <FontAwesomeIcon icon="fas fa-browser" />
+                                    {/* <FontAwesomeIcon icon="fas fa-browser" /> */}
 
                                     <a href="https://www.linkedin.com/in/brian-charles-oreilly/" aria-label="Linkedin Link"></a>
-                                    <FontAwesomeIcon icon="fab fa-linkedin" />
+                                    {/* <FontAwesomeIcon icon="fab fa-linkedin" /> */}
 
                                     <a href="https://github.com/briancharlesoreilly" aria-label="Github Link"></a>
-                                    <FontAwesomeIcon icon="fab fa-github-square" />
+                                    {/* <FontAwesomeIcon icon="fab fa-github-square" /> */}
                                 </div>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam hic magnam facere facilis perferendis asperiores explicabo. Aut repellendus quidem tenetur unde error pariatur debitis adipisci quam! Omnis, quisquam corrupti?</p>
                             </div>
@@ -46,13 +46,13 @@ const  AboutCreators = () => {
                                 <h3>Bea Ferreira</h3>
                                 <div className="socialIcons">
                                     <a href="https://www.beaferreira.ca/" aria-label="Portfolio Link"></a>
-                                    <FontAwesomeIcon icon="fas fa-browser" />
+                                    {/* <FontAwesomeIcon icon="fas fa-browser" /> */}
 
                                     <a href="https://www.linkedin.com/in/beatrizfb/" aria-label="Linkedin Link"></a>
-                                    <FontAwesomeIcon icon="fab fa-linkedin" />
+                                    {/* <FontAwesomeIcon icon="fab fa-linkedin" /> */}
 
                                     <a href="https://github.com/becarolf" aria-label="Github Link"></a>
-                                    <FontAwesomeIcon icon="fab fa-github-square" />
+                                    {/* <FontAwesomeIcon icon="fab fa-github-square" /> */}
                                 </div>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam hic magnam facere facilis perferendis asperiores explicabo. Aut repellendus quidem tenetur unde error pariatur debitis adipisci quam! Omnis, quisquam corrupti?</p>
                             </div>
@@ -66,13 +66,13 @@ const  AboutCreators = () => {
                                 <h3>Marlies Zimmer</h3>
                                 <div className="socialIcons">
                                     <a href="https://www.marliesclaire.com/" aria-label="Portfolio Link"></a>
-                                    <FontAwesomeIcon icon="fas fa-browser" />
+                                    {/* <FontAwesomeIcon icon="fas fa-browser" /> */}
 
                                     <a href="https://www.linkedin.com/in/marlies-zimmer/" aria-label="Linkedin Link"></a>
-                                    <FontAwesomeIcon icon="fab fa-linkedin" />
+                                    {/* <FontAwesomeIcon icon="fab fa-linkedin" /> */}
 
                                     <a href="https://github.com/mzmarlies" aria-label="Github Link"></a>
-                                    <FontAwesomeIcon icon="fab fa-github-square" />
+                                    {/* <FontAwesomeIcon icon="fab fa-github-square" /> */}
                                 </div>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam hic magnam facere facilis perferendis asperiores explicabo. Aut repellendus quidem tenetur unde error pariatur debitis adipisci quam! Omnis, quisquam corrupti?</p>
                             </div>
@@ -86,13 +86,13 @@ const  AboutCreators = () => {
                                 <h3>Stephen Korzenstein</h3>
                                 <div className="socialIcons">
                                     <a href="https://www.marliesclaire.com/" aria-label="Portfolio Link"></a>
-                                    <FontAwesomeIcon icon="fas fa-browser" />
+                                    {/* <FontAwesomeIcon icon="fas fa-browser" /> */}
 
                                     <a href="https://www.linkedin.com/in/skorzenstein/" aria-label="Linkedin Link"></a>
-                                    <FontAwesomeIcon icon="fab fa-linkedin" />
+                                    {/* <FontAwesomeIcon icon="fab fa-linkedin" /> */}
 
                                     <a href="https://github.com/korzenstein" aria-label="Github Link"></a>
-                                    <FontAwesomeIcon icon="fab fa-github-square" />
+                                    {/* <FontAwesomeIcon icon="fab fa-github-square" /> */}
                                 </div>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam hic magnam facere facilis perferendis asperiores explicabo. Aut repellendus quidem tenetur unde error pariatur debitis adipisci quam! Omnis, quisquam corrupti?</p>
                             </div>

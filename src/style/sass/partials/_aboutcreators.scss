@@ -1,58 +1,65 @@
-h1, h2 {
-    text-align: center;
-    font-weight: bold;
-    line-height: 3rem;
-    margin: 0;
+.aboutCreators {
+  h1, h2 {
+      text-align: center;
+      font-weight: bold;
+      line-height: 3rem;
+      margin: 0;
+  }
+  
+  h1 {
+          font-size: 3.5rem;
+          background-color: rgb(26, 24, 24);
+          margin: 0;
+          padding: 20px; 
+          text-shadow: 1px 1px 4px orange, -1px -1px 4px orange;
+          color: white;
+          border-bottom: 3px solid #dd7939;
+          border-top: 3px solid #dd7939;
+          width: auto;
+  }
+
+  h2 {
+      text-transform: uppercase;
+      margin-top: 50px;
+  }
+
+  ul {
+      li {
+          h3 {
+              width: 70%;
+              text-align: center;
+              font-weight: bold;
+              line-height: 2rem;
+          }
+          p {
+              line-height: 1.6rem;
+              width: 70%;
+          }
+      }
+  }
+
+  .mockupContainer {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      width: 70%;
+  
+      img {
+      display: block;
+      width: 100%;
+      }
+  
+      h3 {
+          width: 70%;
+      }
+  
+      p {
+          line-height: 1.6rem;
+          width: 70%;
+      }
+  }
 }
 
-h1 {
-        font-size: 3.5rem;
-        background-color: rgb(26, 24, 24);
-        margin: 0;
-        padding: 20px; 
-        text-shadow: 1px 1px 4px orange, -1px -1px 4px orange;
-        color: white;
-        border-bottom: 3px solid #dd7939;
-        border-top: 3px solid #dd7939;
-        width: auto;
-}
 
-h2 {
-    text-transform: uppercase;
-    margin-top: 50px;
-}
 
-ul {
-    li {
-        h3 {
-            width: 70%;
-            text-align: center;
-            font-weight: bold;
-            line-height: 2rem;
-        }
-        p {
-            line-height: 1.6rem;
-            width: 70%;
-        }
-    }
-}
-.mockupContainer {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 70%;
 
-    img {
-    display: block;
-    width: 100%;
-    }
-
-    h3 {
-        width: 70%;
-    }
-
-    p {
-        line-height: 1.6rem;
-        width: 70%;
-    }
-}
