@@ -6,11 +6,49 @@
   
   // ***** Header *****
   // ******************
+  .wrapper.headerIcons {
+    z-index: 200;
+  }
 
+  .nav {
+    top: 20vh;
+
+    .searchForm {
+      margin: 0;
+      transition: all 0.3s;
+    }
+  }
 }
 
-
 @media (max-width: 930px) {
+  // ***** Header *****
+  // ******************
+  .nav {
+    transition: all 0.4s;
+
+    .searchForm {
+      background-color: white;
+      width: 900px;
+      height: auto;
+      border-radius: 30px;
+      padding: 10px 4px;
+      transition: all 0.3s;
+      
+      div {
+        padding: 3px;
+        transition: all 0.3s;
+      }
+
+      .radioEventList.show {
+        left: -50px;
+        transition: all 0.4s;
+      }
+    }
+  }
+
+
+
+
   // ***** Personal Event Hub *****
     // ******************
     .personalHub {
@@ -39,6 +77,41 @@
 
   // ***** Header *****
   // ******************
+  .nav {
+    top: 90px;
+
+    .searchForm {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 90%;
+      max-width: 100vw;
+      height: 100%;
+      max-height: 90vh;
+      padding: 40px;
+      text-align:  center;
+
+      div {
+        width: 100%;
+        height: auto;
+      }
+
+      label {
+        p {
+          font-size: 1.1rem;
+          text-transform: uppercase;
+          font-weight: 700;
+        }
+      }
+
+    }
+
+    .searchSubmit {
+      .searchSubmitButton {
+        width: 70px;
+      }
+    }
+  }
 
   .searchStartDate,
   .searchEndDate {

@@ -16,6 +16,7 @@ const EventDetails = () => {
   const { eventID } = useParams();
   const [detailsArray, setDetailsArray] = useState({ loading: false });
   const [showButton, setShowButton] = useState(false);
+  
 
   // Ticketmaster API Call for Individual Event
   useEffect(() => {
@@ -82,6 +83,17 @@ const EventDetails = () => {
     setUserInput(event.target.value);
   };
 
+  // function to return index of highest quality image
+  const getImage = () => {
+    if (detailsArray.loading === true ) {
+      const largeWidthPhoto = Math.max(...detailsArray.images.map(function(i) {return i.width}));
+      const largePhotoIndex = detailsArray.images.map(e => e.width).indexOf(largeWidthPhoto);
+      return largePhotoIndex;
+    }
+  }
+  // save index of highest quality image in a variable
+  const imageBig = getImage();
+
   // Form submission that will store our new firebase data on submit
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -96,7 +108,7 @@ const EventDetails = () => {
         userInput,
         id: eventID,
         title: detailsArray.name,
-        img: detailsArray.images[1].url,
+        img: detailsArray.images[imageBig].url,
         // start: detailsArray.dates.start.localDate,
         // time: detailsArray.dates.start.localTime,
         dateTime: detailsArray.dates.start.dateTime,
@@ -183,7 +195,7 @@ const EventDetails = () => {
 
             <div className="rightSide">
               <div className="img">
-                <img src={detailsArray.images[6].url} alt={detailsArray.name} />
+                <img src={detailsArray.images[imageBig].url} alt={detailsArray.name} />
               </div>
             </div>
           </div>
