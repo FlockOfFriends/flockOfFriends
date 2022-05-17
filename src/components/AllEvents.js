@@ -149,8 +149,8 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
                     alt={`Placeholder`} />
                     </Link>
                     <div className="subtitle">
-                    <h3>{event.name}</h3>
-                    <h5>{convertDate(event.dates.start.dateTime)}</h5>
+                    <h3 className="allEventsH3">{event.name}</h3>
+                    <h5 className="allEventsH5">{convertDate(event.dates.start.dateTime)}</h5>
                     </div>
                   </li>
                 ) 

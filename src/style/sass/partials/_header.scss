@@ -27,7 +27,7 @@
     text-decoration: none;
 
     .logoBox {
-      background-color: $whiteBlue;
+      background-color:  white;
       border: 1px solid black;
       padding: 0 10px 10px 10px;
       border-radius: 30px;
@@ -149,7 +149,7 @@
   }
 
   .hubAmount {
-    padding: 0 30px;
+    padding: 0 5px;
     display: inline-block;
     color: $darkBlue;
     text-transform: lowercase;

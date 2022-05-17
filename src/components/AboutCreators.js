@@ -19,7 +19,7 @@ const  AboutCreators = () => {
             <div className="wrapper">
 
                 <div> 
-                    <h2>Meet our awesome team</h2>
+                    <h2 className="teamHeader2">Meet our awesome team</h2>
                     <ul className="projectCreators">
                         <li className="brian">
                             <div className="creatorContainer">
@@ -31,7 +31,7 @@ const  AboutCreators = () => {
                                 </div>
 
                                 <div className="creatorInfo">
-                                    <h3>Brian Charles O'Reilly</h3>
+                                    <h3 className="aboutCreatorH3">Brian Charles O'Reilly</h3>
                                     <div className="socialIcons">                                    {/* <FontAwesomeIcon icon="fas fa-browser" /> */}
                                         <a href="https://www.linkedin.com/in/brian-charles-oreilly/">
                                             <img src={iconLink} alt="Linkedin icon" />
@@ -59,7 +59,7 @@ const  AboutCreators = () => {
                                 </div>
 
                                 <div className="creatorInfo">
-                                    <h3>Beatriz Ferreira</h3>
+                                    <h3 className="aboutCreatorH3">Beatriz Ferreira</h3>
                                     <div className="socialIcons">
                                         <a href="https://www.linkedin.com/in/beatrizfb/" >
                                             <img src={iconLink} alt="Linkedin icon" />
@@ -86,7 +86,7 @@ const  AboutCreators = () => {
                                 </div>
 
                                 <div className="creatorInfo">
-                                    <h3>Marlies Zimmer</h3>
+                                    <h3 className="aboutCreatorH3">Marlies Zimmer</h3>
                                     <div className="socialIcons">
                                         <a href="https://www.linkedin.com/in/marlies-zimmer/" >
                                             <img src={iconLink} alt="Linkedin icon" />
@@ -113,7 +113,7 @@ const  AboutCreators = () => {
                                 </div>
 
                                 <div className="creatorInfo">
-                                    <h3>Stephen Korzenstein</h3>
+                                    <h3 className="aboutCreatorH3">Stephen Korzenstein</h3>
                                     <div className="socialIcons">
                                         <a href="https://www.linkedin.com/in/skorzenstein/" aria-label="Linkedin Link">
                                             <img src={iconLink} alt="Linkedin icon" />

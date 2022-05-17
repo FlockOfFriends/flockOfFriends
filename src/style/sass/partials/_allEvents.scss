@@ -23,6 +23,7 @@
                     border-radius: 5px;
                 }
                 .subtitle {
+                    text-align: right;
                     position: absolute;
                     padding: 1rem;
                     bottom: 0;
@@ -30,11 +31,12 @@
                     background-color: $mediumBlue;
                     font-weight: 400;
                     border-radius: 5px;
-                    h3 {
+                    .allEventsH3 {
+                        text-align: right;
                         font-size: 1.2rem;
                         color: white;
                     }
-                    h5 {
+                    .allEventsH5 {
                         color: white;
                     }
                 }

@@ -3,7 +3,7 @@
     background-color: white;
     color: $darkBlue;
     
-    .aboutHeader, h2 {
+    .aboutHeader, .teamHeader2 {
     text-align: center;
     font-weight: bold;
     line-height: 3rem;
@@ -21,7 +21,7 @@
         width: auto;
     }
 
-    h2 {
+    .teamHeader2 {
         text-transform: uppercase;
         margin-top: 70px;
         margin-bottom: 50px;   
@@ -31,7 +31,7 @@
 
     ul {
         li {
-            h3 {
+          .aboutCreatorH3 {
                 width: 70%;
                 text-align: center;
                 font-weight: bold;
@@ -105,7 +105,7 @@
     display: block;
     width: 100%;
     }
-    h3 {
+    .aboutCreatorH3 {
         width: 70%;
     }
     
@@ -145,14 +145,14 @@
             width: 100%;
         }
 }
-  h1, h2 {
+.aboutHeader, .teamHeader2 {
       text-align: center;
       font-weight: bold;
       line-height: 3rem;
       margin: 0;
   }
   
-  h1 {
+  .aboutHeader {
           font-size: 3.5rem;
           background-color: rgb(26, 24, 24);
           margin: 0;
@@ -164,14 +164,14 @@
           width: auto;
   }
 
-  h2 {
+  .teamHeader2 {
       text-transform: uppercase;
       margin-top: 50px;
   }
 
   ul {
       li {
-          h3 {
+          .aboutCreatorH3 {
               width: 70%;
               text-align: center;
               font-weight: bold;
@@ -195,7 +195,7 @@
       width: 100%;
       }
   
-      h3 {
+      .aboutCreatorH3 {
           width: 70%;
       }
   
