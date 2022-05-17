@@ -52,9 +52,11 @@
     border-radius: 50px;
     z-index: 10;
     cursor: pointer;
+    transition: all 0.2s;
 
     &:hover, &:focus {
-      background-color: $whiteBlue;
+      background-color: #ebebeb;
+      transition: all 0.2s;
     }
     
       svg {
@@ -105,9 +107,10 @@
   top: 100px;
   left: -800px;
   opacity: 0;
-  background: $whiteBlue;
+  background: white;
   width: 320px;
   padding: 20px 0;
+  border: 2px solid $mediumBlue;
   border-radius: 30px;
   z-index: 9;
   transition: all 0.4s;
@@ -116,21 +119,22 @@
     display: block;
     padding: 10px 40px;
     text-decoration: none;
-    color: $darkBlue;
+    color: black;
     text-transform: uppercase;
     font-weight: bold;
 
     &:hover {
       border-radius: 30px;
-      background: $mediumBlue;
-      color: $whiteBlue;
+      background: $whiteBlue;
+      color: $darkBlue;
       filter: drop-shadow(0px 4px 4px #6B6666);
+      transition: all 0.2s;
     }
 
     &:active, :focus {
       border-radius: 30px;
-      background: black;
-      color: $whiteBlue;
+      background: $mediumBlue;
+      color: white;
       filter: drop-shadow(0px 4px 4px #6B6666);
     }
   }
@@ -189,6 +193,9 @@
   transition: all 0.4s;
 }
 
+
+// *********************
+// *** HEADER SHRINK ***
 .App.headerShrink {
   .header {
     height: 140px;
@@ -208,6 +215,8 @@
   }
 }
 
+// *********************
+// *****  HEADER  ******
 .header {
   width: 100%;
   height: 60vh;
@@ -251,7 +260,7 @@ nav.small {
   padding: 10px 15px;
   margin: 20px;
   background: white;
-  border: 2px solid $darkBlue;
+  border: 1px solid black;
   border-radius: 50px;
   transition: all 0.4s;
 
@@ -261,18 +270,19 @@ nav.small {
     justify-content: center;
     border-radius: 30px;
     position: relative;
+    transition: all 0.2s;
 
     &:hover .searchLocationInput,
     &:active .searchLocationInput {
-      background-color: #ebebeb;
       cursor: pointer;
       border-radius: 30px;
     }
 
     &:hover, &:focus, &:focus-within {
-      background-color: #ebebeb;
+      background-color: $whiteBlue;
       cursor: pointer;
       filter: drop-shadow(0px 4px 4px #6B6666);
+      transition: all 0.2s;
     }
 
     label {
@@ -319,10 +329,12 @@ nav.small {
     align-items: center;
     padding: 10px;
     border-radius: 30px;
+    transition: all 0.2s;
 
     &:hover, &:focus {
-      background-color: #ebebeb;
+      background-color: $whiteBlue;
       filter: drop-shadow(0px 4px 4px #6B6666);
+      transition: all 0.2s;
     }
 
     label {
@@ -357,8 +369,7 @@ nav.small {
       }
 
       &:hover .react-date-picker__wrapper {
-        background-color:whitesmoke;
-        filter: drop-shadow(0px 2px 2px #6B6666);
+        background-color: whitesmoke;
         transition: all 0.2s;
       }
     }
@@ -387,11 +398,18 @@ nav.small {
     align-items: center;
     padding: 10px;
     border-radius: 30px;
+    transition: all 0.2s;
+
+    &:hover .eventTypeGenre {
+      background-color: whitesmoke;
+      border-radius: 30px;
+    }
 
     &:hover, &focus {
       cursor: pointer;
-      background-color: #ebebeb;
+      background-color: $whiteBlue;
       filter: drop-shadow(0px 4px 4px #6B6666);
+      transition: all 0.2s;
     }
 
     .eventTypeGenre {
@@ -412,14 +430,15 @@ nav.small {
 
     .radioEventList {
       position: absolute;
-      display: none;
+      opacity: 1;
       flex-direction: column;
       background: whitesmoke;
-      border: 2px solid black;
+      border: 1px solid black;
       border-radius: 30px;
       top: 70px;
-      left: -10px;
+      right: -10px;
       width: 200px;
+      transition: all 0.2s;
 
       label {
         font-size: 1rem;
@@ -428,10 +447,15 @@ nav.small {
         font-weight: 700;
 
         &:hover, &:focus {
-          background-color: black;
-          color: whitesmoke;
+          background-color: $whiteBlue;
+          color: black;
           border-radius: 30px;
           filter: drop-shadow(0px 4px 4px #6B6666);
+        }
+
+        &:active {
+          background-color: $mediumBlue;
+          color: white;
         }
       }
 
@@ -442,8 +466,9 @@ nav.small {
     }
 
     .radioEventList.show {
-      display: flex;
-      transition: all 0.4s;
+      right: -600px;
+      opacity: 0;
+      transition: all 0.2s;
     }
   }
 
@@ -454,15 +479,17 @@ nav.small {
     justify-content: center;
     align-items: center;
     border-radius: 30px;
+    transition: all 0.2s;
 
     &:hover, &:focus {
       cursor: pointer;
-      background-color: #ebebeb;
+      background-color: $whiteBlue;
       filter: drop-shadow(0px 4px 4px #6B6666);
+      transition: all 0.2s;
     }
 
     &:active {
-      filter: drop-shadow(2px 4px 4px #524f4f);
+      background-color: $mediumBlue;
     }
 
     .searchSubmitButton {

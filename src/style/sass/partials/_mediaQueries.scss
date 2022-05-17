@@ -80,6 +80,18 @@
   .nav.small {
     top: -800px;
   }
+
+  .App.headerShrink {
+    .header {
+      nav {
+        top: -800px;
+      }
+
+      nav.small {
+        top: -800px;
+      }
+    }
+  }
   .nav {
     top: 90px;
 
@@ -93,6 +105,10 @@
       max-height: 90vh;
       padding: 40px;
       text-align:  center;
+
+      .searchLocation, .searchDateStart, .searchDateEnd, .searchEventType, .searchSubmit {
+        padding: 10px 0;
+      }
 
       .searchDateStart {
         z-index: 9999;
