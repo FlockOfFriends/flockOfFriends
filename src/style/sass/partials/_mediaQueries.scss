@@ -95,6 +95,11 @@
 //     LARGE MOBILE
 // *******************
 @media (max-width: 768px) {
+  // ***** Base Styles *****
+  // ******************
+  h2 {
+    font-size: 3rem;
+  }
 
   // ***** Header *****
   // ******************
@@ -159,15 +164,71 @@
              }
            }
          }
+  
+    // ***** Personal Event Hub *****
+    // ******************
+    .personalHub {
+      .wrapper {
+        width: 100%;
+      }
+      .catalogue {
+        li {
+          width: 100%;
+          height: fit-content;
+        }
+      }
+    }
+
+    // ***** Personal Event *****
+    // ******************
+    .personalEvent {
+      .wrapper {
+        
+        .attendees {
+          padding: 20px;
+          gap: 0;
+          h3 {
+            text-align: left;
+            margin: 0 30px;
+          }
+
+          .addGuest {
+            align-items: flex-start;
+          }
+
+          .guest {
+            margin: 0 20px;
+          }
+          
+          .avatar {
+            margin-right: 0;
+            width: 70px;
+          }
+
+          .guestName {
+            input {
+              margin: 15px 0;
+            }
+          }
+        }
+      }
+    }
+    
 }
 
 // *******************
 //     SMALL MOBILE
 // *******************
 @media (max-width: 450px) { 
+  // ***** Base Styles *****
+  // ******************
+  h2 {
+    font-size: 2.5rem;
 
+  }
   // ***** Header *****
   // ******************
+
 
 
     // ***** Event Details *****
@@ -192,4 +253,80 @@
           gap: 0.5rem;
         }
       }
+
+  // ***** Personal Event Hub *****
+  // ******************
+  .personalHub {
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
+
+  // ***** Personal Event *****
+  // ******************
+  .personalEvent {
+    .wrapper {
+      .title {
+        .titleBottom {
+          flex-direction: column;
+
+          .titleText {
+            width: 100%;
+            
+          }
+          .calendar {
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 20px 0;
+          }
+        }
+      }
+      
+      .attendees {
+        h3 {
+          text-align: left;
+          margin: 0 10px;
+        }
+
+        .guest {
+          margin: 0;
+        }
+
+        .guestName {
+          flex-direction: column;
+          padding: 0;
+          margin: 10px;
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+
+      .addedNames {
+        margin: 0;
+        align-items: center;
+
+      }
+
+      .socials {
+        ul {
+          .socialIcons {
+            width: 2rem;
+          }
+        }
+      }
+      
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  // ***** Personal Event *****
+  // ******************
+  .personalEvent {
+    .wrapper {
+      width: 90%;
+    }
+  }
 }

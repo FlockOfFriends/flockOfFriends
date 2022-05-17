@@ -124,34 +124,37 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
   }
 
     return (
+      <>
+        <h2>Upcoming Events</h2>
         <ul className="allEvents">
           <div className="wrapper">
-        { events.map((event) => {
-          // filter through images available and save index position of the largest for display
-          const imagesArray = event.images;
-          const largeWidthPhoto = Math.max(...imagesArray.map(function(i) {return i.width}));
-          const largePhotoIndex = imagesArray.map(e => e.width).indexOf(largeWidthPhoto);
+            { events.map((event) => {
+            // filter through images available and save index position of the largest for display
+              const imagesArray = event.images;
+              const largeWidthPhoto = Math.max(...imagesArray.map(function(i) {return i.width}));
+              const largePhotoIndex = imagesArray.map(e => e.width).indexOf(largeWidthPhoto);
 
-            return (
-         
-              <li 
-              className="allEventContainer"
-              key={event.id}>
-                <Link to={`/event/${event.id}`}>
-                <img
-                className="allEventImage" 
-                src={event.images[largePhotoIndex].url} 
-                alt={`Placeholder`} />
-                </Link>
-                <div className="subtitle">
-                <h2>{event.name}</h2>
-                <h5>{convertDate(event.dates.start.dateTime)}</h5>
-                </div>
-              </li>
-            ) 
-        })}
-        </div>
-      </ul>
+                return (
+                  <li 
+                  className="allEventContainer"
+                  key={event.id}>
+                    <Link to={`/event/${event.id}`}>
+                    <img
+                    className="allEventImage" 
+                    src={event.images[largePhotoIndex].url} 
+                    alt={`Placeholder`} />
+                    </Link>
+                    <div className="subtitle">
+                    <h3>{event.name}</h3>
+                    <h5>{convertDate(event.dates.start.dateTime)}</h5>
+                    </div>
+                  </li>
+                ) 
+            })}
+          </div>
+        </ul>
+      </>
+        
     )
 };
 export default AllEvents;

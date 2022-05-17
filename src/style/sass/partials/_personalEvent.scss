@@ -38,11 +38,12 @@ p {
       justify-content: center;
       align-items: flex-start;
       flex-direction: column;
-      h2 {
+      h3 {
+        text-align: left;
         margin-bottom: 1rem;
         font-weight: 500;
       }
-      h5 {
+      h4 {
         margin-bottom: 0.5rem;
       }
 
@@ -192,7 +193,8 @@ p {
       padding: 2rem 1.8rem;
       width: 100%;
 
-      h2 {
+      h3 {
+        padding-bottom: 10px;
         margin-bottom: 1.5rem;
         border-bottom: 1px solid rgb(36, 35, 35);
       }
@@ -276,6 +278,17 @@ p {
             &:focus {
               opacity: 0.8;
             }
+          border: 1px solid $lightBlue;
+
+//           &:hover,
+//           &:focus {
+//             transition: 0.1s;
+//             background: red;
+//             color: yellow;
+//             box-shadow: 1px 1px 6px darkred, -1px -1px 6px darkred;
+//             border: none;
+//           }
+          
         }
       }
     }
@@ -302,6 +315,7 @@ p {
   }
 
   ul {
+    margin-top: 15px;
     width: 100%;
     display: flex;
     gap: 2rem;
