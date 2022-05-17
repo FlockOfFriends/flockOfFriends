@@ -106,7 +106,10 @@ function App() {
           <Link
           className={`homeLink ${hideSearchbar ? "small" : ""}`}
           to="/">
-            <h1>Flock of Friends</h1>
+            <div className="logoBox">
+              <h1>Flock of Friends</h1>
+              {/* <p>Find some fun. Create an Event. Share with Friends.</p> */}
+            </div>
             <div className="flockLogo" aria-label="Flock Of Friends">
               <FlockLogo />
             </div>

@@ -30,7 +30,8 @@
       font-size: 1.6rem;
       text-transform: uppercase;
       background-color: white;
-      color: $mediumBlue;
+      border: 1px solid black;
+      color: black;
       font-family: $headingFont;
       font-weight: bold;
       padding: 10px;
@@ -46,13 +47,20 @@
       transition: all 0.2s;
       position: relative;
 
+      .icon {
+        transition: all 0.2s;
+        &:hover, &:focus {
+          background-color: $whiteBlue;
+          transition: all 0.2s;
+        }
+      }
+
       div {
         position: absolute;
         left: -35px;
       }
     }
   }
-
 
   .homeLink.small {
     h1 {
