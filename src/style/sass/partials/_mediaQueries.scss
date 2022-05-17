@@ -236,9 +236,21 @@
     }
   }
 
-// *******************
-// *** ALL EVENTS  ***
-
+  // *******************
+  // *** ALL EVENTS  ***
+  .allEvents .wrapper {
+    .allEventContainer {
+      .subtitle {
+        padding: 0.4rem;
+        .allEventsH3 {
+          font-size: 1rem;
+        }
+        .allEventsH5 {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
 }
 
 // *******************
@@ -328,7 +340,6 @@
   // ******************
   h2 {
     font-size: 2.5rem;
-
   }
   // ***** Header *****
   // ******************
@@ -337,7 +348,6 @@
       width: 98%;
       padding: 10px 0;
 
-      
       .searchEventType {
         .radioEventList {
           right: -90px;
@@ -351,7 +361,6 @@
     .homeLink {
       
       .logoBox {
-  
         padding: 10px;
   
         h1 {
@@ -362,41 +371,53 @@
           display: none
         }
       }
-
-
-    // ***** Event Details *****
-      // ******************
-
-      .eventDetails {
-        .wrapper {
-          h3 {
-            font-size: 1.2rem;
-          }
-          .form {
-            .formUser {
-                input {
-                  width: 100%;
-                }
-              }
-          }
+    }
+  } 
+  // *******************
+  // *** ALL EVENTS  ***
+  .allEvents .wrapper {
+    .allEventContainer {
+      .subtitle {
+        padding: 0.4rem;
+        .allEventsH3 {
+          font-size: 0.8rem;
         }
-        .formConditional {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
+        .allEventsH5 {
+          font-size: 0.7rem;
         }
       }
-
+    }
+  }
+  // ***** Event Details *****
+  // *************************
+  .eventDetails {
+    .wrapper {
+      h3 {
+        font-size: 1.2rem;
+      }
+      .form {
+        .formUser {
+            input {
+              width: 100%;
+            }
+          }
+      }
+    }
+    .formConditional {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
   // ***** Personal Event Hub *****
-  // ******************
+  // ******************************
   .personalHub {
     h3 {
       font-size: 1.2rem;
     }
   }
-
   // ***** Personal Event *****
-  // ******************
+  // **************************
   .personalEvent {
     .wrapper {
       .title {
@@ -405,8 +426,8 @@
 
           .titleText {
             width: 100%;
-            
           }
+
           .calendar {
             justify-content: flex-start;
             align-items: flex-start;
@@ -439,7 +460,6 @@
       .addedNames {
         margin: 0;
         align-items: center;
-
       }
 
       .socials {
@@ -449,11 +469,11 @@
           }
         }
       }
-      
     }
   }
 }
-  }}
+
+
 @media (max-width: 390px) {
   // ***** Personal Event *****
   // ******************
