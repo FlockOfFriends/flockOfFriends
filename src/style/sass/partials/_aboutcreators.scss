@@ -23,32 +23,37 @@
     h2 {
         text-transform: uppercase;
         margin-top: 70px;
-        margin-bottom: 50px;
-        text-shadow: 1px 1px 4px orange, -1px -1px 4px orange;
-        color: white;
+        margin-bottom: 50px;   
+        text-shadow: 1px 1px 10px #c7e7ff, -1px -1px 10px #c7e7ff;
+        color: $darkBlue;
+    }
+
+    ul {
+        li {
+            h3 {
+                width: 70%;
+                text-align: center;
+                font-weight: bold;
+                line-height: 2rem;
+                margin: auto;
+                margin-top: 30px;
+                text-shadow: 1px 1px 1px #c7e7ff;
+                border-bottom: 1px solid rgb(36, 35, 35);
+            }
+            p {
+                text-align: justify;
+                margin: auto;
+                width: auto;
+                line-height: 1.6rem;
+                color: $darkBlue;
+                padding: 0 30px;
+                margin-bottom: 30px;
+            }
+        }
     }
 }
 
-ul {
-    li {
-        h3 {
-            width: 70%;
-            text-align: center;
-            font-weight: bold;
-            line-height: 2rem;
-            margin: auto;
-            text-shadow: 1px 1px 1px #c7e7ff;
-            border-bottom: 1px solid rgb(36, 35, 35);
-        }
-        p {
-            text-align: center;
-            margin: auto;
-            width: auto;
-            line-height: 1.6rem;
-            color: $darkBlue;
-        }
-    }
-}
+
 
 .creatorContainer {
     display: flex;
@@ -94,8 +99,6 @@ ul {
 .mockupContainer {
     display: flex;
     flex-wrap: wrap;
-    // flex-direction: column;
-    width: 70%;
     cursor: pointer;
     img {
     display: block;
@@ -113,7 +116,7 @@ ul {
 
 
 /* small and extra small devices (tablets/phones 800px and down) */
-@media (max-width: 800px) {
+@media (max-width: 960px) {
     .creatorContainer {
         flex-direction: column;
         p {
@@ -132,5 +135,3 @@ ul {
             width: 100%;
         }
 }
-
-
