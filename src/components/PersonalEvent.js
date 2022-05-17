@@ -292,7 +292,7 @@ const PersonalEvent = ({ liked }) => {
                   onChange={handleFormChange}
                   value={formInput}
                 />
-                <button className="addButton" onClick={handleFormSubmit}>
+                <button className="detailsButton" onClick={handleFormSubmit}>
                   Change Details
                 </button>
               </form>

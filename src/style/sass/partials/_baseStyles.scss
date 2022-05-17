@@ -1,18 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  color: rgb(36, 35, 35);
+}
+
 body {
   font-size: 125%;
-  font-family: $bodyFont;
+  // font-family: $bodyFont;
 }
 
 img {
-  height: 100%;
   width: 100%;
+  display: block;
 }
 
-.wrapper {
-    max-width: 1280px;
-    width: 80%;
-    margin: 0 auto;
-}
+
+// .wrapper {
+//     max-width: 1280px;
+//     width: 80%;
+//     margin: 0 auto;
+// }
+
 
 // **********************
 // ***** TYPOGRAPHY *****
@@ -24,4 +36,8 @@ form {
         font-size: 0.85rem;
         letter-spacing: 0.03rem;
     }
+}
+
+p {
+  font-size: 1rem;
 }

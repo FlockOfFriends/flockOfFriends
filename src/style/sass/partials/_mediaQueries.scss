@@ -48,7 +48,28 @@
       }
     }
   }
+     // *****  Event Details *****
+     // ******************
 
+     .eventDetails {
+       .wrapper {
+         .title {
+           flex-direction: column-reverse;
+           .titleLeft {
+             width: 100%;
+             h2 {
+               margin-top: 1.5rem;
+             }
+           }
+           .rightSide {
+            width: 100%;
+            .img {
+              position: static;
+            }
+           }
+         }
+       }
+     }
   // ***** Personal Event Hub *****
     // ******************
     .personalHub {
@@ -125,6 +146,19 @@
     }
 
   }
+
+         // ***** Event Details *****
+         // ******************
+
+         .eventDetails {
+           .wrapper {
+             .titleBottom {
+               .titleText {
+                 width : 100%;
+               }
+             }
+           }
+         }
 }
 
 // *******************
@@ -135,4 +169,27 @@
   // ***** Header *****
   // ******************
 
+
+    // ***** Event Details *****
+      // ******************
+
+      .eventDetails {
+        .wrapper {
+          h2 {
+            font-size: 1.2rem;
+          }
+          .form {
+            .formUser {
+                input {
+                  width: 100%;
+                }
+              }
+          }
+        }
+        .formConditional {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+      }
 }
