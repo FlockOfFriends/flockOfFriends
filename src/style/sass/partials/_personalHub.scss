@@ -113,6 +113,14 @@
         bottom: 2%;
         right: 2%;
         cursor: pointer;
+
+        &:hover,
+        &:focus {
+            transition: 0.1s;
+            background: red;
+            color: yellow;
+            box-shadow: 1px 1px 6px darkred, -1px -1px 6px darkred;
+        }
     }
 
 }
