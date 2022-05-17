@@ -26,18 +26,34 @@
     justify-content: center;
     text-decoration: none;
 
-    h1 {
-      font-size: 1.6rem;
-      text-transform: uppercase;
-      background-color: white;
+    .logoBox {
+      background-color: $whiteBlue;
       border: 1px solid black;
-      color: black;
-      font-family: $headingFont;
-      font-weight: bold;
-      padding: 10px;
+      padding: 0 10px 10px 10px;
       border-radius: 30px;
       opacity: 1;
       transition: all 0.2s;
+
+      h1 {
+        font-size: 1.6rem;
+        text-align: center;
+        text-transform: uppercase;
+        color: black;
+        font-family: $headingFont;
+        font-weight: bold;
+        margin: 0;
+        margin-bottom: 3px;
+      }
+      
+      p {
+        text-align: center;
+        background-color: white;
+        border-radius: 30px;
+        padding: 5px 10px;
+        margin: 0;
+        font-weight: 500;
+        letter-spacing: 0.1rem;
+      }
     }
 
     .flockLogo {
@@ -63,7 +79,8 @@
   }
 
   .homeLink.small {
-    h1 {
+
+    .logoBox {
       opacity: 0;
       transform: scaleX(0.1);
       transition: all 0.2s;
@@ -76,7 +93,6 @@
       transform: scaleX(1);
       transform: scaleY(1);
       transition: all 0.2s;
-
     }
   }
 }
