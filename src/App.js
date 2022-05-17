@@ -18,6 +18,7 @@ import SearchSmall from "./components/SearchSmall";
 // images
 import search from "./images/search.png";
 import logoBird from "./images/bird-standing-sml.png"
+import FlockLogo from "./components/FlockLogo";
 
 function App() {
   // Lets mutate the Date data immediately
@@ -108,7 +109,10 @@ function App() {
           className={`homeLink ${hideSearchbar ? "small" : ""}`}
           to="/">
             <h1>Flock of Friends</h1>
-            <img className="logoBird" src={logoBird} alt="a drawing a bird" aria-label="Flock Of Friends"/>
+            <div className="flockLogo">
+              <FlockLogo />
+            </div>
+            {/* <img className="logoBird" src={logoBird} alt="a drawing a bird" aria-label="Flock Of Friends"/> */}
           </Link>
           <SearchSmall />
         </div>
