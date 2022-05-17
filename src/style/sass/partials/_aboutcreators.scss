@@ -1,5 +1,5 @@
 .aboutCreators {
-    background-color: #1e2d28;
+    background-color: white;
     color: $darkBlue;
     
     h1, h2 {
@@ -56,7 +56,7 @@ ul {
     align-items: center;
     margin-bottom: 50px;
     border-radius: 5px;
-    background-color: white;
+    background: linear-gradient(#c7e7ff, #d3cfe6);
 
     .mockupContainer,
     .creatorInfo {
