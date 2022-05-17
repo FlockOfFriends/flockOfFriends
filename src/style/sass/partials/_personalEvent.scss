@@ -255,6 +255,16 @@ p {
           font-size: 1rem;
           font-style: italic;
           border: 1px solid $lightBlue;
+
+          &:hover,
+          &:focus {
+            transition: 0.1s;
+            background: red;
+            color: yellow;
+            box-shadow: 1px 1px 6px darkred, -1px -1px 6px darkred;
+            border: none;
+          }
+          
         }
       }
     }
