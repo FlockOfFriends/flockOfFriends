@@ -92,10 +92,18 @@
       height: 100%;
       max-height: 90vh;
       padding: 40px;
-      // text-align:  center;
+      text-align:  center;
+
+      .searchDateStart {
+        z-index: 9999;
+      }
+
+      .searchDateEnd {
+        z-index: 9990;
+      }
 
       div {
-        padding: 5px 20px;
+        padding: 0;
         width: 100%;
         height: auto;
       }

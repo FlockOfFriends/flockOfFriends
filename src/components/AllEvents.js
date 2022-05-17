@@ -47,9 +47,10 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
         console.log(response)
 
 
-        const results = response.data._embedded.events;
-        const newResults = results.filter(dat => dat._embedded !== undefined)
-        console.log("our new data", newResults);
+//         const results = response.data._embedded.events;
+
+//         const newResults = results.filter(dat => dat._embedded !== undefined)
+//         console.log("our new data", newResults);
 
 
 //         setEvents(newResults);
@@ -64,10 +65,10 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
         } else if( errorHandling > 0  && errorHandling < 5 ) {
           console.log("GREATER THAN 0 AND LESS THAN 5")
           setErrorState(1);
-          setEvents(newResults);
+          setEvents(response.data._embedded.events);
         } else {
           setErrorState(2);
-          setEvents(newResults);
+          setEvents(response.data._embedded.events);
         } 
 
 

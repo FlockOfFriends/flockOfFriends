@@ -143,6 +143,7 @@ function App() {
                 <DatePicker
                 dateFormat="dd/MM/yyyy"
                 closeCalendar={false}
+                minDate={new Date()}
                 name="datePicker"
                 id="datePicker"
                 value={dateValue}
@@ -159,6 +160,7 @@ function App() {
                 <DatePicker
                 dateFormat="dd/MM/yyyy"
                 closeCalendar={false}
+                minDate={new Date()}
                 name="datePicker"
                 id="datePicker"
                 value={dateEndValue}
