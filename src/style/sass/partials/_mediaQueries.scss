@@ -93,6 +93,27 @@
     }
   }
 
+  .wrapper.headerIcons {
+    .homeLink {
+      
+      .logoBox {
+        padding: 10px;
+        background-color: white;
+        border: 3px solid $whiteBlue;
+  
+        h1 {
+          font-size: 1.2rem;
+        }
+  
+        p {
+          padding: 0;
+          font-size: 0.8rem;
+          background-color: white;
+        }
+      }
+    }
+  }
+
   .searchIcon {
 
     .searchIconList {
@@ -227,4 +248,21 @@
     }
   }
 
+  .wrapper.headerIcons {
+    .homeLink {
+      
+      .logoBox {
+  
+        padding: 10px;
+  
+        h1 {
+          font-size: 1rem;
+        }
+  
+        p {
+          display: none
+        }
+      }
+    }
+  }
 }
