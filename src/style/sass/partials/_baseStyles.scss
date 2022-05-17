@@ -1,3 +1,7 @@
+// CHECK HERE DELETE IF FINE
+html {
+  height: 100%;
+
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 
 * {
@@ -6,6 +10,7 @@
   font-family: "DM Sans", sans-serif;
   font-weight: 400;
   color: rgb(36, 35, 35);
+
 }
 
 body {
@@ -19,11 +24,15 @@ img {
 }
 
 
-// .wrapper {
-//     max-width: 1280px;
-//     width: 80%;
-//     margin: 0 auto;
-// }
+li {
+  list-style: none;
+}
+
+.wrapper {
+    max-width: 1280px;
+    width: 80%;
+    margin: 0 auto;
+}
 
 
 // **********************
