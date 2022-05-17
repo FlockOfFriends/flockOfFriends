@@ -26,7 +26,8 @@ p {
 .allEvents {
     width: 100%;
         padding: 4rem 0;
-        background-color: white;
+        // background-color: white;
+        background-color: hsl(204, 100%, 94%);
     
     .wrapper {
         display: flex;
@@ -52,7 +53,7 @@ p {
                     background-color: $mediumBlue;
                     font-weight: 400;
                     border-radius: 5px;
-                    h2 {
+                    h3 {
                         font-size: 1.2rem;
                         color: white;
                     }

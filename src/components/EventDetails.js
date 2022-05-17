@@ -126,92 +126,95 @@ const EventDetails = () => {
   };
 
   return (
-    <div className="eventDetails">
-      {detailsArray.loading ? (
-        <div className="wrapper">
-          <div className="title">
-            <div className="titleLeft">
-              <h2>{detailsArray.name}</h2>
-              
-              <h5>{convertDate(detailsArray.dates.start.dateTime)}</h5>
-              <h5>{convertTime(detailsArray.dates.start.dateTime)}</h5>
-              {detailsArray._embedded.venues[0].name ? <p>{detailsArray._embedded.venues[0].name}</p> : null}
-              {showButton ? (
-                <div className="form">
-                  <div className="formUser inputOff">
-                    <label htmlFor="newLiked">Enter Host Name</label>
-                    <input
-                      className="hostInput"
-                      type="text"
-                      id="newLiked"
-                      onChange={handleInputChange}
-                      value={userInput}
-                    />
-                  </div>
-                  <div className="formConditional">
-                    <button
-                      className="createEventButton buttonOff"
+    <>
+      <h2>Create Your Event</h2>
+      <div className="eventDetails">
+        {detailsArray.loading ? (
+          <div className="wrapper">
+            <div className="title">
+              <div className="titleLeft">
+                <h3>{detailsArray.name}</h3>
+                
+                <h4>{convertDate(detailsArray.dates.start.dateTime)}</h4>
+                <h4>{convertTime(detailsArray.dates.start.dateTime)}</h4>
+                {detailsArray._embedded.venues[0].name ? <p>{detailsArray._embedded.venues[0].name}</p> : null}
+                {showButton ? (
+                  <div className="form">
+                    <div className="formUser inputOff">
+                      <label htmlFor="newLiked">Enter Host Name</label>
+                      <input
+                        className="hostInput"
+                        type="text"
+                        id="newLiked"
+                        onChange={handleInputChange}
+                        value={userInput}
+                      />
+                    </div>
+                    <div className="formConditional">
+                      <button
+                        className="createEventButton buttonOff"
+                      >
+                        Create Event
+                      </button>
+                      <Link
+                      className="buttonLink"
+                      to={`/personal/${firedata[0].personalID}`}
                     >
-                      Create Event
-                    </button>
-                    <Link
-                    className="buttonLink"
-                    to={`/personal/${firedata[0].personalID}`}
-                  >
-                    Your Event
-                  </Link>
-                  </div>
-                  
-                </div>
-              ) : (
-                <form className="form" action="submit">
-                  <div className="formUser">
-                    <label htmlFor="newLiked">Enter Host Name</label>
-                    <input
-                      className="hostInput"
-                      type="text"
-                      id="newLiked"
-                      onChange={handleInputChange}
-                      value={userInput}
-                    />
-                  </div>
-                  <div className="formConditional">
-                    <button
-                      className="createEventButton"
-                      onClick={handleSubmit}
-                    >
-                      Create Event
-                    </button>
-                    <button className="createEventButton buttonOff">
                       Your Event
-                    </button>
+                    </Link>
+                    </div>
+                    
                   </div>
-                </form>
-              )}
-            </div>
+                ) : (
+                  <form className="form" action="submit">
+                    <div className="formUser">
+                      <label htmlFor="newLiked">Enter Host Name</label>
+                      <input
+                        className="hostInput"
+                        type="text"
+                        id="newLiked"
+                        onChange={handleInputChange}
+                        value={userInput}
+                      />
+                    </div>
+                    <div className="formConditional">
+                      <button
+                        className="createEventButton"
+                        onClick={handleSubmit}
+                      >
+                        Create Event
+                      </button>
+                      <button className="createEventButton buttonOff">
+                        Your Event
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </div>
 
-            <div className="rightSide">
-              <div className="img">
-                <img src={detailsArray.images[imageBig].url} alt={detailsArray.name} />
+              <div className="rightSide">
+                <div className="img">
+                  <img src={detailsArray.images[imageBig].url} alt={detailsArray.name} />
+                </div>
+              </div>
+            </div>
+            <div className="titleBottom">
+              <div className="titleText">
+                <span>
+                  <img className="icons" src={iconLocation} alt="people icon" />
+                
+                {detailsArray._embedded.venues[0].address.line1 ? <p>
+                  {detailsArray._embedded.venues[0].address.line1},{" "}
+                  {detailsArray._embedded.venues[0].city.name},{" "}
+                  {detailsArray._embedded.venues[0].state.name}
+                </p> : null}
+                </span>
               </div>
             </div>
           </div>
-          <div className="titleBottom">
-            <div className="titleText">
-              <span>
-                <img className="icons" src={iconLocation} alt="people icon" />
-              
-              {detailsArray._embedded.venues[0].address.line1 ? <p>
-                {detailsArray._embedded.venues[0].address.line1},{" "}
-                {detailsArray._embedded.venues[0].city.name},{" "}
-                {detailsArray._embedded.venues[0].state.name}
-              </p> : null}
-              </span>
-            </div>
-          </div>
-        </div>
-      ) : null}
-    </div>
+        ) : null}
+      </div>
+    </>
   );
 };
 
