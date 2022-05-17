@@ -195,11 +195,40 @@
 }
 
 // *******************
+//  MINOR BREAKPOINT
+// *******************
+@media (max-width: 500px) {
+  .searchForm {
+    .searchEventType {
+      .radioEventList {
+        width: 430px;
+        top: -20px;
+        right: -155px;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// *******************
 //     SMALL MOBILE
 // *******************
 @media (max-width: 450px) { 
 
   // ***** Header *****
   // ******************
+  .nav {
+    .searchForm {
+      width: 98%;
+      padding: 10px 0;
+
+      .searchEventType {
+        .radioEventList {
+          right: -90px;
+          width: 80vw;
+        }
+      }
+    }
+  }
 
 }
