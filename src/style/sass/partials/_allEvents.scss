@@ -1,32 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
-
-img {
-    width: 100%;
-    display: block;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    font-family: "DM Sans", sans-serif;
-    font-weight: 400;
-    color: rgb(36, 35, 35);
-}
-
-p {
-    font-size: 1rem;
-}
-
-////////
-
-
-
-// all events styles
+// All Events styles
 
 .allEvents {
     width: 100%;
         padding: 4rem 0;
-        background-color: white;
+        // background-color: white;
+        background-color: hsl(204, 100%, 94%);
     
     .wrapper {
         display: flex;
@@ -52,7 +30,7 @@ p {
                     background-color: $mediumBlue;
                     font-weight: 400;
                     border-radius: 5px;
-                    h2 {
+                    h3 {
                         font-size: 1.2rem;
                         color: white;
                     }

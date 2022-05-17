@@ -49,14 +49,14 @@ const PersonalHub = () => {
 
   return (
     <div className="personalHub">
-      <h3>Personalized Event Hub</h3>
+      <h2>Personalized Event Hub</h2>
       <div className="wrapper">
         <ul className="catalogue">
           {liked.map((like) => {
             return (
               <li key={like.personalID}>
                 <div className="eventContent">
-                  <h4>{like.name.title}</h4>
+                  <h3>{like.name.title}</h3>
                   <Link className="links" to={`/personal/${like.personalID}`}>
                     <div className="personalEventImg">
                       <img src={like.name.img} alt={`Placeholder`} />
@@ -64,7 +64,7 @@ const PersonalHub = () => {
                   </Link>
                   <button
                     onClick={() => handleRemoveEvent(like.personalID)}
-                    className="button"
+                    className="deleteButton"
                   >
                     Delete Event
                   </button>

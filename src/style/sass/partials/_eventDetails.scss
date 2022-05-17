@@ -1,25 +1,4 @@
-// event details
-
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
-
-img {
-  width: 100%;
-  display: block;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "DM Sans", sans-serif;
-  font-weight: 400;
-  color: rgb(36, 35, 35);
-}
-
-p {
-  font-size: 1rem;
-}
-
-////////
+// Event Detail Styles
 
 .eventDetails {
   width: 100%;
@@ -44,12 +23,13 @@ p {
       min-height: 42vh;
       .titleLeft {
         width: 40%;
-        h2 {
+        h3 {
           margin-bottom: 1rem;
           font-weight: 500;
           width: 95%;
+          text-align: left;
         }
-        h5 {
+        h4 {
           margin-bottom: 0.5rem;
         }
         p {
@@ -113,7 +93,7 @@ p {
         input {
           font-size: inherit;
           font-family: inherit;
-          width: 90%;
+          width: 116%;
         }
 
         label {
@@ -129,9 +109,9 @@ p {
       .formConditional {
         align-self: start-end;
         .createEventButton {
-          width: 6rem;
-          padding: 0.5rem;
-          height: 2.5rem;
+          width: 8rem;
+          padding: 0.9rem;
+          // height: 2.5rem;
           border: none;
           background-color: $lightBlue;
           border-radius: 5px;
@@ -139,7 +119,7 @@ p {
           transition: all 0.25s ease-in-out;
           color: white;
           font-family: inherit;
-          font-size: 0.7rem;
+          font-size: 0.9rem;
           cursor: pointer;
 
           &:hover,
@@ -155,9 +135,7 @@ p {
         }
 
         .buttonLink {
-          //   width: 6rem;
-          padding: 0.85rem 1.3rem;
-          //   height: 2.5rem;
+          padding: 0.85rem 1.6rem;
           border: none;
           background-color: $lightBlue;
           border-radius: 5px;
@@ -165,7 +143,7 @@ p {
           transition: all 0.25s ease-in-out;
           color: white;
           font-family: inherit;
-          font-size: 0.7rem;
+          font-size: 0.9rem;
           text-decoration: none;
           text-align: center;
 
