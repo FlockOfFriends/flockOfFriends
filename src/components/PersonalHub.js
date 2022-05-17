@@ -56,7 +56,7 @@ const PersonalHub = () => {
             return (
               <li key={like.personalID}>
                 <div className="eventContent">
-                  <h3>{like.name.title}</h3>
+                  <h3 className="personalHubH3">{like.name.title}</h3>
                   <Link className="links" to={`/personal/${like.personalID}`}>
                     <div className="personalEventImg">
                       <img src={like.name.img} alt={`Placeholder`} />
