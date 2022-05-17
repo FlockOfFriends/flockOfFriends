@@ -27,7 +27,7 @@ function App() {
   const [toggleApi, setToggleApi] = useState(false)
   const [status, setStatus] = useState([])
   const [eventType, setEventType] = useState("")
-  const [eventTypeShow, setEventTypeShow] = useState(true);
+  const [eventTypeShow, setEventTypeShow] = useState(false);
   const [eventGenre, setEventGenre] = useState("choose a genre");
   const [hideSearchbar, setHideSearchBar] = useState(false);
   const [shrinkHeaderHeight, setShrinkHeaderHeight] = useState(false);
@@ -184,7 +184,6 @@ function App() {
                   <label
                     tabIndex="0"
                     htmlFor="allEvents"
-                    // onKeyDown={ (e) => {e.key === "Enter" ? setEventGenre("All Events") : null}}
                     onClick={() => {setEventGenre("All Events");
                     setEventType("")}}>
                     All Events
