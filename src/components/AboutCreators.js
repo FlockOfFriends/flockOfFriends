@@ -13,7 +13,7 @@ const  AboutCreators = () => {
         <div className="aboutCreators">
 
             <div className="aboutCreatorsHeading">
-                <h1>About Creators</h1>
+                <h2 className="aboutHeader">About Creators</h2>
             </div>
             
             <div className="wrapper">

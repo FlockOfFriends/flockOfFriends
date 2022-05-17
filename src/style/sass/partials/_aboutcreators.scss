@@ -3,14 +3,14 @@
     background-color: white;
     color: $darkBlue;
     
-    h1, h2 {
+    .aboutHeader, h2 {
     text-align: center;
     font-weight: bold;
     line-height: 3rem;
     margin: 0;
     }
 
-    h1 {
+    .aboutHeader {
         font-size: 3.5rem;
         background-color: rgb(26, 24, 24);
         padding: 20px; 
