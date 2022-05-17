@@ -261,16 +261,8 @@ const PersonalEvent = ({ liked }) => {
                 {guestList.length === undefined ? null : <p>Attending: {(guestList.length) + 1}</p>}
                 
               </div>
+              
 
-              {/* <div className="subDetails">
-                <span>
-                  <img
-                    src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_timer-1024.png"
-                    alt=""
-                  />
-                </span>
-                <p>Hosts</p>
-              </div> */}
 
               <div className="subDetails">
                 <span>
@@ -279,9 +271,18 @@ const PersonalEvent = ({ liked }) => {
                 <p>{firedata.venue}</p>
               </div>
 
+              <div className="subDetails bottom">
+                <span>
+                  <img src={iconTicket} alt="tickets icon" />
+                </span>
+                <p>
+                  Tickets <a href={`${firedata.tickets}`}>here</a>
+                </p>
+              </div>
+
             <div className="description">
               <form action="submit" className="describeForm">
-                <label htmlFor="describe">Description:</label>
+                <label htmlFor="describe">Write a description for your event:</label>
                 <p>{description}</p>
                 <textarea
                   type="text"
@@ -302,38 +303,7 @@ const PersonalEvent = ({ liked }) => {
               src={`https://maps.google.com/maps?q=${firedata.latitude}, ${firedata.longitude}&output=embed`}
             ></iframe>
           </div>
-              <div className="subDetails bottom">
-                <span>
-                  <img src={iconTicket} alt="tickets icon" />
-                </span>
-                <p>
-                  Tickets <a href={`${firedata.tickets}`}>here</a>
-                </p>
-              </div>
-
-              <div className="description">
-                <form action="submit" className="describeForm">
-                  <label htmlFor="describe">Write a description for your event:</label>
-                  <p>{description}</p>
-                  <textarea
-                    type="text"
-                    id="describe"
-                    onChange={handleFormChange}
-                    value={formInput}
-                  />
-                  <button className="addButton" onClick={handleFormSubmit}>
-                    Change Details
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div className="map">
-              <iframe
-                title="Google maps"
-                className="googlemap"
-                src={`https://maps.google.com/maps?q=${firedata.latitude}, ${firedata.longitude}&output=embed`}
-              ></iframe>
-            </div>
+              
 
             <div className="attendees">
               <h3>Attending</h3>
