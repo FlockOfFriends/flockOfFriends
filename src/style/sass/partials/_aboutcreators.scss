@@ -12,7 +12,6 @@
     h1 {
         font-size: 3.5rem;
         background-color: rgb(26, 24, 24);
-        margin: 0;
         padding: 20px; 
         text-shadow: 1px 1px 4px orange, -1px -1px 4px orange;
         color: white;
@@ -70,18 +69,18 @@ ul {
         width: 70%;
         padding: 20px;
         margin: auto;
-    a {
-    padding: 0 10px;
-        img {
-        width: 2rem;
-        opacity: 1;
-        transition: all 0.2s ease-in-out;
+        a {
+        padding: 0 10px;
+            img {
+            width: 2rem;
+            opacity: 1;
+            transition: all 0.2s ease-in-out;
+            }
+            &:hover, 
+            &:focus {
+                opacity: 0.8;
+            }
         }
-        &:hover, 
-        &:focus {
-            opacity: 0.8;
-        }
-    }
     }
 }
 
