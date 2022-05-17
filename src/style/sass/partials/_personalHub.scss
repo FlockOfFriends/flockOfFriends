@@ -2,8 +2,8 @@
     box-sizing: border-box;
     color: $darkBlue;
     // background-color: rgb(254, 177, 88);
-    background-color: #1e2d28;
-    // background-color: white;
+    // background-color: #1e2d28;
+    background-color: white;
 
     .links {
         text-decoration: none;
@@ -11,8 +11,8 @@
     
     .catalogue {
         // background-color: rgb(254, 177, 88);
-        background-color: #1e2d28;
-        // background-color: white;
+        // background-color: #1e2d28;
+        background-color: white;
         padding: 0;
         display: flex;
         justify-content: center;
@@ -40,12 +40,12 @@
     }
     
     .eventContent {
-        background-color: white;
+        background: linear-gradient(#c7e7ff, #d3cfe6);
         width: 350px;
         height: 350px;
         border: 1px solid $darkBlue;
         border-radius: 5px;
-        padding: 10px 10px 60px 10px;
+        padding: 20px 20px 60px 20px;
         position: relative;
         // display: flex;
         // flex-direction: column;
@@ -58,21 +58,19 @@
         margin: 0 auto;
     }
 
-    h3 {
-        font-size: 3.5rem;
-        background-color: rgb(26, 24, 24);
-        // background-color: $darkBlue;
-        margin: 0;
-        padding: 20px; 
-        text-shadow: 1px 1px 4px orange, -1px -1px 4px orange;
-        color: white;
-        border-bottom: 3px solid #dd7939;
-        border-top: 3px solid #dd7939;
-        // border-bottom: 3px solid $lightBlue;
-        // border-top: 3px solid $lightBlue;
-    }
+    // h2 {
+    //     font-size: 3.5rem;
+    //     background-color: rgb(26, 24, 24);
+    //     margin: 0;
+    //     padding: 20px; 
+    //     text-shadow: 1px 1px 4px orange, -1px -1px 4px orange;
+    //     color: white;
+    //     border-bottom: 3px solid #dd7939;
+    //     border-top: 3px solid #dd7939;
+    // }
     
-    h4 {
+    h3 {
+        text-align: left;
         margin-bottom: 30px;
         font-size: 1.6rem;
         margin: 0;
@@ -97,6 +95,7 @@
 
         img {
             border-radius: 10px;
+            border: 1px solid $mediumBlue;
         }
     }
 
