@@ -1,11 +1,15 @@
-h1, h2 {
+.aboutCreators {
+    background-color: #1e2d28;
+    color: $darkBlue;
+    
+    h1, h2 {
     text-align: center;
     font-weight: bold;
     line-height: 3rem;
     margin: 0;
-}
+    }
 
-h1 {
+    h1 {
         font-size: 3.5rem;
         background-color: rgb(26, 24, 24);
         margin: 0;
@@ -15,11 +19,15 @@ h1 {
         border-bottom: 3px solid #dd7939;
         border-top: 3px solid #dd7939;
         width: auto;
-}
+    }
 
-h2 {
-    text-transform: uppercase;
-    margin-top: 50px;
+    h2 {
+        text-transform: uppercase;
+        margin-top: 70px;
+        margin-bottom: 50px;
+        text-shadow: 1px 1px 4px orange, -1px -1px 4px orange;
+        color: white;
+    }
 }
 
 ul {
@@ -29,31 +37,101 @@ ul {
             text-align: center;
             font-weight: bold;
             line-height: 2rem;
+            margin: auto;
+            text-shadow: 1px 1px 1px #c7e7ff;
+            border-bottom: 1px solid rgb(36, 35, 35);
         }
         p {
+            text-align: center;
+            margin: auto;
+            width: auto;
             line-height: 1.6rem;
-            width: 70%;
+            color: $darkBlue;
         }
     }
 }
+
+.creatorContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    background-color: white;
+
+    .mockupContainer,
+    .creatorInfo {
+        width: 50%;
+    }
+
+    .socialIcons {
+        display: flex;
+        justify-content: center;
+        width: 70%;
+        padding: 20px;
+        margin: auto;
+    a {
+    padding: 0 10px;
+        img {
+        width: 2rem;
+        opacity: 1;
+        transition: all 0.2s ease-in-out;
+        }
+        &:hover, 
+        &:focus {
+            opacity: 0.8;
+        }
+    }
+    }
+}
+
+.beatriz, 
+.stephen {
+    .creatorContainer {
+        flex-direction: row-reverse;
+    }
+}
+
 .mockupContainer {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    // flex-direction: column;
     width: 70%;
     cursor: pointer;
-
     img {
     display: block;
     width: 100%;
     }
-
     h3 {
         width: 70%;
     }
-
+    
     p {
         line-height: 1.6rem;
         width: 70%;
     }
 }
+
+
+/* small and extra small devices (tablets/phones 800px and down) */
+@media (max-width: 800px) {
+    .creatorContainer {
+        flex-direction: column;
+        p {
+            margin-bottom: 80px;
+            padding: 0 40px;
+        }
+    }
+
+        .beatriz .creatorContainer, 
+        .stephen .creatorContainer {
+            flex-direction: column;
+        }
+
+        .creatorContainer .mockupContainer,
+        .creatorContainer .creatorInfo {
+            width: 100%;
+        }
+}
+
+

@@ -25,85 +25,101 @@ const  AboutCreators = () => {
                             <div className="creatorContainer">
                                 <div className="mockupContainer">
                                     <a target="_blank" href="https://www.briancharlesoreilly.com/"> 
-                                        <img src={BrianMockup} alt="Mockup of Brian's portfolio wesbsite" />
+                                        <img src={BrianMockup} alt="Mockup of Brian's portfolio website" />
                                         <span class="sr-only">Link to Brian's Portfolio</span>
                                     </a>
                                 </div>
-                                <h3>Brian Charles O'Reilly</h3>
-                                <div className="socialIcons">
-                                    
-                                    {/* <FontAwesomeIcon icon="fas fa-browser" /> */}
-                                    <a href="https://www.linkedin.com/in/brian-charles-oreilly/">
-                                        <img src={iconLink} alt="Linkedin icon" />
-                                    </a>
-                                    {/* <FontAwesomeIcon icon="fab fa-linkedin" /> */}
+                                <div className="creatorInfo">
+                                    <h3>Brian Charles O'Reilly</h3>
+                                    <div className="socialIcons">                                    {/* <FontAwesomeIcon icon="fas fa-browser" /> */}
+                                        <a href="https://www.linkedin.com/in/brian-charles-oreilly/">
+                                            <img src={iconLink} alt="Linkedin icon" />
+                                            <span class="sr-only">Link to Brian's Linkedin profile</span>
+                                        </a>
 
-                                    <a href="https://github.com/briancharlesoreilly">
-                                        <img src={iconGithub} alt="Github icon" />
-                                    </a>
-                                    {/* <FontAwesomeIcon icon="fab fa-github-square" /> */}
+                                        <a href="https://github.com/briancharlesoreilly">
+                                            <img src={iconGithub} alt="Github icon" />
+                                            <span class="sr-only">Link to Brian's Github profile</span>
+                                        </a>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam hic magnam facere facilis perferendis asperiores explicabo. Aut repellendus quidem tenetur unde error pariatur debitis adipisci quam! Omnis, quisquam corrupti?</p>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam hic magnam facere facilis perferendis asperiores explicabo. Aut repellendus quidem tenetur unde error pariatur debitis adipisci quam! Omnis, quisquam corrupti?</p>
                             </div>
                         </li>
 
                         <li className="beatriz">
                             <div className="creatorContainer">
                                 <div className="mockupContainer">
-                                    <img src={BeatrizMockup} alt="Mockup of Beatriz portfolio wesbsite" />
+                                    <a href="https://www.beaferreira.ca/">
+                                        <img src={BeatrizMockup} alt="Mockup of Beatriz portfolio website" />
+                                        <span class="sr-only">Link to Bea's Portfolio</span>
+                                    </a>
                                 </div>
-                                <h3>Bea Ferreira</h3>
-                                <div className="socialIcons">
-                                    <a href="https://www.beaferreira.ca/" aria-label="Portfolio Link"></a>
-                                    {/* <FontAwesomeIcon icon="fas fa-browser" /> */}
-
-                                    <a href="https://www.linkedin.com/in/beatrizfb/" aria-label="Linkedin Link"></a>
-                                    {/* <FontAwesomeIcon icon="fab fa-linkedin" /> */}
-
-                                    <a href="https://github.com/becarolf" aria-label="Github Link"></a>
-                                    {/* <FontAwesomeIcon icon="fab fa-github-square" /> */}
+                                <div className="creatorInfo">
+                                    <h3>Beatriz Ferreira</h3>
+                                    <div className="socialIcons">
+                                        <a href="https://www.linkedin.com/in/beatrizfb/" >
+                                            <img src={iconLink} alt="Linkedin icon" />
+                                            <span class="sr-only">Link to Bea's Linkedin profile</span>
+                                        </a>
+                                        <a href="https://github.com/becarolf" >
+                                            <img src={iconGithub} alt="Github icon" />
+                                            <span class="sr-only">Link to Bea's Github profile</span>
+                                        </a>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam hic magnam facere facilis perferendis asperiores explicabo. Aut repellendus quidem tenetur unde error pariatur debitis adipisci quam! Omnis, quisquam corrupti?</p>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam hic magnam facere facilis perferendis asperiores explicabo. Aut repellendus quidem tenetur unde error pariatur debitis adipisci quam! Omnis, quisquam corrupti?</p>
                             </div>
                         </li>
 
                         <li className="marlies">
                             <div className="creatorContainer">
                                 <div className="mockupContainer">
-                                    <img src={MarliesMockup} alt="Mockup of Marlies' portfolio wesbsite" />
+                                    <a href="https://www.marliesclaire.com/" >
+                                    <img src={MarliesMockup} alt="Mockup of Marlies' portfolio website" />
+                                    <span class="sr-only">Link to Marlies Portfolio</span>
+                                    </a>
                                 </div>
-                                <h3>Marlies Zimmer</h3>
-                                <div className="socialIcons">
-                                    <a href="https://www.marliesclaire.com/" aria-label="Portfolio Link"></a>
-                                    {/* <FontAwesomeIcon icon="fas fa-browser" /> */}
-
-                                    <a href="https://www.linkedin.com/in/marlies-zimmer/" aria-label="Linkedin Link"></a>
-                                    {/* <FontAwesomeIcon icon="fab fa-linkedin" /> */}
-
-                                    <a href="https://github.com/mzmarlies" aria-label="Github Link"></a>
-                                    {/* <FontAwesomeIcon icon="fab fa-github-square" /> */}
+                                <div className="creatorInfo">
+                                    <h3>Marlies Zimmer</h3>
+                                    <div className="socialIcons">
+                                        <a href="https://www.linkedin.com/in/marlies-zimmer/" >
+                                            <img src={iconLink} alt="Linkedin icon" />
+                                            <span class="sr-only">Link to Marlies' Linkedin profile</span>
+                                        </a>
+                                        <a href="https://github.com/mzmarlies" >
+                                            <img src={iconGithub} alt="Github icon" />
+                                            <span class="sr-only">Link to Marlies Github profile</span>
+                                        </a>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam hic magnam facere facilis perferendis asperiores explicabo. Aut repellendus quidem tenetur unde error pariatur debitis adipisci quam! Omnis, quisquam corrupti?</p>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam hic magnam facere facilis perferendis asperiores explicabo. Aut repellendus quidem tenetur unde error pariatur debitis adipisci quam! Omnis, quisquam corrupti?</p>
                             </div>
                         </li>
 
                         <li className="stephen">
                             <div className="creatorContainer">
                                 <div className="mockupContainer">
-                                    <img src={StephenMockup} alt="Mockup of Stephen's portfolio wesbsite" />
+                                    <a href="https://www.skorzenstein.com/" >
+                                        <img src={StephenMockup} alt="Mockup of Stephen's portfolio website" />
+                                        <span class="sr-only">Link to Stephen's Portfolio</span>
+                                    </a>
                                 </div>
-                                <h3>Stephen Korzenstein</h3>
-                                <div className="socialIcons">
-                                    <a href="https://www.marliesclaire.com/" aria-label="Portfolio Link"></a>
-                                    {/* <FontAwesomeIcon icon="fas fa-browser" /> */}
-
-                                    <a href="https://www.linkedin.com/in/skorzenstein/" aria-label="Linkedin Link"></a>
-                                    {/* <FontAwesomeIcon icon="fab fa-linkedin" /> */}
-
-                                    <a href="https://github.com/korzenstein" aria-label="Github Link"></a>
-                                    {/* <FontAwesomeIcon icon="fab fa-github-square" /> */}
+                                <div className="creatorInfo">
+                                    <h3>Stephen Korzenstein</h3>
+                                    <div className="socialIcons">
+                                        <a href="https://www.linkedin.com/in/skorzenstein/" aria-label="Linkedin Link">
+                                            <img src={iconLink} alt="Linkedin icon" />
+                                            <span class="sr-only">Link to Stephen's Linkedin profile</span>
+                                        </a>
+                                        <a href="https://github.com/korzenstein" aria-label="Github Link">
+                                            <img src={iconGithub} alt="Github icon" />
+                                            <span class="sr-only">Link to Stephen's Github profile</span>
+                                        </a>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam hic magnam facere facilis perferendis asperiores explicabo. Aut repellendus quidem tenetur unde error pariatur debitis adipisci quam! Omnis, quisquam corrupti?</p>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam hic magnam facere facilis perferendis asperiores explicabo. Aut repellendus quidem tenetur unde error pariatur debitis adipisci quam! Omnis, quisquam corrupti?</p>
+                                
                             </div>
                         </li>
                     </ul>
