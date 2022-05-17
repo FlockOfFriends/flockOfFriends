@@ -279,6 +279,29 @@ const PersonalEvent = ({ liked }) => {
                 <p>{firedata.venue}</p>
               </div>
 
+            <div className="description">
+              <form action="submit" className="describeForm">
+                <label htmlFor="describe">Description:</label>
+                <p>{description}</p>
+                <textarea
+                  type="text"
+                  id="describe"
+                  onChange={handleFormChange}
+                  value={formInput}
+                />
+                <button className="detailsButton" onClick={handleFormSubmit}>
+                  Change Details
+                </button>
+              </form>
+            </div>
+          </div>
+          <div className="map">
+            <iframe
+              title="Google maps"
+              className="googlemap"
+              src={`https://maps.google.com/maps?q=${firedata.latitude}, ${firedata.longitude}&output=embed`}
+            ></iframe>
+          </div>
               <div className="subDetails bottom">
                 <span>
                   <img src={iconTicket} alt="tickets icon" />

@@ -64,7 +64,7 @@ const PersonalHub = () => {
                   </Link>
                   <button
                     onClick={() => handleRemoveEvent(like.personalID)}
-                    className="button"
+                    className="deleteButton"
                   >
                     Delete Event
                   </button>
