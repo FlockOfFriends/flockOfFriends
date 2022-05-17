@@ -98,6 +98,7 @@
     .searchForm {
       flex-direction: column;
       justify-content: center;
+      flex-wrap: wrap;
       align-items: center;
       width: 90%;
       max-width: 100vw;
@@ -106,16 +107,32 @@
       padding: 40px;
       text-align:  center;
 
+      .searchLocation {
+        text-align: center;
+
+        label {
+          align-items: center;
+
+          .searchLocationInput {
+            text-align: center;
+          }
+        }
+      }
+
       .searchLocation, .searchDateStart, .searchDateEnd, .searchEventType, .searchSubmit {
         padding: 10px 0;
       }
 
       .searchDateStart {
         z-index: 9999;
+        width: 100%;
+        min-width: 200px;
       }
 
       .searchDateEnd {
         z-index: 9990;
+        width: 100%;
+        min-width: 200px;
       }
 
       div {
@@ -132,6 +149,13 @@
         }
       }
 
+      .searchEventType {
+        .radioEventList.show {
+          display: flex;
+          flex-direction: row;
+        }
+
+      }
     }
 
     .searchSubmit {
@@ -147,7 +171,6 @@
     .react-date-picker.react-date-picker--closed.react-date-picker--enabled {
       padding: 0;
     }
-
   }
 }
 
