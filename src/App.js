@@ -267,6 +267,11 @@ function App() {
         <Route path="/personalhub" element={<PersonalHub />} />
         <Route path="/aboutcreators" element={<AboutCreators />} />
       </Routes>
+      <footer className="footer">
+        <div className="wrapper">
+          <p>Flock of Friends / 2022 Juno College</p>
+        </div>
+      </footer>
     </div>
   );
 }
