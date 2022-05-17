@@ -10,7 +10,6 @@
 }
 
 // Burger menu style
-
 .wrapper.headerIcons {
   width: 90%;
   display: flex;
@@ -20,17 +19,42 @@
   right: 0;
   z-index: 90;
 
+// LOGO STYLING
   .homeLink {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-decoration: none;
+
+    h1 {
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      background-color: white;
+      color: $mediumBlue;
+      font-family: $headingFont;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 30px;
+    }
+
+    .logoBird {
+      display: none;
+    }
   }
 
-  .homeLink p {
-    background-color: white;
-    padding: 10px;
-    border-radius: 30px;
+  .homeLink.small {
+    h1 {
+      display: none;
+    }
+
+    .logoBird {
+      display: block;
+      background-color: white;
+      border-radius: 50%;
+      border: 1px solid #ebebeb;
+      width: 70px;
+      height: 70px;
+    }
   }
 }
 

@@ -17,6 +17,7 @@ import SearchSmall from "./components/SearchSmall";
 
 // images
 import search from "./images/search.png";
+import logoBird from "./images/bird-standing-sml.png"
 
 function App() {
   // Lets mutate the Date data immediately
@@ -103,7 +104,12 @@ function App() {
           <BurgerMenu
           hub={status.length}
           />
-          <Link className="homeLink" to="/"><p>Home</p></Link>
+          <Link
+          className={`homeLink ${hideSearchbar ? "small" : ""}`}
+          to="/">
+            <h1>Flock of Friends</h1>
+            <img className="logoBird" src={logoBird} alt="a drawing a bird" aria-label="Flock Of Friends"/>
+          </Link>
           <SearchSmall />
         </div>
 
