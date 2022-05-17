@@ -20,7 +20,7 @@ const  AboutCreators = () => {
 
                 <div> 
                     <h2>Meet our awesome team</h2>
-                    <ul>
+                    <ul className="projectCreators">
                         <li className="brian">
                             <div className="creatorContainer">
                                 <div className="mockupContainer">

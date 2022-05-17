@@ -119,9 +119,18 @@
 @media (max-width: 960px) {
     .creatorContainer {
         flex-direction: column;
-        p {
-            margin-bottom: 80px;
-            padding: 0 40px;
+    }
+
+    .aboutCreators {
+        .wrapper {
+            .projectCreators {
+                li {
+                    p {
+                        margin-bottom: 90px;
+                        padding: 0 40px;
+                }
+            }
+            }
         }
     }
 
