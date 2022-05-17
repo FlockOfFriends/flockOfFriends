@@ -46,6 +46,16 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
       .then(function (response) {
         console.log(response)
 
+
+//         const results = response.data._embedded.events;
+//         const newResults = results.filter(dat => dat._embedded !== undefined)
+//         console.log("our new data", newResults);
+//         setEvents(newResults);
+
+// response.data._embedded.events.filter(dat => dat._embedded !== undefined)
+
+
+
         const errorHandling = response.data.page.totalElements;
         console.log("errorHandling = ", errorHandling);
 
@@ -55,19 +65,15 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
         } else if( errorHandling > 0  && errorHandling < 5 ) {
           console.log("GREATER THAN 0 AND LESS THAN 5")
           setErrorState(1);
-          setEvents(response.data._embedded.events);
+          // setEvents(response.data._embedded.events);
+          setEvents(response.data._embedded.events.filter(dat => dat._embedded !== undefined))
         } else {
           setErrorState(2);
-          setEvents(response.data._embedded.events);
+          // setEvents(response.data._embedded.events);
+          setEvents(response.data._embedded.events.filter(dat => dat._embedded !== undefined))
         } 
 
-//         const results = response.data._embedded.events;
-//         // console.log(results)
-//         const newResults = results.filter(dat => dat._embedded !== undefined)
-//         console.log("our new data", newResults);
 
-
-//         setEvents(newResults);
 
       })
       .catch(function (error) {
@@ -81,38 +87,36 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
             <li className="error">
               <LoadingSpinner />
               <div className="errorMessage">
-                <h1>Loading...</h1>
+                <h2>Loading...</h2>
               </div>
             </li>
       )
     } else if( errorState === 0) {
         return (
-          <div className="errorHints">
-            <h3>Oh No! No events match your search.</h3>
-            <ul>
-              <li>
-                <p>Try updating your location</p>
-              </li>
-              <li>
-                <p>Try expanding your date range</p>
-              </li>
-              <li>
-                <p>Try searching for all event types</p>
-              </li>
-              <li>
-                <p>Check your spelling</p>
-              </li>
-            </ul>
+          <div className="wrapper error">
+            <div className="errorHints">
+              <h3>No events match your search.</h3>
+              <ul>
+                <li>
+                  <p className="errorBold">Try updating your location.</p>
+                  <p>Include your province or state after a comma, e.g. "Reno, Nevada" or "Calgary, Alberta"</p>
+                </li>
+                <li>
+                  <p className="errorBold">Try expanding your date range</p>
+                  <p>Search for events happening weeks away, this gives you enough time to tell your friends!</p>
+                </li>
+                <li>
+                  <p className="errorBold">Try searching for all event types</p>
+                  <p>Choosing "All Events" will give you the most search results to choose from.</p>
+                </li>
+                <li>
+                  <p className="errorBold">Check your spelling</p>
+                </li>
+              </ul>
+            </div>
           </div>
-  )
-
-    }
-    
-    // else if(events[0].name === "fail") {
-
-    //   console.log("FAILED TO RETURN EVENTS");
-
-    // }
+        )
+      }
 
     // Function to convert date
   const convertDate = (date) => {

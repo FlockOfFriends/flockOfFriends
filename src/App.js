@@ -1,5 +1,4 @@
 import "./style/sass/App.scss";
-import headerImage from "./assets/headerImage.jpg";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
@@ -17,6 +16,7 @@ import SearchSmall from "./components/SearchSmall";
 
 // images
 import search from "./images/search.png";
+import FlockLogo from "./components/FlockLogo";
 
 function App() {
   // Lets mutate the Date data immediately
@@ -27,19 +27,10 @@ function App() {
   const [toggleApi, setToggleApi] = useState(false)
   const [status, setStatus] = useState([])
   const [eventType, setEventType] = useState("")
-  const [eventTypeShow, setEventTypeShow] = useState(true);
+  const [eventTypeShow, setEventTypeShow] = useState(false);
   const [eventGenre, setEventGenre] = useState("choose a genre");
   const [hideSearchbar, setHideSearchBar] = useState(false);
   const [shrinkHeaderHeight, setShrinkHeaderHeight] = useState(false);
-
-  // clear all search inputs after form submission. not sure where to fire this.
-  const clearSearchInputs = () => {
-    setLocation("");
-    setDateValue(new Date());
-    setDateEndValue(new Date());
-    setEventType("");
-    setEventGenre("choose a genre");
-  }
 
   //when user scrolls 200 px down, big search bar goes off screen
   useEffect(() => {
@@ -65,7 +56,7 @@ function App() {
     }
   }, [currentURL]);
 
-  // function to check current URL path, if not on home page - sends them home and runs api call, otherwiseruns some other stuff.
+  // if not on home page - sends them home and runs api call, otherwise runs some other stuff.
   const checkURL = () => {
     const currentURL = window.location.pathname;
     if(currentURL !== "/") {
@@ -80,7 +71,6 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setToggleApi(!toggleApi);
-    // write a function that clears and resets all search ui input fields
   };
 
   const handleShowEventType = () => {
@@ -113,7 +103,17 @@ function App() {
           <BurgerMenu
           hub={status.length}
           />
-          <Link className="homeLink" to="/"><p>Home</p></Link>
+          <Link
+          className={`homeLink ${hideSearchbar ? "small" : ""}`}
+          to="/">
+            <div className="logoBox">
+              <h1>Flock of Friends</h1>
+              <p>Search, Create & Share fun events with your friends</p>
+            </div>
+            <div className="flockLogo" aria-label="Flock Of Friends">
+              <FlockLogo />
+            </div>
+          </Link>
           <SearchSmall />
         </div>
 
@@ -130,7 +130,7 @@ function App() {
                   className="searchLocationInput"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  placeholder="city, country, etc"
+                  placeholder="search your city"
                 />
               </label>
             </div>
@@ -143,6 +143,7 @@ function App() {
                 <DatePicker
                 dateFormat="dd/MM/yyyy"
                 closeCalendar={false}
+                minDate={new Date()}
                 name="datePicker"
                 id="datePicker"
                 value={dateValue}
@@ -159,6 +160,7 @@ function App() {
                 <DatePicker
                 dateFormat="dd/MM/yyyy"
                 closeCalendar={false}
+                minDate={new Date()}
                 name="datePicker"
                 id="datePicker"
                 value={dateEndValue}
@@ -174,7 +176,6 @@ function App() {
               onClick={(e) => {e.preventDefault();
               handleShowEventType()}}>
               
-
                 <p>Event Type</p>
                 <p className="eventTypeGenre">{eventGenre}</p>
                 <div className={eventTypeShow ? "radioEventList" : "radioEventList show"}>
@@ -182,7 +183,6 @@ function App() {
                   <label
                     tabIndex="0"
                     htmlFor="allEvents"
-                    // onKeyDown={ (e) => {e.key === "Enter" ? setEventGenre("All Events") : null}}
                     onClick={() => {setEventGenre("All Events");
                     setEventType("")}}>
                     All Events

@@ -8,6 +8,7 @@ const SearchSmall = () => {
 
   const handleToggle = () => {
     setSearchIcon(!searchIcon);
+    window.location.pathname = "/";
   };
 
   const closeSearchMenu = () => {

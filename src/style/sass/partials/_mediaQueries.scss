@@ -106,22 +106,92 @@
   .nav.small {
     top: -800px;
   }
+
+  .App.headerShrink {
+    .header {
+      nav {
+        top: -800px;
+      }
+
+      nav.small {
+        top: -800px;
+      }
+    }
+  }
+
+  .wrapper.headerIcons {
+    .homeLink {
+      
+      .logoBox {
+        padding: 10px;
+        background-color: white;
+        border: 3px solid $whiteBlue;
+  
+        h1 {
+          font-size: 1.2rem;
+        }
+  
+        p {
+          padding: 0;
+          font-size: 0.8rem;
+          background-color: white;
+        }
+      }
+    }
+  }
+
+  .searchIcon {
+
+    .searchIconList {
+      display: none;
+    }
+  }
+
   .nav {
     top: 90px;
 
     .searchForm {
       flex-direction: column;
       justify-content: center;
+      flex-wrap: wrap;
       align-items: center;
       width: 90%;
       max-width: 100vw;
       height: 100%;
       max-height: 90vh;
       padding: 40px;
-      // text-align:  center;
+      text-align:  center;
+
+      .searchLocation {
+        text-align: center;
+
+        label {
+          align-items: center;
+
+          .searchLocationInput {
+            text-align: center;
+          }
+        }
+      }
+
+      .searchLocation, .searchDateStart, .searchDateEnd, .searchEventType, .searchSubmit {
+        padding: 10px 0;
+      }
+
+      .searchDateStart {
+        z-index: 9999;
+        width: 100%;
+        min-width: 200px;
+      }
+
+      .searchDateEnd {
+        z-index: 9990;
+        width: 100%;
+        min-width: 200px;
+      }
 
       div {
-        padding: 5px 20px;
+        padding: 0;
         width: 100%;
         height: auto;
       }
@@ -133,12 +203,27 @@
           font-weight: 700;
         }
       }
-
     }
 
     .searchSubmit {
       .searchSubmitButton {
-        width: 70px;
+        width: 50px;
+        padding: 0;
+      }
+    }
+  }
+
+  .searchForm {
+    .searchEventType {
+      .radioEventList {
+        width: 500px;
+        border: none;
+        padding: 5px;
+        top: 0;
+        right: -190px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
       }
     }
   }
@@ -149,7 +234,22 @@
     .react-date-picker.react-date-picker--closed.react-date-picker--enabled {
       padding: 0;
     }
+  }
+}
 
+// *******************
+//  MINOR BREAKPOINT
+// *******************
+@media (max-width: 500px) {
+  .searchForm {
+    .searchEventType {
+      .radioEventList {
+        width: 430px;
+        top: -20px;
+        right: -155px;
+        justify-content: center;
+      }
+    }
   }
 
          // ***** Event Details *****
@@ -228,7 +328,36 @@
   }
   // ***** Header *****
   // ******************
+  .nav {
+    .searchForm {
+      width: 98%;
+      padding: 10px 0;
 
+      
+      .searchEventType {
+        .radioEventList {
+          right: -90px;
+          width: 80vw;
+        }
+      }
+    }
+  }
+
+  .wrapper.headerIcons {
+    .homeLink {
+      
+      .logoBox {
+  
+        padding: 10px;
+  
+        h1 {
+          font-size: 1rem;
+        }
+  
+        p {
+          display: none
+        }
+      }
 
 
     // ***** Event Details *****
