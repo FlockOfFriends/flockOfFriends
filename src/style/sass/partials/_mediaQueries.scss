@@ -148,19 +148,26 @@
           font-weight: 700;
         }
       }
-
-      .searchEventType {
-        .radioEventList.show {
-          display: flex;
-          flex-direction: row;
-        }
-
-      }
     }
 
     .searchSubmit {
       .searchSubmitButton {
         width: 70px;
+      }
+    }
+  }
+
+  .searchForm {
+    .searchEventType {
+      .radioEventList {
+        width: 500px;
+        border: none;
+        padding: 5px;
+        top: 0;
+        right: -190px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
       }
     }
   }
