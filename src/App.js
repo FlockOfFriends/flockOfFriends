@@ -1,5 +1,4 @@
 import "./style/sass/App.scss";
-import headerImage from "./assets/headerImage.jpg";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
@@ -17,7 +16,6 @@ import SearchSmall from "./components/SearchSmall";
 
 // images
 import search from "./images/search.png";
-import logoBird from "./images/bird-standing-sml.png"
 import FlockLogo from "./components/FlockLogo";
 
 function App() {
@@ -109,10 +107,9 @@ function App() {
           className={`homeLink ${hideSearchbar ? "small" : ""}`}
           to="/">
             <h1>Flock of Friends</h1>
-            <div className="flockLogo">
+            <div className="flockLogo" aria-label="Flock Of Friends">
               <FlockLogo />
             </div>
-            {/* <img className="logoBird" src={logoBird} alt="a drawing a bird" aria-label="Flock Of Friends"/> */}
           </Link>
           <SearchSmall />
         </div>

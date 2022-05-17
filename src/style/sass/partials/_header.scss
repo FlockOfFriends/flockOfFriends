@@ -35,25 +35,40 @@
       font-weight: bold;
       padding: 10px;
       border-radius: 30px;
+      opacity: 1;
+      transition: all 0.2s;
     }
 
-    .logoBird {
-      display: none;
+    .flockLogo {
+      opacity: 0;
+      transform: scaleX(0.1);
+      transform: scaleY(0.1);
+      transition: all 0.2s;
+      position: relative;
+
+      div {
+        position: absolute;
+        left: -35px;
+      }
     }
   }
 
+
   .homeLink.small {
     h1 {
-      display: none;
+      opacity: 0;
+      transform: scaleX(0.1);
+      transition: all 0.2s;
+      position: absolute;
+      top: -400px;
     }
 
-    .logoBird {
-      display: block;
-      background-color: white;
-      border-radius: 50%;
-      border: 1px solid #ebebeb;
-      width: 70px;
-      height: 70px;
+    .flockLogo {
+      opacity: 1;
+      transform: scaleX(1);
+      transform: scaleY(1);
+      transition: all 0.2s;
+
     }
   }
 }
