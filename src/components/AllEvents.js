@@ -87,28 +87,33 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
             <li className="error">
               <LoadingSpinner />
               <div className="errorMessage">
-                <h1>Loading...</h1>
+                <h2>Loading...</h2>
               </div>
             </li>
       )
     } else if( errorState === 0) {
         return (
-          <div className="errorHints">
-            <h3>Oh No! No events match your search.</h3>
-            <ul>
-              <li>
-                <p>Try updating your location</p>
-              </li>
-              <li>
-                <p>Try expanding your date range</p>
-              </li>
-              <li>
-                <p>Try searching for all event types</p>
-              </li>
-              <li>
-                <p>Check your spelling</p>
-              </li>
-            </ul>
+          <div className="wrapper error">
+            <div className="errorHints">
+              <h3>No events match your search.</h3>
+              <ul>
+                <li>
+                  <p className="errorBold">Try updating your location.</p>
+                  <p>Include your province or state after a comma, e.g. "Reno, Nevada" or "Calgary, Alberta"</p>
+                </li>
+                <li>
+                  <p className="errorBold">Try expanding your date range</p>
+                  <p>Search for events happening weeks away, this gives you enough time to tell your friends!</p>
+                </li>
+                <li>
+                  <p className="errorBold">Try searching for all event types</p>
+                  <p>Choosing "All Events" will give you the most search results to choose from.</p>
+                </li>
+                <li>
+                  <p className="errorBold">Check your spelling</p>
+                </li>
+              </ul>
+            </div>
           </div>
         )
       }

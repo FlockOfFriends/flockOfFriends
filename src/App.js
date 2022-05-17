@@ -130,7 +130,7 @@ function App() {
                   className="searchLocationInput"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  placeholder="city, country, etc"
+                  placeholder="search your city"
                 />
               </label>
             </div>

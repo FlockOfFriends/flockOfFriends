@@ -65,6 +65,14 @@ p {
     }
 }
 
+
+// **********************
+// *** ERROR HANDLING ***
+.wrapper.error {
+  background-color: white;
+  padding-top: 10px;
+}
+
 .error {
   background-color: black;
   display: flex;
@@ -82,21 +90,27 @@ p {
       margin: 20px;
       border-radius: 30px;
     }
-  
-    h1 {
+  }
+
+  .errorHints {
+    width: 80%;
+    margin: 0 auto;
+    background-color: $whiteBlue;
+    border-radius: 30px;
+    padding: 15px;
+    bottom: 0;
+
+    h3 {
       font-size: 2rem;
       text-align: center;
-      padding: 30px;
+      padding: 20px;
     }
     
-    .errorHints {
-      width: 80%;
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 30px;
-      padding: 15px;
+    li {
+      padding: 10px;
     }
-  
-    .errorHints {
-      bottom: 0;
+
+    .errorBold {
+      font-weight: bold;
     }
   }
