@@ -324,6 +324,7 @@ nav.small {
 
   .searchDateStart,
   .searchDateEnd {
+    position: relative;
     display: flex;
     width: 25%;
     align-items: center;
@@ -399,7 +400,7 @@ nav.small {
     padding: 10px;
     border-radius: 30px;
     transition: all 0.2s;
-
+    
     &:hover .eventTypeGenre {
       background-color: whitesmoke;
       border-radius: 30px;
