@@ -32,15 +32,6 @@ function App() {
   const [hideSearchbar, setHideSearchBar] = useState(false);
   const [shrinkHeaderHeight, setShrinkHeaderHeight] = useState(false);
 
-  // clear all search inputs after form submission. not sure where to fire this.
-  const clearSearchInputs = () => {
-    setLocation("");
-    setDateValue(new Date());
-    setDateEndValue(new Date());
-    setEventType("");
-    setEventGenre("choose a genre");
-  }
-
   //when user scrolls 200 px down, big search bar goes off screen
   useEffect(() => {
     if(typeof window !== "undefined") {
@@ -65,7 +56,7 @@ function App() {
     }
   }, [currentURL]);
 
-  // function to check current URL path, if not on home page - sends them home and runs api call, otherwiseruns some other stuff.
+  // if not on home page - sends them home and runs api call, otherwise runs some other stuff.
   const checkURL = () => {
     const currentURL = window.location.pathname;
     if(currentURL !== "/") {
@@ -80,7 +71,6 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setToggleApi(!toggleApi);
-    // write a function that clears and resets all search ui input fields
   };
 
   const handleShowEventType = () => {
@@ -176,7 +166,6 @@ function App() {
               onClick={(e) => {e.preventDefault();
               handleShowEventType()}}>
               
-
                 <p>Event Type</p>
                 <p className="eventTypeGenre">{eventGenre}</p>
                 <div className={eventTypeShow ? "radioEventList" : "radioEventList show"}>
