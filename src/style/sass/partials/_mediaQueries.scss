@@ -252,6 +252,25 @@
     padding: 2rem 0;
   }
 
+  .error {
+    padding: 1rem;
+    padding-bottom: 0;
+  }
+  .errorHints {
+    width: 95%;
+
+    p {
+      font-size: 0.9rem;
+    }
+    h3 {
+      font-size: 1.3rem;
+    }
+
+    ul li p {
+      width: 100%;
+    }
+  }
+
   .allEvents .wrapper {
     width: 90%;
     gap: 2rem;
