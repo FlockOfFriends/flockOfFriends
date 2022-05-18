@@ -1,0 +1,572 @@
+.headerImgContainer {
+  width: 100%;
+  height: 500px;
+
+  .headerImg {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+  }
+}
+
+// Burger menu style
+.wrapper.headerIcons {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 90;
+
+// LOGO STYLING
+  .homeLink {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+
+    .logoBox {
+      background-color:  white;
+      border: 1px solid black;
+      padding: 0 10px 10px 10px;
+      border-radius: 30px;
+      opacity: 1;
+      transition: all 0.2s;
+
+      h1 {
+        font-size: 1.6rem;
+        text-align: center;
+        text-transform: uppercase;
+        color: black;
+        font-family: $headingFont;
+        font-weight: bold;
+        margin: 0;
+        margin-bottom: 3px;
+      }
+      
+      p {
+        text-align: center;
+        background-color: white;
+        border-radius: 30px;
+        padding: 5px 10px;
+        margin: 0;
+        font-weight: 500;
+        letter-spacing: 0.1rem;
+      }
+    }
+
+    .flockLogo {
+      opacity: 0;
+      transform: scaleX(0.1);
+      transform: scaleY(0.1);
+      transition: all 0.2s;
+      position: relative;
+
+      .icon {
+        transition: all 0.2s;
+        &:hover, &:focus {
+          background-color: $whiteBlue;
+          transition: all 0.2s;
+        }
+      }
+
+      div {
+        position: absolute;
+        left: -35px;
+      }
+    }
+  }
+
+  .homeLink.small {
+
+    .logoBox {
+      opacity: 0;
+      transform: scaleX(0.1);
+      transition: all 0.2s;
+      position: absolute;
+      top: -400px;
+    }
+
+    .flockLogo {
+      opacity: 1;
+      transform: scaleX(1);
+      transform: scaleY(1);
+      transition: all 0.2s;
+    }
+  }
+}
+
+.burgerMenu, .searchIcon {
+  z-index: 90;
+  padding: 20px 0;
+  transition: all 0.2s;
+
+  button {
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    border: 2px solid #ebebeb;
+    width: 70px;
+    height: 70px;
+    padding: 10px;
+    border-radius: 50px;
+    z-index: 10;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover, &:focus {
+      background-color: #ebebeb;
+      transition: all 0.2s;
+    }
+    
+      svg {
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+      }
+  }
+}
+
+.burgerMenu {
+
+  .dot {
+    opacity: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+  }
+
+  .dot.show {
+    opacity: 1;
+  }
+
+  .hubAmount {
+    padding: 0 5px;
+    display: inline-block;
+    color: $darkBlue;
+    text-transform: lowercase;
+    font-weight: bold;
+    font-size: 0.9rem;
+
+    span {
+      color: red;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.menuNav {
+  list-style: none;
+  position: absolute;
+  top: 100px;
+  left: -800px;
+  opacity: 0;
+  background: white;
+  width: 320px;
+  padding: 20px 0;
+  border: 1px solid black;
+  border-radius: 30px;
+  z-index: 9;
+  transition: all 0.4s;
+
+  a {
+    display: block;
+    padding: 10px 40px;
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &:hover {
+      border-radius: 30px;
+      background: $whiteBlue;
+      color: $darkBlue;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+      transition: all 0.2s;
+    }
+
+    &:active, :focus {
+      border-radius: 30px;
+      background: $mediumBlue;
+      color: white;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+    }
+  }
+}
+
+.menuNav.showMenu {
+  opacity: 1;
+  left: 0;
+  transition: all 0.4s;
+  }
+
+// searchbar collapsed icon
+.searchIcon {
+
+  .searchIconList {
+    list-style: none;
+    position: absolute;
+    top: 100px;
+    right: -800px;
+    opacity: 0;
+    background: white;
+    border: 1px solid black;
+    border-radius: 30px;
+    width: 320px;
+    padding: 20px 0;
+    z-index: 9;
+    transition: all 0.4s;
+
+    a {
+    display: block;
+    padding: 10px 40px;
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+
+      &:hover {
+        border-radius: 30px;
+        background: $whiteBlue;
+        color: $darkBlue;
+        filter: drop-shadow(0px 4px 4px #6B6666);
+      }
+
+      &:active, &:focus {
+        border-radius: 30px;
+        background: black;
+        color: $whiteBlue;
+        filter: drop-shadow(0px 4px 4px #6B6666);
+      }
+    }
+  }
+}
+
+.searchIconList.show {
+  opacity: 1;
+  right: 0;
+  transition: all 0.4s;
+}
+
+
+// *********************
+// *** HEADER SHRINK ***
+.App.headerShrink {
+  .header {
+    height: 140px;
+    transition: all 0.6s;
+
+    nav {
+      top: -200px;
+      margin-top: 10px;
+      transition: all 0.8s;
+    }
+
+    nav.small {
+      top: -200px;
+      margin-top: 10px;
+      transition: all 0.8s;
+    }
+  }
+}
+
+// *********************
+// *****  HEADER  ******
+.header {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  background-image: url(../../../assets/headerImage.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.6s;
+}
+
+.nav{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  transition: all 0.6s;
+  position: absolute;
+  top: 40vh;
+  z-index: 100;
+}
+
+nav.small {
+  top: -200px;
+  margin-top: 10px;
+  transition: all 0.8s;
+
+  form {
+    margin-top: 0;
+  }
+}
+
+.searchForm {
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 0;
+  min-height: 0;
+  width: 90%;
+  max-width: 1000px;
+  padding: 10px 15px;
+  margin: 20px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 50px;
+  transition: all 0.4s;
+
+  .searchLocation {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    border-radius: 30px;
+    position: relative;
+    transition: all 0.2s;
+
+    &:hover .searchLocationInput,
+    &:active .searchLocationInput {
+      cursor: pointer;
+      border-radius: 30px;
+    }
+
+    &:hover, &:focus, &:focus-within {
+      background-color: $whiteBlue;
+      cursor: pointer;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+      transition: all 0.2s;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: flex-start;
+      overflow: hidden;
+
+      &:hover, &:focus {
+        cursor: pointer;
+      }
+
+      .searchLocationInput::placeholder {
+        color: rgb(119, 115, 115);
+        opacity: 1;
+        letter-spacing: 0;
+      }
+
+      .searchLocationInput {
+        border: none;
+        font-size: 0.9rem;
+        padding: 3px;
+        font-family: $searchFont;
+        font-weight: 500;
+        border-radius: 30px;
+        transition: all 0.2s;
+
+        &:focus, &active {
+          outline: none;
+          font-size: 1.2rem;
+          transition: all 0.2s;
+          background-color: whitesmoke;
+        }
+      }
+    }
+  }
+
+  .searchDateStart,
+  .searchDateEnd {
+    position: relative;
+    display: flex;
+    width: 25%;
+    align-items: center;
+    padding: 10px;
+    border-radius: 30px;
+    transition: all 0.2s;
+
+    &:hover, &:focus {
+      background-color: $whiteBlue;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+      transition: all 0.2s;
+    }
+
+    label {
+      display: flex;
+
+      &:hover, &focus {
+        cursor: pointer;
+      }
+    }
+
+    .searchStartDate,
+    .searchEndDate {
+      display: flex;
+      flex-direction: column;
+      padding: 0 5px;
+      border-radius: 30px;
+      width: 100%;
+
+      .react-calendar {
+        position: relative;
+        z-index: 9999 !important;
+      }
+
+      .react-date-picker.react-date-picker--open.react-date-picker--enabled {
+        transition: all 0.2s;
+      }
+
+      .react-date-picker.react-date-picker--closed.react-date-picker--enabled {
+        border-radius: 30px;
+        padding: 0 15px;
+        transition: all 0.2s;
+      }
+
+      &:hover .react-date-picker__wrapper {
+        background-color: whitesmoke;
+        transition: all 0.2s;
+      }
+    }
+
+    .react-date-picker__wrapper {
+      border: none;
+      padding: 0 3px;
+      border-radius: 30px;
+      border: 1px solid #ebebeb;
+      transition: all 0.2s;
+    }
+
+    .react-date-picker {
+      font-size: 0.8rem;
+
+      .react-date-picker__clear-button.react-date-picker__button {
+        display: none;
+      }
+    }
+  }
+
+  .searchEventType {
+    display: flex;
+    width: 130px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 30px;
+    transition: all 0.2s;
+    
+    &:hover .eventTypeGenre {
+      background-color: whitesmoke;
+      border-radius: 30px;
+    }
+
+    &:hover, &focus {
+      cursor: pointer;
+      background-color: $whiteBlue;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+      transition: all 0.2s;
+    }
+
+    .eventTypeGenre {
+      font-size: 0.9rem;
+      font-family: $searchFont;
+      font-weight: 500;
+      padding: 3px;
+      color: rgb(119, 115, 115);
+      opacity: 1;
+      letter-spacing: 0;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .radioEventList {
+      position: absolute;
+      opacity: 1;
+      flex-direction: column;
+      background: whitesmoke;
+      border: 1px solid black;
+      border-radius: 30px;
+      top: 70px;
+      right: -10px;
+      width: 200px;
+      transition: all 0.2s;
+
+      label {
+        font-size: 1rem;
+        padding: 10px;
+        letter-spacing: 0.03rem;
+        font-weight: 700;
+        transition: all 0.2s;
+
+        &:hover, &:focus {
+          background-color: $whiteBlue;
+          color: black;
+          border-radius: 30px;
+          filter: drop-shadow(0px 4px 4px #6B6666);
+          transition: all 0.2s;
+        }
+
+        &:active {
+          background-color: $mediumBlue;
+          color: white;
+        }
+      }
+
+      input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+      }
+    }
+
+    .radioEventList.show {
+      display: none;
+      right: -600px;
+      opacity: 0;
+      transition: all 0.2s;
+    }
+  }
+
+  .searchSubmit {
+    display: flex;
+    width: 65px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    transition: all 0.2s;
+
+    &:hover, &:focus {
+      cursor: pointer;
+      background-color: $whiteBlue;
+      filter: drop-shadow(0px 4px 4px #6B6666);
+      transition: all 0.2s;
+    }
+
+    &:active {
+      background-color: $mediumBlue;
+    }
+
+    .searchSubmitButton {
+      padding: 10px;
+      width: 100%;
+
+      &:active {
+        filter: drop-shadow(0px 4px 4px #6B6666);
+      }
+    }
+  }
+}

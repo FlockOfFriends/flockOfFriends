@@ -1,0 +1,58 @@
+@import "./partials/setup";
+@import "./partials/variables";
+@import "./partials/baseStyles";
+@import "./partials/header";
+@import "./partials/birdLogo";
+@import "./partials/allEvents";
+@import "./partials/personalEvent";
+@import "./partials/eventDetails";
+@import "./partials/aboutcreators";
+@import "./partials/footer";
+@import "./partials/personalHub";
+@import "./partials/loadingSpinner";
+@import "./partials/mediaQueries";
+
+.App {
+  background-color: $whiteBlue;
+}
+
+// ALLEVENTS.JS
+.catalogue {
+  background-color: $ulBgColor;
+  margin: 0 auto;
+  li {
+    list-style: none;
+    .imgContainer {
+      width: 300px;
+      height: 300px;
+      overflow: hidden;
+      margin: 0 auto;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// PERSONALHUB.JS
+h3 {
+  text-align: center;
+}
+ul {
+  margin: 0 auto;
+  li {
+    list-style: none;
+    P {
+      text-align: center;
+    }
+    .personalEventImg {
+      width: 300px;
+      height: 300px;
+      overflow: hidden;
+      margin: 0 auto;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

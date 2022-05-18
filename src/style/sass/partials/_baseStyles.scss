@@ -1,0 +1,63 @@
+// CHECK HERE DELETE IF FINE
+html {
+  height: 100%;
+}
+
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  color: rgb(36, 35, 35);
+
+}
+
+body {
+  font-size: 125%;
+  overflow-x: hidden;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+
+li {
+  list-style: none;
+}
+
+.wrapper {
+    max-width: 1280px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+// **********************
+// ***** TYPOGRAPHY *****
+// **********************
+form {
+    p {
+        font-family: $searchFont;
+        font-weight: 500;
+        font-size: 0.85rem;
+        letter-spacing: 0.03rem;
+    }
+}
+
+p {
+  font-size: 1rem;
+}
+h2 {
+  font-size: 3.5rem;
+  text-align: center;
+  font-family: $headingFont;
+  background-color: rgba(15, 11, 17, 0.91);
+  margin: 0;
+  padding: 20px;
+  color: white;
+}

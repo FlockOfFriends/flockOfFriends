@@ -1,0 +1,100 @@
+// All Events styles
+
+.allEvents {
+    width: 100%;
+        padding: 4rem 0;
+        // background-color: white;
+        background-color: hsl(204, 100%, 94%);
+    
+    .wrapper {
+        display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 75%;
+            gap: 1rem;
+
+            .allEventContainer {
+                width: 100%;
+                position: relative;
+                .allEventImage {
+                    border-radius: 5px;
+                }
+                .subtitle {
+                    text-align: right;
+                    position: absolute;
+                    padding: 1rem;
+                    bottom: 0;
+                    right: 0;
+                    background-color: $mediumBlue;
+                    font-weight: 400;
+                    border-radius: 5px;
+                    .allEventsH3 {
+                        text-align: right;
+                        font-size: 1.2rem;
+                        color: white;
+                    }
+                    .allEventsH5 {
+                        color: white;
+                    }
+                }
+            }
+
+    }
+}
+
+
+// **********************
+// *** ERROR HANDLING ***
+.wrapper.error {
+  background-color: white;
+  padding-top: 10px;
+}
+
+.error {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+  align-items: center;
+  padding: 40px;
+  
+    .errorMessage {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      margin: 20px;
+      border-radius: 30px;
+    }
+  }
+
+  .errorHints {
+    width: 80%;
+    margin: 0 auto;
+    background-color: $whiteBlue;
+    border-radius: 30px;
+    padding: 15px;
+    bottom: 0;
+
+    h3 {
+      font-size: 2rem;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .errorBold {
+      font-weight: bold;
+    }
+  }
