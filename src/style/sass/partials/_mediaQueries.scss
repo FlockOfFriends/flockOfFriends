@@ -22,6 +22,14 @@
       transition: all 0.3s;
     }
   }
+
+  .eventDetails {
+    .wrapper {
+      width: 85%;
+    }
+  }
+
+
 }
 
 @media (max-width: 930px) {
@@ -51,25 +59,26 @@
      // *****  Event Details *****
      // ******************
 
-     .eventDetails {
-       .wrapper {
-         .title {
-           flex-direction: column-reverse;
-           .titleLeft {
-             width: 100%;
-             h3 {
-               margin-top: 1.5rem;
-             }
-           }
-           .rightSide {
-            width: 100%;
-            .img {
-              position: static;
-            }
-           }
-         }
-       }
-     }
+  .eventDetails {    
+    .wrapper {
+
+      .title {
+        flex-direction: column-reverse;
+        .titleLeft {
+          width: 100%;
+          h3 {
+            margin-top: 1.5rem;
+          }
+        }
+        .rightSide {
+        width: 100%;
+        .img {
+          position: static;
+        }
+        }
+      }
+    }
+  }
   // ***** Personal Event Hub *****
     // ******************
     .personalHub {
@@ -239,7 +248,14 @@
 
   // *******************
   // *** ALL EVENTS  ***
+  .allEvents {
+    padding: 2rem 0;
+  }
+
   .allEvents .wrapper {
+    width: 90%;
+    gap: 2rem;
+
     .allEventContainer {
       .subtitle {
         padding: 0.4rem;
@@ -377,6 +393,8 @@
   // *******************
   // *** ALL EVENTS  ***
   .allEvents .wrapper {
+    width: 95%;
+
     .allEventContainer {
       .subtitle {
         padding: 0.4rem;
@@ -413,8 +431,9 @@
   // ***** Personal Event Hub *****
   // ******************************
   .personalHub {
-    h3 {
-      font-size: 1.2rem;
+
+    .personalHubH3 {
+      font-size: 1.1rem;
     }
   }
   // ***** Personal Event *****

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import failedEventCall from "./failedEventCall";
 import LoadingSpinner from "./LoadingSpinner";
 
 
@@ -14,6 +13,7 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
   // errorState 2 = Many results found. Good!
   // errorState 3 = Something went wrong! Unknown error returned.
 
+  // function to convert date into a readable format
   const dateFunction = (userDate, defaultTime) => {
     const todaysDate = userDate
     const altDate = todaysDate.toISOString();
@@ -23,9 +23,8 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
     return finalDate.toString();
   }
 
-
+  // api call to ticketmaster to receive events
   useEffect(() => {
-  
   const ourStart = dateFunction(dateValue, "T23:00:00Z")
   const ourEnd = dateFunction(dateEndValue, "T23:59:59Z")
 
@@ -44,44 +43,30 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
     };
     axios(configTicket)
       .then(function (response) {
-        console.log(response)
-
-
-//         const results = response.data._embedded.events;
-//         const newResults = results.filter(dat => dat._embedded !== undefined)
-//         console.log("our new data", newResults);
-//         setEvents(newResults);
-
-// response.data._embedded.events.filter(dat => dat._embedded !== undefined)
-
-
 
         const errorHandling = response.data.page.totalElements;
-        console.log("errorHandling = ", errorHandling);
 
+        // error handling, set error state depending on the amount of events receieved from call.
         if( errorHandling === 0 ) {
           setErrorState(0);
           console.log("0 RESULTS FOUND", errorState);
         } else if( errorHandling > 0  && errorHandling < 5 ) {
           console.log("GREATER THAN 0 AND LESS THAN 5")
           setErrorState(1);
-          // setEvents(response.data._embedded.events);
           setEvents(response.data._embedded.events.filter(dat => dat._embedded !== undefined))
         } else {
           setErrorState(2);
-          // setEvents(response.data._embedded.events);
           setEvents(response.data._embedded.events.filter(dat => dat._embedded !== undefined))
         } 
 
-
-
       })
       .catch(function (error) {
-        console.log(error);
         setErrorState(3);
       });
   }, [toggleApi]);
 
+
+  // depending on error state, run loading spinner, give search suggestions, or display returned events to the user
     if(events.length === 0) {
       return (
             <li className="error">
@@ -127,6 +112,8 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
     return finalDate;
   }
 
+
+  // display events to the user
     return (
       <>
         <h2>Upcoming Events</h2>

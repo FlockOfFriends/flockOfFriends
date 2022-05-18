@@ -55,11 +55,15 @@ p {
 h2 {
   font-size: 3.5rem;
   text-align: center;
-  background-color: rgb(26, 24, 24);
+  font-family: $headingFont;
+  background-color: rgba(15, 11, 17, 0.91);
+  // background-color: rgb(26, 24, 24);
   margin: 0;
   padding: 20px;
-  text-shadow: 1px 1px 4px orange, -1px -1px 4px orange;
+  // text-shadow: 1px 1px 4px orange, -1px -1px 4px orange;
   color: white;
-  border-bottom: 3px solid #dd7939;
-  border-top: 3px solid #dd7939;
+  // border: 1px solid black;
+  // border-radius: 30px;
+  // border-bottom: 3px solid #dd7939;
+  // border-top: 3px solid #dd7939;
 }
