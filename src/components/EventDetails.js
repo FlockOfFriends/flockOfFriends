@@ -32,7 +32,6 @@ const EventDetails = () => {
         setDetailsArray(data);
       })
       .catch(function (error) {
-        console.log(error);
       });
   }, [eventID]);
 
@@ -119,7 +118,6 @@ const EventDetails = () => {
         description: "TBD",
         attendees: [],          
       };
-      console.log(uniqueInput);
       push(dbRef, uniqueInput);
       setUserInput("");
     }
