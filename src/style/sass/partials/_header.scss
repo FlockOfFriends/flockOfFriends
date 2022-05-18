@@ -533,6 +533,7 @@ nav.small {
     }
 
     .radioEventList.show {
+      display: none;
       right: -600px;
       opacity: 0;
       transition: all 0.2s;
