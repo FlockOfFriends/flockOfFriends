@@ -49,9 +49,7 @@ const AllEvents = ({location, toggleApi, eventType, dateValue, dateEndValue}) =>
         // error handling, set error state depending on the amount of events receieved from call.
         if( errorHandling === 0 ) {
           setErrorState(0);
-          console.log("0 RESULTS FOUND", errorState);
         } else if( errorHandling > 0  && errorHandling < 5 ) {
-          console.log("GREATER THAN 0 AND LESS THAN 5")
           setErrorState(1);
           setEvents(response.data._embedded.events.filter(dat => dat._embedded !== undefined))
         } else {

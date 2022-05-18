@@ -56,18 +56,6 @@ function App() {
     }
   }, [currentURL]);
 
-  // if not on home page - sends them home and runs api call, otherwise runs some other stuff.
-  const checkURL = () => {
-    const currentURL = window.location.pathname;
-    if(currentURL !== "/") {
-      console.log("I am not on the home page");
-      window.location.pathname = "/";
-      setToggleApi(!toggleApi);
-    } else {
-      console.log ("I am on the home page");
-    }
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setToggleApi(!toggleApi);

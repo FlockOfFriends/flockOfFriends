@@ -89,7 +89,6 @@ const PersonalEvent = ({ liked }) => {
         setFiredata(mydata);
       })
       .catch((error) => {
-        console.log(error);
       });
 
     // Calling the db for existing guests right away
@@ -103,7 +102,6 @@ const PersonalEvent = ({ liked }) => {
         // pushing the values from the object into our emptryArray
         emptyArray.push({ personalID: key, name: data[key] });
       }
-      console.log(emptyArray);
       setGuestList(emptyArray);
     });
 

@@ -533,6 +533,22 @@
   .personalEvent {
     .wrapper {
       width: 90%;
+
+      .guest {
+        width: 100%;
+        .guestName {
+          width: 100%;
+          .addGuest {
+            width: 100%;
+            label {
+              width: 90%;
+            }
+            input {
+              width: 90%;
+            }
+          }
+        }
+      }
     }
   }
 }

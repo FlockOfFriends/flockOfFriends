@@ -5,28 +5,19 @@
     
     .aboutHeader, .teamHeader2 {
     text-align: center;
-    font-weight: bold;
+    // font-weight: bold;
     line-height: 3rem;
     margin: 0;
     }
 
-    .aboutHeader {
-        font-size: 3.5rem;
-        background-color: rgb(26, 24, 24);
-        padding: 20px; 
-        text-shadow: 1px 1px 4px orange, -1px -1px 4px orange;
-        color: white;
-        border-bottom: 3px solid #dd7939;
-        border-top: 3px solid #dd7939;
-        width: auto;
-    }
-
     .teamHeader2 {
         text-transform: uppercase;
-        margin-top: 70px;
+        margin-top: 50px;
         margin-bottom: 50px;   
         text-shadow: 1px 1px 10px #c7e7ff, -1px -1px 10px #c7e7ff;
         color: $darkBlue;
+        background: none;
+        font-weight: bold;
     }
 
     ul {
@@ -60,7 +51,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 50px;
+    // padding-bottom: 50px;
+    margin-top: 50px;
     border-radius: 5px;
     background: linear-gradient(#c7e7ff, #d3cfe6);
 
@@ -147,24 +139,11 @@
 }
 .aboutHeader, .teamHeader2 {
       text-align: center;
-      font-weight: bold;
       line-height: 3rem;
       margin: 0;
-  }
-  
-  .aboutHeader {
-          font-size: 3.5rem;
-          background-color: rgb(26, 24, 24);
-          margin: 0;
-          padding: 20px; 
-          text-shadow: 1px 1px 4px orange, -1px -1px 4px orange;
-          color: white;
-          border-bottom: 3px solid #dd7939;
-          border-top: 3px solid #dd7939;
-          width: auto;
-  }
-
-  .teamHeader2 {
+    }
+    
+    .teamHeader2 {
       text-transform: uppercase;
       margin-top: 50px;
   }
@@ -205,3 +184,28 @@
       }
   }
 
+@media (max-width: 450px) {
+    .aboutCreators {
+        .wrapper {
+            width: 85%;
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .aboutCreators {
+        .wrapper {
+            .projectCreators {
+                li {
+                    p {
+                        margin-bottom: 90px;
+                        padding: 0 25px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
