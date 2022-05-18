@@ -21,6 +21,7 @@ import iconLink from "../assets/iconLink.png";
 import iconLocation from "../assets/iconLocation.svg";
 import iconPeople from "../assets/iconPeople.svg";
 import iconTicket from "../assets/iconTicket.svg";
+import iconCopy from "../assets/iconCopy.png";
 import avatar1 from "../assets/avatar1.png";
 import avatar2 from "../assets/avatar2.png";
 import avatar3 from "../assets/avatar3.png";
@@ -36,6 +37,28 @@ import avatarHost from "../assets/avatarHost.png";
 
 const PersonalEvent = ({ liked }) => {
   const avatarArray = [
+    avatar1,
+    avatar2,
+    avatar3,
+    avatar4,
+    avatar5,
+    avatar6,
+    avatar7,
+    avatar8,
+    avatar9,
+    avatar10,
+    avatar11,
+    avatar1,
+    avatar2,
+    avatar3,
+    avatar4,
+    avatar5,
+    avatar6,
+    avatar7,
+    avatar8,
+    avatar9,
+    avatar10,
+    avatar11,
     avatar1,
     avatar2,
     avatar3,
@@ -80,7 +103,7 @@ const PersonalEvent = ({ liked }) => {
         // pushing the values from the object into our emptryArray
         emptyArray.push({ personalID: key, name: data[key] });
       }
-      console.log(emptyArray)
+      console.log(emptyArray);
       setGuestList(emptyArray);
     });
 
@@ -241,12 +264,13 @@ const PersonalEvent = ({ liked }) => {
                 </div>
                 <div className="calendar">
                   <span className="iconCalendar">
-                    
-                    {firedata.dateTime ? 
-                    <p className="getMonth">{getMonth(firedata.dateTime)} </p> : null}
-                    
-                    {firedata.dateTime ? <p className="getDay">{getDay(firedata.dateTime)}</p> : null}
-                    
+                    {firedata.dateTime ? (
+                      <p className="getMonth">{getMonth(firedata.dateTime)} </p>
+                    ) : null}
+
+                    {firedata.dateTime ? (
+                      <p className="getDay">{getDay(firedata.dateTime)}</p>
+                    ) : null}
                   </span>
                 </div>
               </div>
@@ -258,11 +282,10 @@ const PersonalEvent = ({ liked }) => {
                 <span>
                   <img src={iconPeople} alt="people icon" />
                 </span>
-                {guestList.length === undefined ? null : <p>Attending: {(guestList.length) + 1}</p>}
-                
+                {guestList.length === undefined ? null : (
+                  <p>Attending: {guestList.length + 1}</p>
+                )}
               </div>
-              
-
 
               <div className="subDetails">
                 <span>
@@ -280,30 +303,31 @@ const PersonalEvent = ({ liked }) => {
                 </p>
               </div>
 
-            <div className="description">
-              <form action="submit" className="describeForm">
-                <label htmlFor="describe">Write a description for your event:</label>
-                <p>{description}</p>
-                <textarea
-                  type="text"
-                  id="describe"
-                  onChange={handleFormChange}
-                  value={formInput}
-                />
-                <button className="detailsButton" onClick={handleFormSubmit}>
-                  Change Details
-                </button>
-              </form>
+              <div className="description">
+                <form action="submit" className="describeForm">
+                  <label htmlFor="describe">
+                    Write a description for your event:
+                  </label>
+                  <p>{description}</p>
+                  <textarea
+                    type="text"
+                    id="describe"
+                    onChange={handleFormChange}
+                    value={formInput}
+                  />
+                  <button className="detailsButton" onClick={handleFormSubmit}>
+                    Change Details
+                  </button>
+                </form>
+              </div>
             </div>
-          </div>
-          <div className="map">
-            <iframe
-              title="Google maps"
-              className="googlemap"
-              src={`https://maps.google.com/maps?q=${firedata.latitude}, ${firedata.longitude}&output=embed`}
-            ></iframe>
-          </div>
-              
+            <div className="map">
+              <iframe
+                title="Google maps"
+                className="googlemap"
+                src={`https://maps.google.com/maps?q=${firedata.latitude}, ${firedata.longitude}&output=embed`}
+              ></iframe>
+            </div>
 
             <div className="attendees">
               <h3>Attending</h3>
@@ -352,7 +376,7 @@ const PersonalEvent = ({ liked }) => {
               </ul>
             </div>
 
-                {/* Social media share links - change url once netlify name is chosen */}
+            {/* Social media share links - change url once netlify name is chosen */}
             <div className="socials">
               <h3>Share Event</h3>
               <ul>
@@ -368,82 +392,85 @@ const PersonalEvent = ({ liked }) => {
                       className="socialIcons"
                       aria-hidden="true"
                     />
-                    <span className="sr-only">Link to Share Event on Facebook</span>
-                  </a>
-                </li>
-
-                <li className="mobile">
-                  <a
-                href={`https://api.whatsapp.com/send?text=https://flockevents.netlify.app/personal/${personalID}`}
-                data-action="share/whatsapp/share"
-              ><img
-                      src={iconWhats}
-                      alt="WhatsApp Icon"
-                      className="socialIcons"
-                      aria-hidden="true"
-                    />
-                    <span className="sr-only">Link to Share Event on WhatsApp Mobile</span>
-                  </a>
-                </li>
-
-                <li className="desktop">
-                  <a
-                href={`whatsapp://send?text=https://flockevents.netlify.app/personal/${personalID}`}
-                data-action="share/whatsapp/share"
-              ><img
-                      src={iconWhats}
-                      alt="WhatsApp Icon"
-                      className="socialIcons desktop"
-                      aria-hidden="true"
-                    />
-                    <span className="sr-only">Link to Share Event on WhatsApp</span>
+                    <span className="sr-only">
+                      Link to Share Event on Facebook
+                    </span>
                   </a>
                 </li>
 
                 <li>
                   <a
-                rel="noreferrer"
-                target="_blank"
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=https://flockevents.netlify.app/personal/${personalID}`}
-              ><img
+                    href={`https://api.whatsapp.com/send?text=https://flockevents.netlify.app/personal/${personalID}`}
+                    data-action="share/whatsapp/share"
+                  >
+                    <img
+                      src={iconWhats}
+                      alt="WhatsApp Icon"
+                      className="socialIcons"
+                      aria-hidden="true"
+                    />
+                    <span className="sr-only">
+                      Link to Share Event on WhatsApp 
+                    </span>
+                  </a>
+                </li>
+
+                
+
+                <li>
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=https://flockevents.netlify.app/personal/${personalID}`}
+                  >
+                    <img
                       src={iconLink}
                       alt="LinkedIn Icon"
                       className="socialIcons"
                       aria-hidden="true"
                     />
-                    <span className="sr-only">Link to Share Event on LinkedIn</span>
+                    <span className="sr-only">
+                      Link to Share Event on LinkedIn
+                    </span>
                   </a>
                 </li>
 
                 <li>
                   <a
-                rel="noreferrer"
-                target="_blank"
-                href={`https://twitter.com/intent/tweet?url=https://flockevents.netlify.app/personal/${personalID}`}
-              ><img
+                    rel="noreferrer"
+                    target="_blank"
+                    href={`https://twitter.com/intent/tweet?url=https://flockevents.netlify.app/personal/${personalID}`}
+                  >
+                    <img
                       src={iconTwitter}
                       alt="Twitter Icon"
                       className="socialIcons"
                       aria-hidden="true"
                     />
-                    <span className="sr-only">Link to Share Event on Twitter</span>
+                    <span className="sr-only">
+                      Link to Share Event on Twitter
+                    </span>
                   </a>
                 </li>
+                <li>
+                  <button className="socialIcons copy"
+                    onClick={() =>
+                      navigator.clipboard.writeText(
+                        `https://flockevents.netlify.app/personal/${personalID}`
+                      )
+                    }
+                  >
+                    <img
+                    title="Copy Event Link to Clipboard"
+                      src={iconCopy}
+                      alt="Copy Link Icon"
+                      className="socialIcons"
+                      aria-hidden="true"
+                    />
+                    <span className="sr-only">Copy Event Link to Clipboard</span>
+                  </button>
+                </li>
               </ul>
-
-              {/* <a href={`https://flockevents.netlify.app/personal/${personalID}`}>
-                Link
-              </a>
-
-              <button
-                onClick={() =>
-                  navigator.clipboard.writeText("Copy this text to clipboard")
-                }
-              >
-                Copy
-              </button> */}
-
-              
             </div>
           </div>
         ) : null}

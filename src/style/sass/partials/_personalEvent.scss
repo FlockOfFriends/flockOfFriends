@@ -324,19 +324,21 @@ p {
     margin-top: 15px;
     width: 100%;
     display: flex;
-    gap: 2rem;
+    // gap: 1rem;
     justify-content: space-between;
     .socialIcons {
       width: 2.5rem;
       opacity: 1;
       transition: all 0.2s ease-in-out;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      
       &:hover,
       &:focus {
         opacity: 0.8;
       }
     }
-    .mobile {
-      display: none;
-    }
+    
   }
 }
