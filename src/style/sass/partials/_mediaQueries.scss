@@ -115,7 +115,7 @@
   // ******************
   .burgerMenu, .searchIcon {
     z-index: 90;
-    padding: 10px 0;
+    padding: 5px 0;
     transition: all 0.2s;
 
     button {
@@ -156,11 +156,12 @@
 
         div {
           left: -30px;
+          top: 1px;
         }
 
         .pulse1, .pulse2 {
           left: -35px;
-          top: -2px;
+          top: 1px;
         }
       }
       
